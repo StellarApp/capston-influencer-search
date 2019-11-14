@@ -1,1 +1,1 @@
-# capston-influencer-search
+# capstone-influencer-search
