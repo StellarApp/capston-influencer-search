@@ -7,7 +7,13 @@ import { actions } from '../store';
 
 class Home extends Component {
   render() {
-    return <div> Home </div>;
+    return (
+      <div>
+        <a href="">
+          <img src="./assets/images/linkedin-signin.png" />
+        </a>
+      </div>
+    );
   }
 }
 
