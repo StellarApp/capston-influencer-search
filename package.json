@@ -10,7 +10,7 @@
     "test:watch": "",
     "start:dev": "npm run build:dev & nodemon backend/server.js --ignore frontend/ ",
     "start": "node backend/server.js",
-    "postinstall": "npm run webpack"
+    "postinstall": "npm run build"
   },
   "engines": {
     "node": "10.16.x"
