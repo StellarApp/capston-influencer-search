@@ -15,6 +15,8 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
+app.use('/auth', require('./routes/auth'));
+
 app.use((err, req, res, next) => {
   if (err.errors) {
     message = err.errors[0].message;
