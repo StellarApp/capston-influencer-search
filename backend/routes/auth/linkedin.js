@@ -58,6 +58,28 @@ const getMemberProfile = async accessToken => {
   };
 };
 
+const extractEmail = emailObject => {
+  const emailArray = emailObject.elements;
+  if (emailArray && emailArray.length) {
+    const emailData = emailArray.shift();
+    return emailData['handle~'].emailAddress;
+  }
+
+  return null;
+};
+
+const getMemberEmail = async accessToken => {
+  const emailUrl =
+    'https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))';
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  };
+  const emailObject = (await axios.get(emailUrl, config)).data;
+  return extractEmail(emailObject);
+};
+
 router.get('/', (req, res) => {
   const authorizationUrl = 'https://www.linkedin.com/oauth/v2/authorization';
   const queryParams = {
@@ -84,6 +106,8 @@ router.get('/callback', async (req, res, next) => {
         const { access_token } = await getAccessToken(code);
         const memberProfile = await getMemberProfile(access_token);
         console.log('memberProfile', memberProfile);
+        const memberEmail = await getMemberEmail(access_token);
+        console.log('memberEmail', memberEmail);
         res.send('done');
       } catch (e) {
         console.log('exception', e);
