@@ -28,6 +28,16 @@ const getAccessToken = async code => {
     .data;
 };
 
+const getMemberProfile = async accessToken => {
+  const profileUrl = 'https://api.linkedin.com/v2/me';
+  const config = {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  };
+  return (await axios.get(profileUrl, config)).data;
+};
+
 router.get('/', (req, res) => {
   const authorizationUrl = 'https://www.linkedin.com/oauth/v2/authorization';
   const queryParams = {
@@ -51,8 +61,10 @@ router.get('/callback', async (req, res, next) => {
       next({ status: 401 });
     } else {
       try {
-        const accessToken = await getAccessToken(code);
-        res.send(`access token: ${accessToken.access_token}`);
+        const { access_token } = await getAccessToken(code);
+        const memberProfile = await getMemberProfile(access_token);
+        console.log('memberProfile', memberProfile);
+        res.send('done');
       } catch (e) {
         console.log('exception', e);
         next(e);
