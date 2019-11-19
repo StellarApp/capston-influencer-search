@@ -28,6 +28,18 @@ const getAccessToken = async code => {
     .data;
 };
 
+router.get('/', (req, res) => {
+  const authorizationUrl = 'https://www.linkedin.com/oauth/v2/authorization';
+  const queryParams = {
+    response_type: 'code',
+    client_id: LINKEDIN_CLIENT_ID,
+    redirect_uri: LINKEDIN_REDIRECT_URI,
+    state: LINKEDIN_STATE,
+    scope: 'r_liteprofile r_emailaddress'
+  };
+  res.redirect(`${authorizationUrl}?${qs.stringify(queryParams)}`);
+});
+
 router.get('/callback', async (req, res, next) => {
   const { code, state, error } = req.query;
 

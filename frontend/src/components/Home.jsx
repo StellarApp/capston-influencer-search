@@ -9,7 +9,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <a href="">
+        <a href="/auth/linkedin">
           <img src="./assets/images/linkedin-signin.png" />
         </a>
       </div>
