@@ -28,14 +28,34 @@ const getAccessToken = async code => {
     .data;
 };
 
+const extractProfilePicUrl = displayImageObject => {
+  const profilePicArray = displayImageObject.elements;
+  if (profilePicArray && profilePicArray.length) {
+    const largestProfilePic = profilePicArray.pop();
+    return largestProfilePic.identifiers[0].identifier;
+  }
+
+  return null;
+};
+
 const getMemberProfile = async accessToken => {
-  const profileUrl = 'https://api.linkedin.com/v2/me';
+  const profileUrl =
+    'https://api.linkedin.com/v2/me?projection=(id,localizedFirstName,localizedLastName,profilePicture(displayImage~:playableStreams))';
   const config = {
     headers: {
       Authorization: `Bearer ${accessToken}`
     }
   };
-  return (await axios.get(profileUrl, config)).data;
+  const { id, localizedLastName, localizedFirstName, profilePicture } = (
+    await axios.get(profileUrl, config)
+  ).data;
+
+  return {
+    linkedInId: id,
+    firstName: localizedFirstName,
+    lastName: localizedLastName,
+    profilePicUrl: extractProfilePicUrl(profilePicture['displayImage~'])
+  };
 };
 
 router.get('/', (req, res) => {
