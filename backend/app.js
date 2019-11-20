@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
+/* Subrouters for authorization */
 app.use('/auth', require('./routes/auth'));
 
 app.use((err, req, res, next) => {

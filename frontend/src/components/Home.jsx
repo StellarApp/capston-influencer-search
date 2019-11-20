@@ -12,6 +12,9 @@ class Home extends Component {
         <a href="/auth/linkedin">
           <img src="./assets/images/linkedin-signin.png" />
         </a>
+        <div id="fb-root">
+          <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-auto-logout-link="/user/logout" data-use-continue-as="false"></div>
+        </div>
       </div>
     );
   }
