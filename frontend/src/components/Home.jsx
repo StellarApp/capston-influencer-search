@@ -11,10 +11,10 @@ import { actions } from "../store";
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId: process.env.FB_APP_ID, // environment variables are undefined
+    appId: process.env.FB_APP_ID,
     cookie: true,
     xfbml: true,
-    version: process.env.FB_APP_VERSION // environment variables are undefined
+    version: process.env.FB_APP_VERSION
   });
 
   FB.AppEvents.logPageView();
@@ -47,6 +47,7 @@ function statusChangeCallback(response) {
 
 class Home extends Component {
   render() {
+    console.log(process.env.FB_APP_ID)
     return (
       <div>
         <a href="/auth/linkedin">
