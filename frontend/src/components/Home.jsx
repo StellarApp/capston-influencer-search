@@ -11,10 +11,10 @@ import { actions } from "../store";
 
 window.fbAsyncInit = function() {
   FB.init({
-    appId: process.env.FB_APP_ID,
+    appId: "507675923424391",
     cookie: true,
     xfbml: true,
-    version: process.env.FB_APP_VERSION
+    version: "v5.0"
   });
 
   FB.AppEvents.logPageView();
@@ -47,7 +47,7 @@ function statusChangeCallback(response) {
 
 class Home extends Component {
   render() {
-    console.log(process.env.FB_APP_ID)
+    console.log(process.env.FB_APP_ID);
     return (
       <div>
         <a href="/auth/linkedin">
