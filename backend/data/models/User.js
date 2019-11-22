@@ -57,6 +57,18 @@ const User = connection.define(
       type: BOOLEAN,
       defaultValue: false,
     },
+    likedInId:{
+      type: STRING,
+      allowNull: true,
+    },
+    facebookId:{
+      type: STRING,
+      allowNull: true,
+    },
+    instagram_Id:{
+      type: STRING,
+      allowNull: true,
+    }
   },
   {
     hooks: {
