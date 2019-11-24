@@ -1,11 +1,7 @@
-const dotenv = require('dotenv').config();
-const bcrypt = require('bcrypt');
 const connection = require('../connection');
-
 const { Sequelize } = connection;
-
 const {
- STRING, UUID, UUIDV4, VIRTUAL, BOOLEAN 
+  STRING, UUID, UUIDV4, VIRTUAL, BOOLEAN
 } = Sequelize;
 
 const User = connection.define(
@@ -39,13 +35,6 @@ const User = connection.define(
         isEmail: true,
       },
     },
-    password: {
-      type: STRING,
-      allowNull: false,
-      validate: {
-        len: [6, 255],
-      },
-    },
     fullName: {
       type: VIRTUAL,
       get() {
@@ -57,32 +46,15 @@ const User = connection.define(
       type: BOOLEAN,
       defaultValue: false,
     },
-    likedInId:{
+    facebookId: {
       type: STRING,
       allowNull: true,
     },
-    facebookId:{
-      type: STRING,
-      allowNull: true,
-    },
-    instagram_Id:{
+    instagram_Id: {
       type: STRING,
       allowNull: true,
     }
-  },
-  {
-    hooks: {
-      async beforeCreate(user) {
-        const salt = await bcrypt.genSalt(process.env.SALT_ROUNDS * 1);
-        const hashPassword = await bcrypt.hash(user.password, salt);
-        user.password = hashPassword;
-      },
-    },
-  },
+  }
 );
-
-User.prototype.validPassword = async function (password) {
-  return await bcrypt.compare(password, this.password);
-};
 
 module.exports = User;
