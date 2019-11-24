@@ -5,10 +5,6 @@ import { connect } from "react-redux";
 // Local imports
 import { actions } from "../store";
 
-// *** issues *** environment variables are undefined
-// import dotenv from 'dotenv'
-// dotenv.config()
-
 window.fbAsyncInit = function() {
   FB.init({
     appId: "507675923424391",
@@ -20,7 +16,6 @@ window.fbAsyncInit = function() {
   FB.AppEvents.logPageView();
 
   FB.getLoginStatus(function(response) {
-    console.log(response); // undefined. It could be http localhost, not https
     statusChangeCallback(response);
   });
 };
@@ -38,16 +33,24 @@ window.fbAsyncInit = function() {
 })(document, "script", "facebook-jssdk");
 
 function statusChangeCallback(response) {
-  if (response.status === "connected") {
-    console.log("Logged in");
-  } else {
-    console.log("Not authenticated");
-  }
+  if (response.authResponse) {
+    const FB_accessToken =  response.authResponse.accessToken;
+
+    //requet facebook user's data
+    FB.api(`/{response.userID}`, function(userInfo) {
+      if(userInfo && !userInfo.error){
+        //Save UserInfo
+
+        // IG Authentication
+      }
+    });
+   } else {
+    console.log('User cancelled login or did not fully authorize.');
+   }
 }
 
 class Home extends Component {
   render() {
-    console.log(process.env.FB_APP_ID);
     return (
       <div>
         <a href="/auth/linkedin">
