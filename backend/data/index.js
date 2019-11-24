@@ -3,12 +3,13 @@ const connection = require("./connection");
 const syncAndSeed = require("./syncAndSeed");
 
 // Models
-const { User } = require("./models");
+const { User, Business } = require('./models');
 
 module.exports = {
   connection,
   models: {
-    User
+    User,
+    Business
   },
   syncAndSeed
 };
