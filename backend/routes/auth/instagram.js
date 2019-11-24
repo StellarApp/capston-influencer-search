@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const dotenv = require("dotenv").config();
 
 
 /* instagram authorization */
