@@ -40,7 +40,7 @@ function statusChangeCallback(response) {
     FB.api(`/{response.userID}`, function(userInfo) {
       if(userInfo && !userInfo.error){
         //Save UserInfo
-
+        console.log(userInfo)
         // IG Authentication
       }
     });
