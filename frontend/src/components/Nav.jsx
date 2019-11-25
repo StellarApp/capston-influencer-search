@@ -8,16 +8,26 @@ import { actions } from "../store";
 
 class Nav extends Component {
   render() {
+    const {loggedIn} = this.props
     return (
-      <NavLink to="/" exact>
-        Home
-      </NavLink>
+      <div>
+        <NavLink to="/" exact>
+          Home
+        </NavLink>
+        {/* {!loggedIn ? ( */}
+          <NavLink to="/signup">
+            SignUp
+          </NavLink>
+        {/* ) : (
+          ""
+        )} */}
+      </div>
     );
   }
 }
 
 const mapStateToProps = ({ auth }) => {
-  return { auth };
+  return { loggedIn: !!auth };
 };
 
 export default connect(mapStateToProps)(Nav);
