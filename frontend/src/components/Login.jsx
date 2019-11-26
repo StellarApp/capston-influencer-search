@@ -24,7 +24,7 @@ class _Login extends Component {
       imageUrl: picture.data.url
     };
 
-    const auth = { accessToken, user };
+    const auth = { token: accessToken, user };
     fbLogin(auth);
   }
 

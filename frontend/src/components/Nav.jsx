@@ -14,20 +14,22 @@ class Nav extends Component {
         <NavLink to="/" exact>
           Home
         </NavLink>
-        {/* {!loggedIn ? ( */}
+        {!loggedIn ? (
           <NavLink to="/login">
             Login
           </NavLink>
-        {/* ) : (
-          ""
-        )} */}
+        ) : (
+          <NavLink to="/logout">
+            Logout
+          </NavLink>
+        )} 
       </div>
     );
   }
 }
 
 const mapStateToProps = ({ auth }) => {
-  return { loggedIn: !!auth };
+  return { loggedIn: !!auth.token, auth };
 };
 
 export default connect(mapStateToProps)(Nav);
