@@ -15,8 +15,8 @@ class Nav extends Component {
           Home
         </NavLink>
         {/* {!loggedIn ? ( */}
-          <NavLink to="/signup">
-            SignUp
+          <NavLink to="/login">
+            Login
           </NavLink>
         {/* ) : (
           ""
