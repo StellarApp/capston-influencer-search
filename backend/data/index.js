@@ -1,14 +1,15 @@
 // DB Stuff
-const connection = require("./connection");
-const syncAndSeed = require("./syncAndSeed");
+const connection = require('./connection');
+const sync = require('./sync');
 
 // Models
-const { User } = require("./models");
+const { User, Business } = require('./models');
 
 module.exports = {
   connection,
   models: {
-    User
+    User,
+    Business
   },
-  syncAndSeed
+  sync
 };

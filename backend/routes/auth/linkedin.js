@@ -2,6 +2,8 @@ const axios = require('axios');
 const qs = require('querystring');
 const router = require('express').Router();
 
+const { Business } = require('../../data').models;
+
 const {
   LINKEDIN_STATE,
   LINKEDIN_CLIENT_ID,
@@ -54,7 +56,7 @@ const getMemberProfile = async accessToken => {
     linkedInId: id,
     firstName: localizedFirstName,
     lastName: localizedLastName,
-    profilePicUrl: extractProfilePicUrl(profilePicture['displayImage~'])
+    imageUrl: extractProfilePicUrl(profilePicture['displayImage~'])
   };
 };
 
@@ -105,10 +107,15 @@ router.get('/callback', async (req, res, next) => {
       try {
         const { access_token } = await getAccessToken(code);
         const memberProfile = await getMemberProfile(access_token);
-        console.log('memberProfile', memberProfile);
-        const memberEmail = await getMemberEmail(access_token);
-        console.log('memberEmail', memberEmail);
-        res.send('done');
+        const email = await getMemberEmail(access_token);
+
+        const businessUser = await Business.authenticate({
+          ...memberProfile,
+          email
+        });
+
+        console.log('businessUser', businessUser);
+        res.send(businessUser);
       } catch (e) {
         console.log('exception', e);
         next(e);
