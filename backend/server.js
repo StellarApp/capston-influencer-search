@@ -6,18 +6,6 @@ const port = process.env.PORT || 3000;
 const fs = require("fs");
 const https = require("https");
 
-// db.sync(true).then(() => {
-//   app.listen(port, () => console.log(`listening on port ${port}`));
-// });
-// // enable https in Express
-// https.createServer({
-//   key: fs.readFileSync('server.key'),
-//   cert: fs.readFileSync('server.cert')
-// }, app)
-// .listen(3000, function () {
-//   console.log(`listening on port ${port}`)
-// })
-
 db.sync(true).then(() => {
   // enable https in Express
   https
