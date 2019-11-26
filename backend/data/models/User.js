@@ -53,6 +53,9 @@ const User = connection.define(
     instagram_Id: {
       type: STRING,
       allowNull: true,
+    },
+    imageUrl: {
+      type: STRING
     }
   }
 );

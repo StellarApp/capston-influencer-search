@@ -6,20 +6,26 @@ import { connect } from "react-redux";
 import { actions } from "../store";
 import FacebookLogin from "react-facebook-login";
 
-class SignUp extends Component {
-  facebookLogin(response) {
-    console.log(response);
+class _Login extends Component {
+  constructor() {
+    super();
+    this.facebookLogin = this.facebookLogin.bind(this);
+  }
 
-    let { name, accessToken, email, userId } = response;
-    const fullName = name.split(" ");
+  facebookLogin(response) {
+    console.log("fb response", response);
+    const { fbLogin } = this.props;
+    const { first_name, last_name, accessToken, email, id, picture } = response;
     const user = {
-      firstName: fullName[0],
-      lastName: fullName[name.length - 1],
+      firstName: first_name,
+      lastName: last_name,
       email,
-      facebookId: userId
+      facebookId: id,
+      imageUrl: picture.data.url
     };
 
-    this.props.attemptToLogin(accessToken, user);
+    const auth = { accessToken, user };
+    fbLogin(auth);
   }
 
   render() {
@@ -37,12 +43,12 @@ class SignUp extends Component {
           <h2>For Creators:</h2>
           <FacebookLogin
             appId="507675923424391"
-            fields="name,email,picture"
-            autoLoad={true}
+            fields="first_name, last_name,email,picture"
+            // autoLoad={true}
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
-            scope="public_profile,user_friends"
+            scope="public_profile, user_posts, instagram_basic, instagram_manage_insights"
             textButton="Sign In With Facebook"
             redirectUri="/"
           />
@@ -52,14 +58,15 @@ class SignUp extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  attemptToLogin: (accessToken, user) => {
+const mapDispatchToProps = (dispatch, { history }) => ({
+  fbLogin: auth =>
     //dispatch facebook auth & user data
-    dispatch(actions.attemptToLogin(accessToken, user));
-  }
+    dispatch(actions.attemptToLogin(auth, history))
 });
 
-export default connect(null, mapDispatchToProps)(SignUp);
+const Login = connect(null, mapDispatchToProps)(_Login);
+
+export default Login;
 
 // * This was replaced by react-facebook-login package
 // using facebook sdk but FB displayed as undefined
