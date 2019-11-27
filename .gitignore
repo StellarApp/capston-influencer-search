@@ -2,3 +2,5 @@
 frontend/assets/index.js
 node_modules/
 package-lock.json
+server.key
+server.cert
