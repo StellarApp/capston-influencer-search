@@ -42,15 +42,11 @@ const User = connection.define(
         return fullName;
       },
     },
-    isAdmin: {
-      type: BOOLEAN,
-      defaultValue: false,
-    },
     facebookId: {
       type: STRING,
       allowNull: true,
     },
-    instagram_Id: {
+    instagramId: {
       type: STRING,
       allowNull: true,
     },

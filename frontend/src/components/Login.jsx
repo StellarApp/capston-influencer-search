@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { actions } from "../store";
 import FacebookLogin from "react-facebook-login";
 
-class _Login extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.facebookLogin = this.facebookLogin.bind(this);
@@ -64,9 +64,7 @@ const mapDispatchToProps = (dispatch, { history }) => ({
     dispatch(actions.attemptToLogin(auth, history))
 });
 
-const Login = connect(null, mapDispatchToProps)(_Login);
-
-export default Login;
+export default connect(null, mapDispatchToProps)(Login);
 
 // * This was replaced by react-facebook-login package
 // using facebook sdk but FB displayed as undefined

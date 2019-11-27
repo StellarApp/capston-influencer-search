@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { actions } from '../store';
 
 /* Logout */
-class _Logout extends Component {
+class Logout extends Component {
   constructor() {
     super();
   }
@@ -23,9 +23,7 @@ const mapDispatchToProps = (dispatch, { history }) => ({
   logout: () => dispatch(actions.logout(history)),
 });
 
-const Logout = connect(
+export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(_Logout);
-
-export default Logout;
+)(Logout);
