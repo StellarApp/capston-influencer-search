@@ -48,7 +48,7 @@ class _Login extends Component {
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
-            scope="public_profile, user_posts, instagram_basic, instagram_manage_insights"
+            scope="public_profile, user_photos, user_posts, instagram_basic, instagram_manage_insights"
             textButton="Sign In With Facebook"
             redirectUri="/"
           />

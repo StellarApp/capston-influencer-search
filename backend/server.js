@@ -16,7 +16,7 @@ db.sync(true).then(() => {
       },
       app
     )
-    .listen(3000, function() {
+    .listen(port, function() {
       console.log(`listening on port ${port}`);
     });
 });
