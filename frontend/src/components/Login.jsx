@@ -42,7 +42,7 @@ class Login extends Component {
         <div id="creatorLogin">
           <h2>For Creators:</h2>
           <FacebookLogin
-            appId="507675923424391"
+            appId={process.env.FB_APP_ID}
             fields="first_name,last_name,email,picture"
             callback={facebookLogin}
             icon="fa-facebook"
