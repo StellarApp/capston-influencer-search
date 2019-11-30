@@ -8,12 +8,9 @@ import { actions } from "../store";
 class Home extends Component {
   render() {
     return (
-      <div>Home page
-        </div>
+      <div>Home page</div>
     );
   }
 }
 
-const mapStateToProps = ({}) => ({});
-
-export default connect(mapStateToProps)(Home);
+export default connect(null)(Home);

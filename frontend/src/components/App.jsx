@@ -13,14 +13,6 @@ import Login from "./Login";
 import Logout from "./Logout";
 
 class App extends Component {
-  componentDidMount() {
-    const {
-      attemptSessionLogin,
-    } = this.props;
-
-    // getLoginStatus();
-  }
-
   render() {
     return (
       <HashRouter>
@@ -35,8 +27,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  // getLoginStatus: () => dispatch(actions.getLoginStatus())
-});
-
-export default connect(null, mapDispatchToProps)(App);
+export default connect(null)(App);
