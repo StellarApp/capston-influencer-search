@@ -1,8 +1,6 @@
 const connection = require('../connection');
 const { Sequelize } = connection;
-const {
-  STRING, UUID, UUIDV4, VIRTUAL
-} = Sequelize;
+const { STRING, UUID, UUIDV4, VIRTUAL } = Sequelize;
 
 const Creator = connection.define(
   'creator',
@@ -55,5 +53,12 @@ const Creator = connection.define(
     }
   }
 );
+
+Creator.authenticate = function (user) {
+  return Creator.findOrCreate({
+    where: { facebookId: user.facebookId },
+    defaults: user
+  });
+};
 
 module.exports = Creator;

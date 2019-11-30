@@ -4,9 +4,9 @@ const { Creator } = require("../../data/models");
 router.post("/", (req, res, next) => {
   const user = req.body;
   if (user) {
-    Creator.findOrCreate({ where: { facebookId: user.facebookId }, defaults: user })
-      .then(newUser => {
-        res.send(newUser.data);
+    Creator.authenticate(user)
+      .then(creator => {
+        res.send(creator);
       })
       .catch(ex => console.log(ex));
   }
