@@ -15,6 +15,9 @@ app.get('/', (req, res) => {
 /* Subrouters for authorization */
 app.use('/auth', require('./routes/auth'));
 
+/* Subrouters for creators */
+app.use('/creators', require('./routes/creators'));
+
 app.use((err, req, res, next) => {
   if (err.errors) {
     message = err.errors[0].message;
