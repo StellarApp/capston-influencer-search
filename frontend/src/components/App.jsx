@@ -11,6 +11,9 @@ import Home from "./Home";
 import Nav from "./Nav";
 import Login from "./Login";
 import Logout from "./Logout";
+import Account from "./Account";
+import Collections from "./Collections";
+import Creators from "./Creators";
 
 class App extends Component {
   componentDidMount() {
@@ -27,6 +30,9 @@ class App extends Component {
         <Nav />
         <Switch>
           <Route path="/" component={Home} exact />
+          <Route path="/account" component={Account} />
+          <Route path="/collections" component={Collections} />
+          <Route path="/creators" component={Creators} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
         </Switch>

@@ -14,19 +14,22 @@ class Nav extends Component {
         <NavLink to="/" exact>
           Connect Creator
         </NavLink>
+        {loggedIn? <NavLink to="/creators">
+          Creators
+        </NavLink> : ''}
+        {loggedIn? <NavLink to="/collections">
+          Collections
+        </NavLink> : ''}
+        {loggedIn? <NavLink to="/account">
+          Collections
+        </NavLink> : ''}
         {!loggedIn ? (
           <NavLink to="/login">
             Login &rarr;
           </NavLink>
         ) : (
-          <NavLink to="/creators">
-            Creators
-          </NavLink>
-          <NavLink to="/collections">
-            Collections
-          </NavLink>
-          <NavLink to="/account">
-            Account
+          <NavLink to="/logout">
+            Logout 
           </NavLink>
         )} 
       </div>
