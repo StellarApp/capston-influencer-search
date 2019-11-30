@@ -1,11 +1,11 @@
 const connection = require('../connection');
 const { Sequelize } = connection;
 const {
-  STRING, UUID, UUIDV4, VIRTUAL, BOOLEAN
+  STRING, UUID, UUIDV4, VIRTUAL
 } = Sequelize;
 
-const User = connection.define(
-  'user',
+const Creator = connection.define(
+  'creator',
   {
     id: {
       type: UUID,
@@ -56,4 +56,4 @@ const User = connection.define(
   }
 );
 
-module.exports = User;
+module.exports = Creator;

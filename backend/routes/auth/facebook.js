@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../data/models");
+const { Creator } = require("../../data/models");
 
 /* facebook authorization */
 
@@ -7,7 +7,7 @@ const { User } = require("../../data/models");
 router.post("/add", (req, res, next) => {
   const user = req.body;
   if (user) {
-    User.findOrCreate({ where: { email: user.email }, defaults: user })
+    Creator.findOrCreate({ where: { email: user.email }, defaults: user })
       .then(newUser => {
         res.send(newUser.data);
       })

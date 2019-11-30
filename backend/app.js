@@ -4,8 +4,6 @@ const db = require('./data');
 
 const app = express();
 
-const { User } = db.models;
-
 app.use('/assets', express.static(path.join(__dirname, '../frontend/assets')));
 
 app.use(express.json());
