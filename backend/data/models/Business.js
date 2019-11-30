@@ -41,14 +41,10 @@ const Business = connection.define('business', {
   }
 });
 
-Business.authenticate = function(businessUser) {
-  return connection.transaction(function(transaction) {
-    return Business.findOrCreate({
-      where: {
-        ...businessUser
-      },
-      transaction
-    });
+Business.authenticate = function(user) {
+  return Business.findOrCreate({
+    where: { linkedInId: user.linkedInId },
+    defaults: user
   });
 };
 
