@@ -19,8 +19,14 @@ class Nav extends Component {
             Login &rarr;
           </NavLink>
         ) : (
-          <NavLink to="/logout">
-            Logout 
+          <NavLink to="/creators">
+            Creators
+          </NavLink>
+          <NavLink to="/collections">
+            Collections
+          </NavLink>
+          <NavLink to="/account">
+            Account
           </NavLink>
         )} 
       </div>
