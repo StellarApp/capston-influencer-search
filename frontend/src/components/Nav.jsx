@@ -12,15 +12,15 @@ class Nav extends Component {
     return (
       <div>
         <NavLink to="/" exact>
-          Home
+          Connect Creator
         </NavLink>
         {!loggedIn ? (
           <NavLink to="/login">
-            Login
+            Login &rarr;
           </NavLink>
         ) : (
           <NavLink to="/logout">
-            Logout
+            Logout 
           </NavLink>
         )} 
       </div>
