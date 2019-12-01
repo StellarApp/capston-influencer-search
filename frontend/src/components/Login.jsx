@@ -64,7 +64,6 @@ class Login extends Component {
             fields="first_name,last_name,email, picture, gender, location, link, accounts{instagram_business_account}"
             //change the scope of the login
             scope="public_profile,email, user_gender, user_location, user_link, instagram_basic,instagram_manage_comments,manage_pages"
-            autoLoad={true}
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
