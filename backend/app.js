@@ -34,7 +34,7 @@ Object.keys(routes).forEach((key) => {
 app.use('/auth', require('./routes/auth'));
 
 /* Subrouters for creators */
-app.use('/creators', require('./routes/creators'));
+app.use('/api/creators', require('./routes/creators'));
 
 app.use((err, req, res, next) => {
   if (err.errors) {

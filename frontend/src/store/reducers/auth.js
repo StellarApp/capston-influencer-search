@@ -1,4 +1,4 @@
-import {SET_AUTH, DELETE_AUTH }from "../constants";
+import { SET_AUTH, DELETE_AUTH } from "../constants";
 
 const authReducer = (state = {}, action) => {
   switch (action.type) {
@@ -11,4 +11,4 @@ const authReducer = (state = {}, action) => {
   }
 };
 
-export default authReducer ;
+export default authReducer;

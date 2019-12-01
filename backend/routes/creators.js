@@ -1,21 +1,20 @@
-const express = require('express');
-const jwt = require('jwt-simple');
+const router = require("express").Router();
+const { Creator } = require('../data').models;
 
-const{Creator}=require('../data/models');
-const router = express.Router();
 router.use(express.json());
 
 /* creator list */
 
 // get request for all creator list
 router.get("/", (req, res, next) => {
-  // request base user information from database
-  // need to request instagram insight data to send to creator list page
-    Creator.findAll()
-      .then(creators => {
-        res.send(creators);
-      })
-      .catch(next);
+  // request basic user information from creator's data table
+  // api request need to be created for the ig insight 
+  // const {location, gender} = req.body
+  Creator.findAll()
+  .then(creators => {
+      res.send(creators);
+    })
+    .catch(next);
 });
 
 //get request for business user's collection
