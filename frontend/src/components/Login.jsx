@@ -37,7 +37,7 @@ class Login extends Component {
       facebookId: id,
       imageUrl: picture.data.url,
       gender,
-      location
+      location : location.name
     };
     
     //find IG_accounts
