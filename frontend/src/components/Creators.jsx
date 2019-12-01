@@ -12,6 +12,7 @@ const CreatorList = styled.div`
 `;
 
 class Creators extends Component {
+  /* filtering will be added - working on it 
   constructor(props) {
     super(props);
     this.state = {
@@ -65,12 +66,11 @@ class Creators extends Component {
 
     this.setState({ searchWords: "", state: "", gender: "", creators });
   }
-
+  */
   render() {
     const { creators } = this.props;
     const { onChange, onSubmit } = this;
 
-    console.log('props', this.props)
     return (
       <div>
         <form>
@@ -81,10 +81,10 @@ class Creators extends Component {
             onChange={onChange}
           ></input>
           <select name="state">
-            {creators.map(creator => {
+            {/* {creators.map(creator => {
               const state = creator.location.name.split(", ")[1];
               return <option value={state}>{state}</option>;
-            })}
+            })} */}
           </select>
           <select name="gender">
             <option value="female">female</option>
@@ -95,7 +95,7 @@ class Creators extends Component {
           </button>
         </form>
         <CreatorList>
-          {this.state.creators.map(creator => (
+          {creators.map(creator => (
             <CreatorCard key={creator.id} creator={creator} />
           ))}
         </CreatorList>

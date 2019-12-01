@@ -23,7 +23,7 @@ class Login extends Component {
       facebookId: id,
       imageUrl: picture.data.url,
       gender,
-      location
+      location : location.name
     };
 
     const auth = { token: accessToken, user };
