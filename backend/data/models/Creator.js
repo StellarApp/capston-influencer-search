@@ -1,6 +1,4 @@
 const connection = require('../connection');
-const dotenv = require('dotenv').config();
-const axios = require('axios');
 const { Sequelize } = connection;
 const { STRING, UUID, UUIDV4, VIRTUAL } = Sequelize;
 
