@@ -1,5 +1,5 @@
 import axios from "axios";
-import { 
+import {
   SET_AUTH,
   DELETE_AUTH,
   SET_CREATORS,
@@ -7,11 +7,11 @@ import {
   DELETE_CREATOR,
   SET_BUSINESS,
   UPDATE_BUSINESS,
-  DELETE_BUSINESS,
+  DELETE_BUSINESS
 } from "./constants";
 
 const attemptToLogin = (auth, history) => async dispatch => {
-  (await axios.post("/auth/facebook/", auth.user)).data;
+  (await axios.post("/auth/facebook/", auth)).data;
   dispatch({
     type: SET_AUTH,
     auth

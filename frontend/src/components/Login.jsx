@@ -33,8 +33,7 @@ class Login extends Component {
       lastName: last_name,
       email,
       facebookId: id,
-      instagramId: accounts.data[0].id,
-      imageUrl: picture.data.url,
+      instagramId: accounts.data[0].instagram_business_account.id,
       gender,
       location: location.name
     };
