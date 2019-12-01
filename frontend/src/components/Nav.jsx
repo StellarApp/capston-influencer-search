@@ -50,7 +50,7 @@ class Nav extends Component {
         <Right>
           {loggedIn ? <StyledNav to="/creators">Creators</StyledNav> : ""}
           {loggedIn ? <StyledNav to="/collections">Collections</StyledNav> : ""}
-          {loggedIn ? <StyledNav to="/account">Collections</StyledNav> : ""}
+          {loggedIn ? <StyledNav to="/account">Account</StyledNav> : ""}
           {!loggedIn ? (
             <StyledNav to="/login">Login &rarr;</StyledNav>
           ) : (
