@@ -13,19 +13,22 @@ class Login extends Component {
   }
 
   facebookLogin(response) {
-    console.log("fb response", response);
     const { fbLogin } = this.props;
-    const { first_name, last_name, accessToken, email, id, picture } = response;
+    const { first_name, last_name, accessToken, email, id, picture, accounts} = response;
+    console.log('RESPONSE', accounts.data[0])
+    const ig_id = accounts.data[0].id
     const user = {
       firstName: first_name,
       lastName: last_name,
       email,
       facebookId: id,
+      instagramId: (ig_id)? ig_id:null,
       imageUrl: picture.data.url
-    };
-
+    }
+    //find IG_accounts
+    console.log('CREATOR', user)
     const auth = { token: accessToken, user };
-    fbLogin(auth);
+      fbLogin(auth);
   }
 
   render() {
@@ -43,11 +46,12 @@ class Login extends Component {
           <h2>For Creators:</h2>
           <FacebookLogin
             appId={process.env.FB_APP_ID}
-            fields="first_name,last_name,email,picture"
+            fields="first_name,last_name,email, picture, accounts{instagram_business_account}"
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
-            scope="public_profile,email"
+            //change the scope of the login
+            scope="public_profile,email,instagram_basic,instagram_manage_comments,manage_pages"
             textButton="Sign In With Facebook"
           />
         </div>

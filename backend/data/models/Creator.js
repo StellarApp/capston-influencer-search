@@ -33,6 +33,13 @@ const Creator = connection.define(
         isEmail: true,
       },
     },
+    igUserName:{
+      type: STRING,
+      allowNull: true,
+      validate: {
+        len: [1, 255],
+      },
+    },
     fullName: {
       type: VIRTUAL,
       get() {
