@@ -33,6 +33,9 @@ Object.keys(routes).forEach((key) => {
 /* Subrouters for authorization */
 app.use('/auth', require('./routes/auth'));
 
+/* Subrouters for creators */
+app.use('/api/creators', require('./routes/creators'));
+
 app.use((err, req, res, next) => {
   if (err.errors) {
     message = err.errors[0].message;

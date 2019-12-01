@@ -14,21 +14,35 @@ class Login extends Component {
 
   facebookLogin(response) {
     const { fbLogin } = this.props;
-    const { first_name, last_name, accessToken, email, id, picture, accounts} = response;
-    console.log('RESPONSE', accounts.data[0])
-    const ig_id = accounts.data[0].id
+    const {
+      first_name,
+      last_name,
+      accessToken,
+      email,
+      id,
+      picture,
+      accounts,
+      gender,
+      location
+    } = response;
+
+    console.log("RESPONSE", accounts.data[0]);
+
     const user = {
       firstName: first_name,
       lastName: last_name,
       email,
       facebookId: id,
-      instagramId: (ig_id)? ig_id:null,
-      imageUrl: picture.data.url
-    }
+      instagramId: accounts.data[0].id,
+      imageUrl: picture.data.url,
+      gender,
+      location: location.name
+    };
+
     //find IG_accounts
-    console.log('CREATOR', user)
+    console.log("CREATOR", user);
     const auth = { token: accessToken, user };
-      fbLogin(auth);
+    fbLogin(auth);
   }
 
   render() {
@@ -46,12 +60,12 @@ class Login extends Component {
           <h2>For Creators:</h2>
           <FacebookLogin
             appId={process.env.FB_APP_ID}
-            fields="first_name,last_name,email, picture, accounts{instagram_business_account}"
+            fields="first_name,last_name,email, picture, gender, location, link, accounts{instagram_business_account}"
+            //change the scope of the login
+            scope="public_profile,email, user_gender, user_location, user_link, instagram_basic,instagram_manage_comments,manage_pages"
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
-            //change the scope of the login
-            scope="public_profile,email,instagram_basic,instagram_manage_comments,manage_pages"
             textButton="Sign In With Facebook"
           />
         </div>

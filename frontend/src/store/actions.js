@@ -16,7 +16,7 @@ const attemptToLogin = (auth, history) => async dispatch => {
     type: SET_AUTH,
     auth
   });
-  history.push("/");
+  history.push("/creators");
 };
 
 const logout = history => async dispatch => {
@@ -27,4 +27,12 @@ const logout = history => async dispatch => {
   history.push("/");
 };
 
-export { attemptToLogin, logout };
+const fetchCreators = () => async dispatch => {
+  const creators = (await axios.get("/api/creators")).data;
+  dispatch({
+    type: SET_CREATORS,
+    creators
+  });
+};
+
+export { attemptToLogin, logout, fetchCreators };
