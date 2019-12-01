@@ -28,18 +28,17 @@ class Login extends Component {
 
     console.log("RESPONSE", accounts.data[0]);
 
-    const ig_id = accounts.data[0].id;
-
     const user = {
       firstName: first_name,
       lastName: last_name,
       email,
       facebookId: id,
+      instagramId: accounts.data[0].id,
       imageUrl: picture.data.url,
       gender,
-      location : location.name
+      location: location.name
     };
-    
+
     //find IG_accounts
     console.log("CREATOR", user);
     const auth = { token: accessToken, user };
