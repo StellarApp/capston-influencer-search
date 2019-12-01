@@ -8,7 +8,7 @@ import { actions } from "../store";
 class Home extends Component {
   render() {
     return (
-      <div>Home page</div>
+      <div>Creator Info</div>
     );
   }
 }

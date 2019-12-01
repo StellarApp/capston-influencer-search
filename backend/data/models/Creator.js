@@ -1,4 +1,6 @@
 const connection = require('../connection');
+const dotenv = require('dotenv').config();
+const axios = require('axios');
 const { Sequelize } = connection;
 const { STRING, UUID, UUIDV4, VIRTUAL } = Sequelize;
 
@@ -31,6 +33,13 @@ const Creator = connection.define(
       validate: {
         len: [1, 255],
         isEmail: true,
+      },
+    },
+    igUserName:{
+      type: STRING,
+      allowNull: false,
+      validate: {
+        len: [1, 255],
       },
     },
     fullName: {
