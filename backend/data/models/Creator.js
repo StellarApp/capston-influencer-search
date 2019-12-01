@@ -35,7 +35,7 @@ const Creator = connection.define(
     },
     igUserName:{
       type: STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {
         len: [1, 255],
       },

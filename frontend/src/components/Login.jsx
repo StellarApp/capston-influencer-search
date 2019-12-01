@@ -16,7 +16,7 @@ class Login extends Component {
     const { fbLogin } = this.props;
     const { first_name, last_name, accessToken, email, id, picture, accounts} = response;
     console.log('RESPONSE', accounts.data[0])
-    const ig_id = accounts.data[0].instagram_business_account.id
+    const ig_id = accounts.data[0].id
     const user = {
       firstName: first_name,
       lastName: last_name,
