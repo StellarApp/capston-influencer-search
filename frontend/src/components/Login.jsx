@@ -51,7 +51,7 @@ class Login extends Component {
             icon="fa-facebook"
             size="medium"
             //change the scope of the login
-            scope="public_profile,email,instagram_basic,instagram_manage_comments,manage_pages’"
+            scope="public_profile,email,instagram_basic,instagram_manage_comments,manage_pages"
             textButton="Sign In With Facebook"
           />
         </div>
