@@ -1,6 +1,6 @@
 const connection = require("../connection");
 const { Sequelize } = connection;
-const { STRING, UUID, UUIDV4, VIRTUAL } = Sequelize;
+const { STRING, UUID, UUIDV4, INTEGER } = Sequelize;
 
 const CreatorInsight = connection.define("creatorInsight", {
   id: {
@@ -8,16 +8,12 @@ const CreatorInsight = connection.define("creatorInsight", {
     primaryKey: true,
     defaultValue: UUIDV4
   },
-  igUserName: {
+  igName: {
     type: STRING,
     allowNull: false,
     validate: {
       len: [1, 255]
     }
-  },
-  instagramId: {
-    type: STRING,
-    allowNull: false
   },
   biography: {
     type: STRING,
@@ -27,15 +23,15 @@ const CreatorInsight = connection.define("creatorInsight", {
     type: STRING
   },
   followersCount: {
-    type: Number,
+    type: INTEGER,
     allowNull: false
   },
   followsCount: {
-    type: Number,
+    type: INTEGER,
     allowNull: false
   },
   mediaCount: {
-    type: Number,
+    type: INTEGER,
     allowNull: false
   }
 });
