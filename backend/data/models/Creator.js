@@ -41,8 +41,7 @@ const Creator = connection.define(
       },
     },
     facebookId: {
-      type: STRING,
-      allowNull: true,
+      type: STRING
     },
     instagramId: {
       type: STRING,
@@ -50,6 +49,10 @@ const Creator = connection.define(
     },
     imageUrl: {
       type: STRING
+    },
+    description: {
+      type: STRING,
+      allowNull: true,
     }
   }
 );

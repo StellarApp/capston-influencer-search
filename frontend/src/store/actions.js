@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_AUTH, DELETE_AUTH } from "./constants";
+import { SET_AUTH, DELETE_AUTH, SET_CREATORS } from "./constants";
 
 const attemptToLogin = (auth, history) => async dispatch => {
   (await axios.post("/auth/facebook/", auth.user)).data;
@@ -7,7 +7,7 @@ const attemptToLogin = (auth, history) => async dispatch => {
     type: SET_AUTH,
     auth
   });
-  history.push("/");
+  history.push("/creators");
 };
 
 const logout = history => async dispatch => {
@@ -18,4 +18,12 @@ const logout = history => async dispatch => {
   history.push("/");
 };
 
-export { attemptToLogin, logout };
+const fetchCreators = () => async dispatch => {
+  const creators = (await axios.get("/api/creators")).data;
+  dispatch({
+    type: SET_CREATORS,
+    creators
+  });
+};
+
+export { attemptToLogin, logout, fetchCreators };

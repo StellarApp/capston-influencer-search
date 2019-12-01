@@ -16,6 +16,10 @@ import Collections from "./Collections";
 import Creators from "./Creators";
 
 class App extends Component {
+  componentDidMount() {
+    this.props.loadCreatorData();
+  }
+
   render() {
     return (
       <HashRouter>
@@ -33,4 +37,8 @@ class App extends Component {
   }
 }
 
-export default connect(null)(App);
+const mapDispatchToProps = dispatch => ({
+  loadCreatorData: () => dispatch(actions.fetchCreators())
+});
+
+export default connect(null, mapDispatchToProps)(App);

@@ -3,10 +3,6 @@ import { connect } from 'react-redux';
 import { actions } from '../store';
 
 class Logout extends Component {
-  constructor() {
-    super();
-  }
-
   componentDidMount() {
     this.props.logout();
   }

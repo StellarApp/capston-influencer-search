@@ -43,11 +43,12 @@ class Login extends Component {
           <h2>For Creators:</h2>
           <FacebookLogin
             appId={process.env.FB_APP_ID}
-            fields="first_name,last_name,email,picture"
+            autoLoad={true}
+            fields="first_name,last_name,email,picture, gender, location, link"
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
-            scope="public_profile,email"
+            scope="public_profile, email, user_gender, user_location, user_link"
             textButton="Sign In With Facebook"
           />
         </div>
