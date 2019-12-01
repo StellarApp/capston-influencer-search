@@ -10,14 +10,14 @@ const CreatorInsight = connection.define("creatorInsight", {
   },
   igUserName: {
     type: STRING,
-    allowNull: true,
+    allowNull: false,
     validate: {
       len: [1, 255]
     }
   },
   instagramId: {
     type: STRING,
-    allowNull: true
+    allowNull: false
   },
   biography: {
     type: STRING,
@@ -27,13 +27,16 @@ const CreatorInsight = connection.define("creatorInsight", {
     type: STRING
   },
   followersCount: {
-    type: Number
+    type: Number,
+    allowNull: false
   },
   followsCount: {
-    type: Number
+    type: Number,
+    allowNull: false
   },
   mediaCount: {
-    type: Number
+    type: Number,
+    allowNull: false
   }
 });
 module.exports = CreatorInsight;
