@@ -15,13 +15,15 @@ class Login extends Component {
   facebookLogin(response) {
     console.log("fb response", response);
     const { fbLogin } = this.props;
-    const { first_name, last_name, accessToken, email, id, picture } = response;
+    const { first_name, last_name, accessToken, email, id, picture, gender, location } = response;
     const user = {
       firstName: first_name,
       lastName: last_name,
       email,
       facebookId: id,
-      imageUrl: picture.data.url
+      imageUrl: picture.data.url,
+      gender,
+      location
     };
 
     const auth = { token: accessToken, user };
