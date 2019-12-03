@@ -1,15 +1,7 @@
-// DB Stuff
-const connection = require('./connection');
 const sync = require('./sync');
-
-// Models
-const { Creator, Business } = require('./models');
+const models = require('./models');
 
 module.exports = {
-  connection,
-  models: {
-    Creator,
-    Business
-  },
+  models,
   sync
 };
