@@ -20,21 +20,19 @@ class Login extends Component {
       accessToken,
       email,
       id,
-      picture,
-      accounts,
+      // accounts, // undefined accounts
       gender,
       location
     } = response;
 
-    console.log("RESPONSE", accounts.data[0]);
+    // console.log("RESPONSE", accounts.data[0]); 
 
     const user = {
       firstName: first_name,
       lastName: last_name,
       email,
       facebookId: id,
-      instagramId: accounts.data[0].id,
-      imageUrl: picture.data.url,
+      // instagramId: accounts.data[0].id,
       gender,
       location: location.name
     };

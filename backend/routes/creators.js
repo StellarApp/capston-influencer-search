@@ -13,6 +13,7 @@ router.get("/", (req, res, next) => {
   // const {location, gender} = req.body
   Creator.findAll()
   .then(creators => {
+      console.log(creators)
       res.send(creators);
     })
     .catch(next);
