@@ -26,8 +26,6 @@ class Login extends Component {
       location
     } = response;
 
-    console.log("RESPONSE", accounts.data[0]);
-
     const user = {
       firstName: first_name,
       lastName: last_name,

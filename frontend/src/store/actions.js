@@ -35,4 +35,11 @@ const fetchCreators = () => async dispatch => {
   });
 };
 
-export { attemptToLogin, logout, fetchCreators };
+const createCreatorInsight = (creatorInsight, history) => async dispatch => {
+  const created = (await axios.post("api/creatorinsights", { creatorInsight }))
+    .data;
+  dispatch({ type: CREATE_CREATORINSIGHT, creatorInsight: created });
+  history.push("/account");
+};
+
+export { attemptToLogin, logout, fetchCreators, createCreatorInsight };

@@ -1,5 +1,7 @@
 require("dotenv").config();
 const axios = require("axios");
+// import { connect } from "react-redux";
+const { CreatorInsight } = require("../data/models/");
 const app_version = process.env.FB_APP_VERSION;
 const api = "https://graph.facebook.com";
 
@@ -22,7 +24,25 @@ const syncUserInsight = (instagramId, access_token) => {
     .get(link)
     .then(function(response) {
       // handle success
-      console.log("INSIGHT", response);
+      const {
+        followers_count,
+        follows_count,
+        media_count,
+        profile_picture_url,
+        username,
+        biography
+      } = response.data;
+
+      const insight = {
+        igName: username,
+        biography,
+        profilePictureUrl: profile_picture_url,
+        followersCount: followers_count,
+        followsCount: follows_count,
+        mediaCount: media_count
+      };
+      console.log("INSIGHT", insight);
+      CreatorInsight.create(insight);
     })
     .catch(function(error) {
       // handle error
