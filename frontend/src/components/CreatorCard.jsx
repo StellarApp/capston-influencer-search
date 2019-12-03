@@ -69,7 +69,7 @@ const CreatorCard = ({ creator }) => {
           [ig impressions]
         </Engagement>
         <Engagement id="location">
-          <LocationIcon /> [ig location]
+          <LocationIcon /> [{creator.location}
         </Engagement>
       </EngagementList>
       <TextBox id="interests"> [interest list] </TextBox>
