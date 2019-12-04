@@ -17,9 +17,11 @@ router.post('/', async (req, res, next) => {
         include: [{ model: CreatorInsight }],
         where: { id }
       });
-      creatorWithInsights.isNew = isNewCreator;
 
-      res.send(creatorWithInsights);
+      res.send({
+        ...creatorWithInsights.dataValues,
+        isNew: isNewCreator
+      });
     } catch (error) {
       console.log(error);
     }
