@@ -45,6 +45,13 @@ const Creator = connection.define('creator', {
     type: STRING,
     allowNull: true
   },
+<<<<<<< HEAD
+=======
+  description: {
+    type: STRING,
+    defaultValue: ''
+  },
+>>>>>>> 356f0e3b18f8d531d12bac1418afc46d627d8849
   gender: {
     type: STRING,
     allowNull: true
