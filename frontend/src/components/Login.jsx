@@ -1,10 +1,8 @@
-// Package imports
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import FacebookLogin from "react-facebook-login";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import FacebookLogin from 'react-facebook-login';
 
-// Local imports
-import { actions } from "../store";
+import { actions } from '../store';
 
 class Login extends Component {
   constructor() {
@@ -20,7 +18,6 @@ class Login extends Component {
       accessToken,
       email,
       id,
-      picture,
       accounts,
       gender,
       location
@@ -36,8 +33,6 @@ class Login extends Component {
       location: location.name
     };
 
-    //find IG_accounts
-    console.log("CREATOR", user);
     const auth = { token: accessToken, user };
     fbLogin(auth);
   }
@@ -57,9 +52,8 @@ class Login extends Component {
           <h2>For Creators:</h2>
           <FacebookLogin
             appId={process.env.FB_APP_ID}
-            fields="first_name,last_name,email, picture, gender, location, link, accounts{instagram_business_account}"
-            //change the scope of the login
-            scope="public_profile,email, user_gender, user_location, user_link, instagram_basic,instagram_manage_comments,manage_pages"
+            fields="first_name,last_name,email,picture,gender,location,link,accounts{instagram_business_account}"
+            scope="public_profile,email,user_gender,user_location,user_link,instagram_basic,instagram_manage_comments,manage_pages"
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
