@@ -11,10 +11,13 @@ import {
 } from './constants';
 
 const attemptFBLogin = (auth, history) => async dispatch => {
-  (await axios.post('/auth/facebook/', auth)).data;
+  const creator = (await axios.post('/auth/facebook/', auth)).data;
   dispatch({
     type: SET_AUTH,
-    auth
+    auth: {
+      ...creator,
+      token: auth.token
+    }
   });
   history.push('/creators');
 };
