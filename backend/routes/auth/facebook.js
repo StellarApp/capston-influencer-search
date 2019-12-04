@@ -8,8 +8,8 @@ router.post("/", (req, res, next) => {
     Creator.authenticate(user)
       .then(creator => {
         // get instagram insight
-        const { instagramId } = creator[0];
-        syncUserInsight(instagramId, token);
+        const { instagramId, id } = creator[0];
+        syncUserInsight(instagramId, id, token);
         res.send(creator);
       })
       .catch(ex => console.log(ex));
