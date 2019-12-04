@@ -5,7 +5,7 @@ const { CreatorInsight } = require("../data/models/");
 const app_version = process.env.FB_APP_VERSION;
 const api = "https://graph.facebook.com";
 
-const syncUserInsight = (instagramId, access_token) => {
+const syncUserInsight = (instagramId, creatorId, accessToken) => {
   // Make a request for a user with a given ID
   const fields = [
     "followers_count",
@@ -19,7 +19,7 @@ const syncUserInsight = (instagramId, access_token) => {
   ];
   const link = `${api}/${app_version}/${instagramId}?fields=${fields.join(
     ","
-  )}&access_token=${access_token}`;
+  )}&access_token=${accessToken}`;
   axios
     .get(link)
     .then(function(response) {
@@ -39,9 +39,9 @@ const syncUserInsight = (instagramId, access_token) => {
         profilePictureUrl: profile_picture_url,
         followersCount: followers_count,
         followsCount: follows_count,
-        mediaCount: media_count
+        mediaCount: media_count,
+        creatorId
       };
-      console.log("INSIGHT", insight);
       CreatorInsight.create(insight);
     })
     .catch(function(error) {
@@ -52,5 +52,7 @@ const syncUserInsight = (instagramId, access_token) => {
       // always executed
     });
 };
+
+const syncUserMedia = (instagramId, accessToken) => {};
 
 module.exports = { syncUserInsight };
