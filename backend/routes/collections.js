@@ -4,7 +4,7 @@ const { Collection } = require('../data').models;
 
 router.use(express.json());
 
-router.get('/:businessId/collections', (req, res, next) => {
+router.get('/:businessId/', (req, res, next) => {
     const {businessId} = req.params;
     Collection.findByBusinessId(businessId)
     .then(collections => {
@@ -14,7 +14,7 @@ router.get('/:businessId/collections', (req, res, next) => {
 });
 
 // delete a collection item
-router.delete('/:businessId/collections/:creatorId', (req, res, next) => {
+router.delete('/:businessId/:creatorId', (req, res, next) => {
   const { businessId, creatorId } = req.params;
   Collection.findByCreatorId(businessId, creatorId)
     .then(collectionItem => collectionItem.destroy())

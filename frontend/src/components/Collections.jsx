@@ -7,13 +7,17 @@ import { actions } from "../store";
 
 class Collections extends Component {
   render() {
+    const 
     return (
       <div>Collections page
+        <ul>
+
+        </ul>
         </div>
     );
   }
 }
 
-const mapStateToProps = ({}) => ({});
+const mapStateToProps = ({Collections}) => ({Collections});
 
 export default connect(mapStateToProps)(Collections);
