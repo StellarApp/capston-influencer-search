@@ -55,26 +55,27 @@ const CreatorCard = ({ creator }) => {
 
     // <Link to={`/creator/${creatorId}`}>
     // add ig profile pic
-    <Container>
-      <h4>{creator.fullName}</h4>
-      <Image src="#" alt="profile photo" />
-      <TextBox>{creator.description} [This will be Description.]</TextBox>
-      <EngagementList>
-        <Engagement id="followers">
-          <FollowerIcon />
-          [ig followers]
-        </Engagement>
-        <Engagement id="impressions">
-          <ImpressionIcon />
-          [ig impressions]
-        </Engagement>
-        <Engagement id="location">
-          <LocationIcon /> [ig location]
-        </Engagement>
-      </EngagementList>
-      <TextBox id="interests"> [interest list] </TextBox>
-    </Container>
-    //   </Link>
+    <Link to={`/creators/${creator.id}`}>
+      <Container>
+        <h4>{creator.fullName}</h4>
+        <Image src="#" alt="profile photo" />
+        <TextBox>{creator.description} [This will be Description.]</TextBox>
+        <EngagementList>
+          <Engagement id="followers">
+            <FollowerIcon />
+            [ig followers]
+          </Engagement>
+          <Engagement id="impressions">
+            <ImpressionIcon />
+            [ig impressions]
+          </Engagement>
+          <Engagement id="location">
+            <LocationIcon /> [ig location]
+          </Engagement>
+        </EngagementList>
+        <TextBox id="interests"> [interest list] </TextBox>
+      </Container>
+    </Link>
   );
 };
 

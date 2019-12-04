@@ -14,6 +14,7 @@ import Logout from "./Logout";
 import Account from "./Account";
 import Collections from "./Collections";
 import Creators from "./Creators";
+import Creator from "./Creator";
 
 class App extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class App extends Component {
           <Route path="/" component={Home} exact />
           <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
+          <Route path="/creators/:id" component={Creator} />
           <Route path="/creators" component={Creators} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
