@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 const startUpCallback = () => console.log(`listening on port ${port}`);
 
-db.sync(false).then(() => {
+db.sync(true).then(() => {
   if (process.env.NODE_ENV === 'production') {
     app.listen(port, startUpCallback);
   } else {
