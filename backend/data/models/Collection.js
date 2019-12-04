@@ -11,23 +11,12 @@ const Collection = connection.define("collection", {
 });
 
 // find all the collection under a business user
-Collection.findByBusinessId = function(businessId){
+Collection.findByBusinessId = function(businessId) {
   return this.findAll({
     where: {
       businessId
     }
-  })
-}
-
-// find a collection (creator) under a business user
-Collection.findByCreatorId = function(businessId, creatorId){
-  return this.findOne({
-    where: {
-      businessId,
-      creatorId
-    }
-  })
-}
-
+  });
+};
 
 module.exports = Collection;

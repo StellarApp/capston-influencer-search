@@ -14,9 +14,9 @@ router.get('/:businessId/', (req, res, next) => {
 });
 
 // delete a collection item
-router.delete('/:businessId/:creatorId', (req, res, next) => {
-  const { businessId, creatorId } = req.params;
-  Collection.findByCreatorId(businessId, creatorId)
+router.delete('/:collectionId', (req, res, next) => {
+  const { collectionId } = req.params;
+  Collection.findByPK(collectionId)
     .then(collectionItem => collectionItem.destroy())
     .then(() => res.sendStatus(204))
     .catch(next);

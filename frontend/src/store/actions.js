@@ -56,4 +56,13 @@ const fetchCollections = businessId => async dispatch => {
   });
 };
 
-export { attemptFBLogin, logout, fetchCreators, createCreatorInsight, fetchCollections };
+const handleDeleteCollection = (collectionId) => async dispatch => {
+  (await axios.delete(`api/collections/${collectionId}`))
+  dispatch({
+    type:  DELETE_COLLECTION,
+    collection: {id: collectionId}
+  })
+}
+
+
+export { attemptFBLogin, logout, fetchCreators, createCreatorInsight, fetchCollections, handleDeleteCollection };
