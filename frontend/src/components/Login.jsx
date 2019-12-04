@@ -11,7 +11,7 @@ class Login extends Component {
   }
 
   facebookLogin(response) {
-    const { fbLogin } = this.props;
+    const { attemptFBLogin } = this.props;
     const {
       first_name,
       last_name,
@@ -34,7 +34,7 @@ class Login extends Component {
     };
 
     const auth = { token: accessToken, user };
-    fbLogin(auth);
+    attemptFBLogin(auth);
   }
 
   render() {
@@ -66,9 +66,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = (dispatch, { history }) => ({
-  fbLogin: auth =>
-    //dispatch facebook auth & user data
-    dispatch(actions.attemptToLogin(auth, history))
+  attemptFBLogin: auth => dispatch(actions.attemptFBLogin(auth, history))
 });
 
 export default connect(null, mapDispatchToProps)(Login);
