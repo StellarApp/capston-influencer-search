@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   SET_AUTH,
   DELETE_AUTH,
@@ -8,15 +8,15 @@ import {
   SET_BUSINESS,
   UPDATE_BUSINESS,
   DELETE_BUSINESS
-} from "./constants";
+} from './constants';
 
-const attemptToLogin = (auth, history) => async dispatch => {
-  (await axios.post("/auth/facebook/", auth)).data;
+const attemptFBLogin = (auth, history) => async dispatch => {
+  (await axios.post('/auth/facebook/', auth)).data;
   dispatch({
     type: SET_AUTH,
     auth
   });
-  history.push("/creators");
+  history.push('/creators');
 };
 
 const logout = history => async dispatch => {
@@ -24,11 +24,11 @@ const logout = history => async dispatch => {
     type: DELETE_AUTH,
     auth: {}
   });
-  history.push("/");
+  history.push('/');
 };
 
 const fetchCreators = () => async dispatch => {
-  const creators = (await axios.get("/api/creators")).data;
+  const creators = (await axios.get('/api/creators')).data;
   dispatch({
     type: SET_CREATORS,
     creators
@@ -36,10 +36,10 @@ const fetchCreators = () => async dispatch => {
 };
 
 const createCreatorInsight = (creatorInsight, history) => async dispatch => {
-  const created = (await axios.post("api/creatorinsights", { creatorInsight }))
+  const created = (await axios.post('api/creatorinsights', { creatorInsight }))
     .data;
   dispatch({ type: CREATE_CREATORINSIGHT, creatorInsight: created });
-  history.push("/account");
+  history.push('/account');
 };
 
-export { attemptToLogin, logout, fetchCreators, createCreatorInsight };
+export { attemptFBLogin, logout, fetchCreators, createCreatorInsight };
