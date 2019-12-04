@@ -1,8 +1,8 @@
-const connection = require("../connection");
+const connection = require('../connection');
 const { Sequelize } = connection;
 const { STRING, UUID, UUIDV4, VIRTUAL } = Sequelize;
 
-const Creator = connection.define("creator", {
+const Creator = connection.define('creator', {
   id: {
     type: UUID,
     primaryKey: true,
@@ -31,17 +31,10 @@ const Creator = connection.define("creator", {
       isEmail: true
     }
   },
-  igUserName: {
-    type: STRING,
-    allowNull: true,
-    validate: {
-      len: [1, 255]
-    }
-  },
   fullName: {
     type: VIRTUAL,
     get() {
-      const fullName = `${this.get("firstName")} ${this.get("lastName")}`;
+      const fullName = `${this.get('firstName')} ${this.get('lastName')}`;
       return fullName;
     }
   },
@@ -49,10 +42,6 @@ const Creator = connection.define("creator", {
     type: STRING
   },
   instagramId: {
-    type: STRING,
-    allowNull: true
-  },
-  description: {
     type: STRING,
     allowNull: true
   },
