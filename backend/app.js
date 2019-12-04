@@ -14,21 +14,6 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// /* add basic routes */
-// const routes = {
-//   Creator: 'creators',
-//   Business: 'businesses',
-// };
-
-// Object.keys(routes).forEach((key) => {
-//   app.get(`/api/${routes[key]}`, (req, res, next) => {
-//     db.models[key]
-//       .findAll()
-//       .then((items) => res.send(items))
-//       .catch(next);
-//   });
-// });
-
 /* Subrouters for authorization */
 app.use("/auth", require("./routes/auth"));
 
@@ -41,7 +26,6 @@ app.use((err, req, res, next) => {
   } else if (err.message) {
     message = err.message;
   }
-
   if (err) {
     res.status(err.status || 500).send({ message });
   }
