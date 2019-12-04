@@ -19,7 +19,7 @@ const attemptFBLogin = (auth, history) => async dispatch => {
       token: auth.token
     }
   });
-  history.push('/creators');
+  history.push(creator.isNew ? '/onboarding/keywords' : '/account');
 };
 
 const logout = history => async dispatch => {
