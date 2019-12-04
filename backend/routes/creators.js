@@ -12,15 +12,6 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/:id', (req, res, next) => {
-  Creator.findOne({
-    include: [{ model: CreatorInsight }],
-    where: { id: req.params.id }
-  })
-    .then(creator => res.send(creator))
-    .catch(next);
-});
-
 // delete from business user's collection
 router.delete('/:id', (req, res, next) => {
   const { id } = req.params;
