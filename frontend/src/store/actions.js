@@ -49,7 +49,7 @@ const createCreatorInsight = (creatorInsight, history) => async dispatch => {
 };
 
 const fetchCollections = businessId => async dispatch => {
-  const collections = (await axios.get(`api/collections/${businessId}`)).data;
+  const collections = (await axios.get(`api/business/${businessId}/collections/`)).data;
   dispatch({
     type: SET_COLLECTIONS,
     collections
