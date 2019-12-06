@@ -4,7 +4,8 @@ import {
   DELETE_AUTH,
   SET_CREATORS,
   SET_COLLECTIONS,
-  DELETE_COLLECTION
+  DELETE_COLLECTION,
+  SET_KEYWORDS
 } from "./constants";
 
 const attemptFBLogin = (auth, history) => async dispatch => {
@@ -73,6 +74,14 @@ const handleDeleteCollection = collectionId => async dispatch => {
   });
 };
 
+const fetchKeywords = () => async dispatch => {
+  const keywords = (await axios.get("/api/keywords")).data;
+  dispatch({
+    type: SET_KEYWORDS,
+    keywords
+  });
+};
+
 export {
   attemptFBLogin,
   getBusinessLogin,
@@ -80,5 +89,6 @@ export {
   fetchCreators,
   createCreatorInsight,
   fetchCollections,
-  handleDeleteCollection
+  handleDeleteCollection,
+  fetchKeywords
 };
