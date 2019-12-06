@@ -3,13 +3,7 @@ import {
   SET_AUTH,
   DELETE_AUTH,
   SET_CREATORS,
-  UPDATE_CREATOR,
-  DELETE_CREATOR,
-  SET_BUSINESS,
-  UPDATE_BUSINESS,
-  DELETE_BUSINESS,
   SET_COLLECTIONS,
-  ADD_COLLECTION,
   DELETE_COLLECTION
 } from "./constants";
 
@@ -19,10 +13,23 @@ const attemptFBLogin = (auth, history) => async dispatch => {
     type: SET_AUTH,
     auth: {
       ...creator,
-      token: auth.token
+      token: auth.token,
+      type: "creator"
     }
   });
   history.push(creator.isNew ? "/onboarding/keywords" : "/account");
+};
+
+const getBusinessLogin = (id, token) => async dispatch => {
+  const business = (await axios.get(`/api/business/${id}`)).data;
+  await dispatch({
+    type: SET_AUTH,
+    auth: {
+      ...business,
+      token,
+      type: "business"
+    }
+  });
 };
 
 const logout = history => async dispatch => {
@@ -49,20 +56,29 @@ const createCreatorInsight = (creatorInsight, history) => async dispatch => {
 };
 
 const fetchCollections = businessId => async dispatch => {
-  const collections = (await axios.get(`api/business/${businessId}/collections/`)).data;
+  const collections = (
+    await axios.get(`api/business/${businessId}/collections/`)
+  ).data;
   dispatch({
     type: SET_COLLECTIONS,
     collections
   });
 };
 
-const handleDeleteCollection = (collectionId) => async dispatch => {
-  (await axios.delete(`api/business/${collectionId}`))
+const handleDeleteCollection = collectionId => async dispatch => {
+  await axios.delete(`api/business/${collectionId}`);
   dispatch({
-    type:  DELETE_COLLECTION,
-    collection: {id: collectionId}
-  })
-}
+    type: DELETE_COLLECTION,
+    collection: { id: collectionId }
+  });
+};
 
-
-export { attemptFBLogin, logout, fetchCreators, createCreatorInsight, fetchCollections, handleDeleteCollection };
+export {
+  attemptFBLogin,
+  getBusinessLogin,
+  logout,
+  fetchCreators,
+  createCreatorInsight,
+  fetchCollections,
+  handleDeleteCollection
+};
