@@ -1,16 +1,11 @@
-// Package imports
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-// Local imports
-import { actions } from "../store";
+import { actions } from '../store';
 
 class Account extends Component {
   render() {
-    return (
-      <div>Account page
-        </div>
-    );
+    return <div>Account page</div>;
   }
 }
 

@@ -1,18 +1,30 @@
-const router = require("express").Router();
-const { Creator } = require("../../data/models");
-const { syncUserInsight } = require("../../utilites/syncInsight");
+const router = require('express').Router();
+const { Creator, CreatorInsight } = require('../../data').models;
+const { syncUserInsight } = require('../../utilites/syncInsight');
 
-router.post("/", (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const { token, user } = req.body;
   if (user) {
-    Creator.authenticate(user)
-      .then(creator => {
-        // get instagram insight
-        const { instagramId, id } = creator[0];
-        syncUserInsight(instagramId, id, token);
-        res.send(creator);
-      })
-      .catch(ex => console.log(ex));
+    try {
+      const [creator, isNewCreator] = await Creator.authenticate(user);
+      const { instagramId, id } = creator;
+
+      if (isNewCreator) {
+        await syncUserInsight(instagramId, id, token);
+      }
+
+      const creatorWithInsights = await Creator.findOne({
+        include: [{ model: CreatorInsight }],
+        where: { id }
+      });
+
+      res.send({
+        ...creatorWithInsights.dataValues,
+        isNew: isNewCreator
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 });
 
