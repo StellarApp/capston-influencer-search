@@ -45,7 +45,7 @@ Business.authenticate = function(user) {
   return Business.findOrCreate({
     where: { linkedInId: user.linkedInId },
     defaults: user
-  });
+  }).spread(businessUser => businessUser);
 };
 
 module.exports = Business;

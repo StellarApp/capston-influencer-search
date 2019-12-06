@@ -42,6 +42,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.0",
     "pg": "^7.12.1",
+    "query-string": "^6.9.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-facebook-login": "^4.1.1",
