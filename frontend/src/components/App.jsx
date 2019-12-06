@@ -6,7 +6,12 @@ import queryString from "query-string";
 
 // Local imports
 import { actions } from "../store";
-const { fetchCreators, fetchCollections, getBusinessLogin } = actions;
+const {
+  fetchCreators,
+  fetchCollections,
+  getBusinessLogin,
+  fetchKeywords
+} = actions;
 
 // Components
 import Home from './Home';
@@ -22,6 +27,7 @@ import Keywords from './onboarding/Keywords';
 class App extends Component {
   componentDidMount() {
     this.props.fetchCreators();
+    this.props.fetchKeywords();
 
     const values = queryString.parse(window.location.search);
     const businessId = values.business_id;
@@ -54,7 +60,8 @@ class App extends Component {
 const mapDispatchToProps = {
   fetchCollections,
   fetchCreators,
-  getBusinessLogin
+  getBusinessLogin,
+  fetchKeywords
 };
 
 export default connect(null, mapDispatchToProps)(App);
