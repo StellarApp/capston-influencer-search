@@ -7,8 +7,8 @@ const CollectionRow = ({ collectionId, handleDeleteCollection }) => {
 
   return (
     <tr>
-      <td>creators.fullName</td>
-      <td>[Description]</td>
+      <td>creator.fullName</td>
+      <td>creator.creatorInsights.biography</td>
       <td>creator.location</td>
       <button onClick={() => handleDeleteCollection(collectionId)}> Delete</button>
     </tr>

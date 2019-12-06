@@ -4,7 +4,7 @@ const { Collection } = require('../data').models;
 
 router.use(express.json());
 
-router.get('/:businessId/', (req, res, next) => {
+router.get('/:id/collections/', (req, res, next) => {
     const {businessId} = req.params;
     Collection.findByBusinessId(businessId)
     .then(collections => {
