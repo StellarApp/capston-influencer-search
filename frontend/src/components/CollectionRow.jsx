@@ -4,11 +4,11 @@ import { actions } from "../store";
 
 const CollectionRow = ({ collectionId, handleDeleteCollection }) => {
   const creator = creators.find(creator.id === collectionId);
-
+  
   return (
     <tr>
       <td>creator.fullName</td>
-      <td>creator.creatorInsights.biography</td>
+      <td>creator.creatorInsights[0].biography</td>
       <td>creator.location</td>
       <button onClick={() => handleDeleteCollection(collectionId)}> Delete</button>
     </tr>
