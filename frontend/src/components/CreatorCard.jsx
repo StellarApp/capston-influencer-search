@@ -55,8 +55,11 @@ const CreatorCard = ({ creator }) => {
 
     // <Link to={`/creator/${creatorId}`}>
     // add ig profile pic
+
     <Container>
-      <h4>{creator.fullName}</h4>
+      <Link to={`/creators/${creator.id}`}>
+        <h4>{creator.fullName}</h4>
+      </Link>
       <Image src="#" alt="profile photo" />
       <TextBox>{creator.description} [This will be Description.]</TextBox>
       <EngagementList>
@@ -74,8 +77,6 @@ const CreatorCard = ({ creator }) => {
       </EngagementList>
       <TextBox id="interests"> [interest list] </TextBox>
     </Container>
-    //   </Link>
   );
 };
-
 export default connect(null)(CreatorCard);

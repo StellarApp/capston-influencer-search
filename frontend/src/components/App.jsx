@@ -7,14 +7,15 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { actions } from "../store";
 
 // Components
-import Home from "./Home";
-import Nav from "./Nav";
-import Login from "./Login";
-import Logout from "./Logout";
-import Account from "./Account";
-import Collections from "./Collections";
-import Creators from "./Creators";
-import Keywords from "./onboarding/Keywords";
+import Home from './Home';
+import Nav from './Nav';
+import Login from './Login';
+import Logout from './Logout';
+import Account from './Account';
+import Collections from './Collections';
+import Creators from './Creators';
+import Creator from './Creator';
+import Keywords from './onboarding/Keywords';
 
 class App extends Component {
   componentDidMount() {
@@ -31,6 +32,7 @@ class App extends Component {
           <Route path="/onboarding/keywords" component={Keywords} />
           <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
+          <Route path="/creators/:id" component={Creator} />
           <Route path="/creators" component={Creators} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
