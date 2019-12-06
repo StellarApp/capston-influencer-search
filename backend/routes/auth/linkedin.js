@@ -114,8 +114,9 @@ router.get('/callback', async (req, res, next) => {
           email
         });
 
-        console.log('businessUser', businessUser);
-        res.send(businessUser);
+        res.redirect(
+          `/?business_id=${businessUser.id}&token=${access_token}#creators`
+        );
       } catch (e) {
         console.log('exception', e);
         next(e);
