@@ -5,19 +5,20 @@ import styled from "styled-components";
 
 const Creator = ({ creators, match: { params } }) => {
   const creator = creators.find(_creator => _creator.id === params.id);
-  const {
-    creatorId,
-    igName,
-    mediaCount,
-    profilePictureUrl,
-    biography
-  } = creator.creatorInsights[0];
-  console.log("CREATOR", creator.creatorInsights);
+  // const {
+  //   creatorId,
+  //   igName,
+  //   mediaCount,
+  //   profilePictureUrl,
+  //   biography
+  // } = creator.creatorInsights;
+  console.log("CREATOR", creators, params.id, creator);
   return (
     <div>
-      <h1>{igName}</h1>
+      <h1>Creator</h1>
+      {/* <h1>{igName}</h1>
       <p>{biography}</p>
-      <p>{mediaCount}</p>
+      <p>{mediaCount}</p> */}
     </div>
   );
 };
