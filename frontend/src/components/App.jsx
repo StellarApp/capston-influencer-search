@@ -18,7 +18,8 @@ import Keywords from "./onboarding/Keywords";
 
 class App extends Component {
   componentDidMount() {
-    this.props.loadCreatorData();
+    this.props.fetchCollections();
+    this.props.fetchCreators();
   }
 
   render() {
