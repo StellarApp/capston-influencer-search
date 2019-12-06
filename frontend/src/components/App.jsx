@@ -40,13 +40,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchCollections: () => {
-    dispatch(actions.fetchCollections());
-  },
-  fetchCreators: () => {
-    dispatch(actions.fetchCreators());
-  }
-
+  fetchCollections: () => dispatch(actions.fetchCollections()),
+  fetchCreators: () => dispatch(actions.fetchCreators())
 });
 
 export default connect(null, mapDispatchToProps)(App);
