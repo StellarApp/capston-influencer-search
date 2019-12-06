@@ -7,20 +7,20 @@ import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
 import { actions } from "../store";
 
 // Components
-
-import Home from "./Home";
-import Nav from "./Nav";
-import Login from "./Login";
-import Logout from "./Logout";
-import Account from "./Account";
-import Collections from "./Collections";
-import Creators from "./Creators";
-import Creator from "./Creator";
-import Keywords from "./onboarding/Keywords";
+import Home from './Home';
+import Nav from './Nav';
+import Login from './Login';
+import Logout from './Logout';
+import Account from './Account';
+import Collections from './Collections';
+import Creators from './Creators';
+import Creator from './Creator';
+import Keywords from './onboarding/Keywords';
 
 class App extends Component {
   componentDidMount() {
-    this.props.loadCreatorData();
+    this.props.fetchCollections();
+    this.props.fetchCreators();
   }
 
   render() {
@@ -43,7 +43,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadCreatorData: () => dispatch(actions.fetchCreators())
+  fetchCollections: () => dispatch(actions.fetchCollections()),
+  fetchCreators: () => dispatch(actions.fetchCreators())
 });
 
 export default connect(null, mapDispatchToProps)(App);
