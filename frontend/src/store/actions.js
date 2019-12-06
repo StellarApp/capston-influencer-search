@@ -57,7 +57,7 @@ const fetchCollections = businessId => async dispatch => {
 };
 
 const handleDeleteCollection = (collectionId) => async dispatch => {
-  (await axios.delete(`api/collections/${collectionId}`))
+  (await axios.delete(`api/business/${collectionId}`))
   dispatch({
     type:  DELETE_COLLECTION,
     collection: {id: collectionId}
