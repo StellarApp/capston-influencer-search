@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 // Local imports
 import { actions } from "../store";
-import CollectionRow from "../CollectionRow";
+import CollectionRow from "./CollectionRow";
 
 class Collections extends Component {
   constructor(props) {
