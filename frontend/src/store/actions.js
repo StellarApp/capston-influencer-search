@@ -82,6 +82,10 @@ const fetchKeywords = () => async dispatch => {
   });
 };
 
+const saveCreatorInterests = (creatorId, interests) => async dispatch => {
+  await axios.post(`/api/creators/${creatorId}/interests`, { interests });
+};
+
 export {
   attemptFBLogin,
   getBusinessLogin,
@@ -90,5 +94,6 @@ export {
   createCreatorInsight,
   fetchCollections,
   handleDeleteCollection,
-  fetchKeywords
+  fetchKeywords,
+  saveCreatorInterests
 };

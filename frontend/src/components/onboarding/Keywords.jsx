@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
+import { actions } from "../../store";
+const { saveCreatorInterests } = actions;
+
 const KeywordContainer = styled.ul`
   list-style: none;
   padding-left: 0;
@@ -26,6 +29,7 @@ class Keywords extends Component {
       interests: []
     };
     this.toggleInterests = this.toggleInterests.bind(this);
+    this.saveSelectedInterests = this.saveSelectedInterests.bind(this);
   }
 
   toggleInterests(keywordId) {
@@ -37,6 +41,13 @@ class Keywords extends Component {
       interests.splice(index, 1);
     }
     this.setState({ interests });
+  }
+
+  async saveSelectedInterests() {
+    const { interests } = this.state;
+    const { creatorId, saveCreatorInterests, history } = this.props;
+    await saveCreatorInterests(creatorId, interests);
+    history.push("/onboarding/top-posts");
   }
 
   render() {
@@ -57,12 +68,19 @@ class Keywords extends Component {
             </Keyword>
           ))}
         </KeywordContainer>
-        <button>Next</button>
+        <button onClick={() => this.saveSelectedInterests()}>Next</button>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ keywords }) => ({ keywords });
+const mapStateToProps = ({ auth, keywords }) => ({
+  creatorId: auth.id,
+  keywords
+});
 
-export default connect(mapStateToProps)(Keywords);
+const mapDispatchToProps = {
+  saveCreatorInterests
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Keywords);
