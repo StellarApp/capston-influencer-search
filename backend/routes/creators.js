@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Creator, CreatorInsight, Interest } = require('../data').models;
+const { Creator, CreatorInsight, Interest, Link } = require('../data').models;
 
 router.get('/', (req, res, next) => {
   Creator.findAll({ include: [{ model: CreatorInsight }] })
@@ -23,6 +23,17 @@ router.post('/:id/interests', (req, res, next) => {
   )
     .then(interests => {
       res.send(interests);
+    })
+    .catch(next);
+});
+
+router.post('/:id/links', (req, res, next) => {
+  const creatorId = req.params.id;
+  const { links } = req.body;
+
+  Link.create({ ...links, creatorId })
+    .then(creatorLinks => {
+      res.send(creatorLinks);
     })
     .catch(next);
 });
