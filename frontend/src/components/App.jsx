@@ -9,16 +9,16 @@ import { actions } from "../store";
 const { fetchCreators, fetchCollections, getBusinessLogin } = actions;
 
 // Components
-import Home from './Home';
-import Nav from './Nav';
-import Login from './Login';
-import Logout from './Logout';
-import Account from './Account';
-import Collections from './Collections';
-import Creators from './Creators';
-import Creator from './Creator';
-import Keywords from './onboarding/Keywords';
-
+import Home from "./Home";
+import Nav from "./Nav";
+import Login from "./Login";
+import Logout from "./Logout";
+import Account from "./Account";
+import Collections from "./Collections";
+import Creators from "./Creators";
+import Creator from "./Creator";
+import Keywords from "./onboarding/Keywords";
+import styled from "styled-components";
 class App extends Component {
   componentDidMount() {
     this.props.fetchCreators();
