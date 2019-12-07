@@ -1,4 +1,5 @@
 const { Keyword } = require('./models');
+const { Collection } = require('./models');
 
 const keywordList = [
   'Adventure',
@@ -42,5 +43,4 @@ const keywordList = [
 
 const seed = () =>
   Promise.all(keywordList.map(keyword => Keyword.create({ name: keyword })));
-
 module.exports = seed;

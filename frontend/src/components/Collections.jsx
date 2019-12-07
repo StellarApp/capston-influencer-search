@@ -3,51 +3,28 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 // Local imports
-import { actions } from "../store";
-import CollectionRow from "./CollectionRow";
+import CollectionsTable from "./CollectionsTable";
 
 class Collections extends Component {
   constructor(props) {
     super(props);
-    this.handleDeleteCollection = this.handleDeleteCollection.bind(this);
   }
-
-  handleDeleteCollection(ev) {}
-
   render() {
     const { collections, creators } = this.props;
-    return (
-      <div>
-        Collections page
-        <table>
-          <tbody>
-            <tr>
-              <th>Full Name</th>
-              <th>Description</th>
-              <th>Location</th>
-            </tr>
-            {collections.map(collection => {
-              // const creator= creators.find(
-              //   creator.id === collection.creatorId
-              // );
-              return <CollectionRow key= {collection.id} collectionId={collection.id} />;
-            })}
-          </tbody>
-        </table>
-      </div>
-    );
+      if(collections.length === 0){
+        return null
+      } else {
+        return <CollectionsTable />
+      }
   }
 }
 
-const mapStateToProps = ({ collections, creators }) => {
-  // need to filter the collection list
-  // after setting the url path for collection or business account user
-  // 1. filter collections upper level and pass the filtered collection & businessId to collection class
-  // 2. location.pathname ---> cath businessId
-  // const filteredCollections = collections.filter(collection.businessId === businessId)
+const mapStateToProps = ({ collections, creators, auth }) => {
+  const businessId = auth.id;
+  const filteredCollections = collections.filter(collection => collection.businessId === businessId)
 
   return {
-    collections,
+    collections: filteredCollections,
     creators
   };
 };

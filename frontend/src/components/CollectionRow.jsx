@@ -7,6 +7,7 @@ const CollectionRow = ({ collectionId, handleDeleteCollection }) => {
   
   return (
     <tr>
+      <td><input type="checkbox" key={creator.id} sendTo={creator.email} /></td>
       <td>creator.fullName</td>
       <td>creator.creatorInsights[0].biography</td>
       <td>creator.location</td>
