@@ -3,7 +3,9 @@ const router = express.Router();
 const { Creator, CreatorInsight, Interest, Link } = require('../data').models;
 
 router.get('/', (req, res, next) => {
-  Creator.findAll({ include: [{ model: CreatorInsight }] })
+  Creator.findAll({
+    include: [{ model: CreatorInsight }, { model: Interest }, { model: Link }]
+  })
     .then(creators => {
       res.send(creators);
     })
