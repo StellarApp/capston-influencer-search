@@ -1,5 +1,6 @@
 // Authorization
 const SET_AUTH = 'SET_AUTH';
+const ADD_TO_AUTH = 'ADD_TO_AUTH';
 const DELETE_AUTH = 'DELETE_AUTH';
 
 // Creator
@@ -21,6 +22,7 @@ const SET_KEYWORDS = "SET_KEYWORDS";
 
 export {
   SET_AUTH,
+  ADD_TO_AUTH,
   DELETE_AUTH,
   SET_CREATORS,
   UPDATE_CREATOR,

@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   SET_AUTH,
+  ADD_TO_AUTH,
   DELETE_AUTH,
   SET_CREATORS,
   SET_COLLECTIONS,
@@ -83,7 +84,13 @@ const fetchKeywords = () => async dispatch => {
 };
 
 const saveCreatorInterests = (creatorId, interests) => async dispatch => {
-  await axios.post(`/api/creators/${creatorId}/interests`, { interests });
+  const creatorInterests = (
+    await axios.post(`/api/creators/${creatorId}/interests`, { interests })
+  ).data;
+  dispatch({
+    type: ADD_TO_AUTH,
+    creatorInterests
+  });
 };
 
 export {
