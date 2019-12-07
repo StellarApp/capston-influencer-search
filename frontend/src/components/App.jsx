@@ -33,6 +33,7 @@ class App extends Component {
     const values = queryString.parse(window.location.search);
     const businessId = values.business_id;
     const token = values.token;
+    
     if (businessId) {
       this.props.fetchCollections(businessId);
       this.props.getBusinessLogin(businessId, token);

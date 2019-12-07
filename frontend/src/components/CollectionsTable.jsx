@@ -18,7 +18,7 @@ const CollectionTable = ({ collections }) => {
         </tr>
         {collections.map(collection => {
           return (
-              <CollectionRow key={collection.id} collectionId={collection.id} />
+              <CollectionRow key={collection.id} collection={collection} />
           );
         })}
       </tbody>

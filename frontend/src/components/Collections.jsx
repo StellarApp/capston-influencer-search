@@ -11,17 +11,19 @@ class Collections extends Component {
   }
   render() {
     const { collections, creators } = this.props;
-      if(collections.length === 0){
-        return null
-      } else {
-        return <CollectionsTable />
-      }
+    if (collections.length === 0) {
+      return null;
+    } else {
+      return <CollectionsTable collections={collections} />;
+    }
   }
 }
 
 const mapStateToProps = ({ collections, creators, auth }) => {
   const businessId = auth.id;
-  const filteredCollections = collections.filter(collection => collection.businessId === businessId)
+  const filteredCollections = collections.filter(
+    collection => collection.businessId === businessId
+  );
 
   return {
     collections: filteredCollections,

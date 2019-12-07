@@ -6,7 +6,8 @@ import {
   SET_CREATORS,
   SET_COLLECTIONS,
   DELETE_COLLECTION,
-  SET_KEYWORDS
+  SET_KEYWORDS,
+  ADD_COLLECTION,
 } from "./constants";
 
 const attemptFBLogin = (auth, history) => async dispatch => {
@@ -67,6 +68,11 @@ const fetchCollections = businessId => async dispatch => {
   });
 };
 
+const handleAddCollection = (businessId, creatorId) => async dispatch => {
+  const newCollection = (await axios.post(`api/business/${businessId}/collections`, { creatorId })).data;
+  dispatch({ type: ADD_COLLECTION, collection: newCollection });
+}
+
 const handleDeleteCollection = collectionId => async dispatch => {
   await axios.delete(`api/business/${collectionId}`);
   dispatch({
@@ -113,5 +119,6 @@ export {
   handleDeleteCollection,
   fetchKeywords,
   saveCreatorInterests,
-  saveCreatorLinks
+  saveCreatorLinks,
+  handleAddCollection,
 };
