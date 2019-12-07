@@ -10,7 +10,8 @@ const {
   fetchCreators,
   fetchCollections,
   fetchContacts,
-  getBusinessLogin
+  getBusinessLogin,
+  fetchKeywords
 } = actions;
 
 // Components
