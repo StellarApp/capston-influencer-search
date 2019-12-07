@@ -9,8 +9,8 @@ import { actions } from "../store";
 const {
   fetchCreators,
   fetchCollections,
-  getBusinessLogin,
-  fetchKeywords
+  fetchContacts,
+  getBusinessLogin
 } = actions;
 
 // Components
@@ -24,6 +24,7 @@ import Creators from "./Creators";
 import Creator from "./Creator";
 import Keywords from "./onboarding/Keywords";
 import Links from "./onboarding/Links";
+import contactCreators from "./ContactCreators";
 
 class App extends Component {
   componentDidMount() {
@@ -33,8 +34,10 @@ class App extends Component {
     const values = queryString.parse(window.location.search);
     const businessId = values.business_id;
     const token = values.token;
+
     if (businessId) {
       this.props.fetchCollections(businessId);
+      this.props.fetchContacts();
       this.props.getBusinessLogin(businessId, token);
     }
   }
@@ -53,6 +56,7 @@ class App extends Component {
           <Route path="/creators" component={Creators} />
           <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
+          <Route path="/contact-creators" component={contactCreators}></Route>
         </Switch>
       </HashRouter>
     );
@@ -63,7 +67,8 @@ const mapDispatchToProps = {
   fetchCollections,
   fetchCreators,
   getBusinessLogin,
-  fetchKeywords
+  fetchKeywords,
+  fetchContacts
 };
 
 export default connect(null, mapDispatchToProps)(App);

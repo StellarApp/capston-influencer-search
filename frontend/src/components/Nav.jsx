@@ -39,7 +39,7 @@ const StyledNav = styled(NavLink)`
 
 class Nav extends Component {
   render() {
-    const { loggedIn } = this.props;
+    const { loggedIn, type } = this.props;
     return (
       <NavBar>
         <Left>
@@ -48,9 +48,9 @@ class Nav extends Component {
           </StyledNav>
         </Left>
         <Right>
-          {loggedIn ? <StyledNav to="/creators">Creators</StyledNav> : ""}
-          {loggedIn ? <StyledNav to="/collections">Collections</StyledNav> : ""}
-          {loggedIn ? <StyledNav to="/account">Account</StyledNav> : ""}
+          {loggedIn && type === "business"? <StyledNav to="/creators">Creators</StyledNav> : ""}
+          {loggedIn && type === "business" ? <StyledNav to="/collections">Collections</StyledNav> : ""}
+          {loggedIn && type === "creator"? <StyledNav to="/account">Account</StyledNav> : ""}
           {!loggedIn ? (
             <StyledNav to="/login">Login &rarr;</StyledNav>
           ) : (
@@ -63,7 +63,8 @@ class Nav extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  loggedIn: !!auth.token
+  loggedIn: !!auth.token,
+  type: auth.type
 });
 
 export default connect(mapStateToProps)(Nav);

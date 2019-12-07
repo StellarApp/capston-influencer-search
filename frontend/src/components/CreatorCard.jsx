@@ -6,6 +6,8 @@ import styled from "styled-components";
 
 // Local imports
 import { FollowerIcon, ImpressionIcon, LocationIcon } from "./Icons";
+import { actions } from "../store";
+const { handleAddCollection } = actions;
 
 const Image = styled.div`
   border-radius: 50%;
@@ -47,36 +49,44 @@ const TextBox = styled.p`
   color: #828282;
 `;
 
-const CreatorCard = ({ creator }) => {
+const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
   return (
-    /* need to creat Creator API request -- get & put
-    // get for followers/impressons/location
-    // put for description(editable) */
-
-    // <Link to={`/creator/${creatorId}`}>
-    // add ig profile pic
-
     <Container>
       <Link to={`/creators/${creator.id}`}>
         <h4>{creator.fullName}</h4>
       </Link>
-      <Image src="#" alt="profile photo" />
-      <TextBox>{creator.description} [This will be Description.]</TextBox>
+      <Image
+        src={creator.creatorInsights[0].profilePictureUrl}
+        alt="profile photo"
+      />
+      <TextBox>{creator.creatorInsights[0].biography}</TextBox>
       <EngagementList>
         <Engagement id="followers">
           <FollowerIcon />
-          [ig followers]
+          {creator.creatorInsights[0].followersCount}
         </Engagement>
         <Engagement id="impressions">
           <ImpressionIcon />
           [ig impressions]
         </Engagement>
         <Engagement id="location">
-          <LocationIcon /> [{creator.location}
+          <LocationIcon /> {creator.location}
         </Engagement>
       </EngagementList>
       <TextBox id="interests"> [interest list] </TextBox>
+      <button
+        onClick={() => handleAddCollection(businessId, creator.id)}
+      >
+        Add to Collection
+      </button>
     </Container>
   );
 };
-export default connect(null)(CreatorCard);
+
+const mapStateToProps = ({ auth }) => ({ businessId: auth.id });
+
+const mapDispatchToProps = {
+  handleAddCollection
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatorCard);
