@@ -8,55 +8,58 @@ import styled from "styled-components";
 import { actions } from "../store";
 
 const NavBar = styled.div`
-  grid-area: 1/1/2/4;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 2rem;
 `;
 
-const Left = styled.div`
-  flex-grow: auto;
-  display: flex;
-  justify-content: flex-start;
-`;
-
-const Right = styled.div`
-  flex-grow: auto;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  display: flex;
-`;
-
-const StyledNav = styled(NavLink)`
-  color: palevioletred;
-  font-weight: bold;
+const Link = styled.p`
+  color: ${props => props.theme.textColor.primary};
+  padding: 0 1rem;
+  display: inline-block;
   &:hover {
     cursor: pointer;
-    color: #ff5c28;
   }
 `;
 
 class Nav extends Component {
   render() {
-    const { loggedIn, type } = this.props;
+    const { loggedIn } = this.props;
+    if (!loggedIn) {
+      return (
+        <NavBar>
+          <div>
+            <NavLink to="/" exact>
+              Connect Creator
+            </NavLink>
+          </div>
+          <div>
+            <NavLink to="/login">
+              <Link>Login</Link>
+            </NavLink>
+          </div>
+        </NavBar>
+      );
+    }
     return (
       <NavBar>
-        <Left>
-          <StyledNav to="/" exact>
+        <div>
+          <NavLink to="/" exact>
             Connect Creator
-          </StyledNav>
-        </Left>
-        <Right>
-          {loggedIn && type === "business"? <StyledNav to="/creators">Creators</StyledNav> : ""}
-          {loggedIn && type === "business" ? <StyledNav to="/collections">Collections</StyledNav> : ""}
-          {loggedIn && type === "creator"? <StyledNav to="/account">Account</StyledNav> : ""}
-          {!loggedIn ? (
-            <StyledNav to="/login">Login &rarr;</StyledNav>
-          ) : (
-            <StyledNav to="/logout">Logout</StyledNav>
-          )}
-        </Right>
+          </NavLink>
+        </div>
+        <div>
+          <NavLink to="/creators">
+            <Link>Creators</Link>
+          </NavLink>
+          <NavLink to="/collections">
+            <Link>Collections</Link>
+          </NavLink>
+          <NavLink to="/account">
+            <Link>Account</Link>
+          </NavLink>
+        </div>
       </NavBar>
     );
   }
