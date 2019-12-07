@@ -2,7 +2,8 @@ import { createGlobalStyle } from "styled-components";
 import defaultTheme from "./components/Theme";
 export default createGlobalStyle`
   body {
-    font-family: TitlingGothicFB Normal, Work Sans;
+    font-family: Work Sans;
+    color: ${defaultTheme.textColor.primary};
   };
 
   #root{
@@ -80,7 +81,5 @@ export default createGlobalStyle`
     font-weight:${defaultTheme.fontWeight.subheading};
     text-decoration: none;
   };
-  a:visited {
-    color: #000;
-  };
+
 `;

@@ -1,0 +1,30 @@
+import styled from "styled-components";
+import React from "react";
+
+const Container = styled.div`
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${props => props.color};
+  &:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+  }
+`;
+
+const Icon = styled.img`
+  width: 1rem;
+  height: 1rem;
+  fill: #eee;
+`;
+
+const CircleIcon = ({ src, color }) => (
+  <Container color={color}>
+    <Icon src={src} />
+  </Container>
+);
+export default CircleIcon;

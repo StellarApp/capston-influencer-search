@@ -15,7 +15,7 @@ const NavBar = styled.div`
 `;
 
 const Link = styled.p`
-  color: ${props => props.theme.text.primary};
+  color: ${props => props.theme.textColor.primary};
   padding: 0 1rem;
   display: inline-block;
   &:hover {

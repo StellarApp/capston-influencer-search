@@ -4,7 +4,7 @@ export default {
     secondary: "#F4F7FC",
     inset: "EEEEF0"
   },
-  text: {
+  textColor: {
     primary: "#282A43",
     secondary: "#696A7B",
     placeholder: "#D4D4D9"
