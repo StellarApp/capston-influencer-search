@@ -47,7 +47,7 @@ class Keywords extends Component {
     const { interests } = this.state;
     const { creatorId, saveCreatorInterests, history } = this.props;
     await saveCreatorInterests(creatorId, interests);
-    history.push("/onboarding/top-posts");
+    history.push("/onboarding/links");
   }
 
   render() {

@@ -93,6 +93,16 @@ const saveCreatorInterests = (creatorId, interests) => async dispatch => {
   });
 };
 
+const saveCreatorLinks = (creatorId, links) => async dispatch => {
+  const creatorLinks = (
+    await axios.post(`/api/creators/${creatorId}/links`, { links })
+  ).data;
+  dispatch({
+    type: ADD_TO_AUTH,
+    creatorLinks: [creatorLinks]
+  });
+};
+
 export {
   attemptFBLogin,
   getBusinessLogin,
@@ -102,5 +112,6 @@ export {
   fetchCollections,
   handleDeleteCollection,
   fetchKeywords,
-  saveCreatorInterests
+  saveCreatorInterests,
+  saveCreatorLinks
 };

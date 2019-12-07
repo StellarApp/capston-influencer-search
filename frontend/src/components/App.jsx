@@ -23,7 +23,7 @@ import Collections from "./Collections";
 import Creators from "./Creators";
 import Creator from "./Creator";
 import Keywords from "./onboarding/Keywords";
-import TopPosts from "./onboarding/TopPosts";
+import Links from "./onboarding/Links";
 
 class App extends Component {
   componentDidMount() {
@@ -46,7 +46,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/onboarding/keywords" component={Keywords} />
-          <Route path="/onboarding/top-posts" component={TopPosts} />
+          <Route path="/onboarding/links" component={Links} />
           <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
           <Route path="/creators/:id" component={Creator} />
