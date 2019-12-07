@@ -14,15 +14,16 @@ const {
 } = actions;
 
 // Components
-import Home from './Home';
-import Nav from './Nav';
-import Login from './Login';
-import Logout from './Logout';
-import Account from './Account';
-import Collections from './Collections';
-import Creators from './Creators';
-import Creator from './Creator';
-import Keywords from './onboarding/Keywords';
+import Home from "./Home";
+import Nav from "./Nav";
+import Login from "./Login";
+import Logout from "./Logout";
+import Account from "./Account";
+import Collections from "./Collections";
+import Creators from "./Creators";
+import Creator from "./Creator";
+import Keywords from "./onboarding/Keywords";
+import TopPosts from "./onboarding/TopPosts";
 
 class App extends Component {
   componentDidMount() {
@@ -45,6 +46,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/onboarding/keywords" component={Keywords} />
+          <Route path="/onboarding/top-posts" component={TopPosts} />
           <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
           <Route path="/creators/:id" component={Creator} />
