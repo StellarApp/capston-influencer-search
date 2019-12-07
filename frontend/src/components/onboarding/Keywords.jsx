@@ -13,8 +13,9 @@ const KeywordContainer = styled.ul`
 const Keyword = styled.li`
   width: 194px;
   height: 64px;
-  background: ${props => (props.selected ? "#f2f2f2" : "#ff5c28")};
-  color: ${props => (props.selected ? "#ff5c28" : "#f2f2f2")};
+  background: ${props => (props.selected ? "#ff5c28" : "#f2f2f2")};
+  color: ${props => (props.selected ? "#f2f2f2" : "#ff5c28")};
+  font-weight: ${props => (props.selected ? "bold" : "normal")};
   border: 1px solid #ff5c28;
 `;
 
@@ -24,9 +25,22 @@ class Keywords extends Component {
     this.state = {
       interests: []
     };
+    this.toggleInterests = this.toggleInterests.bind(this);
+  }
+
+  toggleInterests(keywordId) {
+    const { interests } = this.state;
+    const index = interests.indexOf(keywordId);
+    if (index === -1) {
+      interests.push(keywordId);
+    } else {
+      interests.splice(index, 1);
+    }
+    this.setState({ interests });
   }
 
   render() {
+    const { interests } = this.state;
     const { keywords } = this.props;
 
     return (
@@ -34,7 +48,11 @@ class Keywords extends Component {
         Select Interests
         <KeywordContainer>
           {keywords.map(keyword => (
-            <Keyword key={keyword.id} selected>
+            <Keyword
+              key={keyword.id}
+              selected={interests.includes(keyword.id)}
+              onClick={() => this.toggleInterests(keyword.id)}
+            >
               {keyword.name}
             </Keyword>
           ))}
