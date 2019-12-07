@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 const { Business, Collection } = require("../data").models;
 
@@ -11,7 +11,7 @@ router.get("/:id", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/:id/collections/", (req, res, next) => {
+router.get("/:id/collections", (req, res, next) => {
   const { id } = req.params;
   Collection.findByBusinessId(id)
     .then(collections => {
@@ -20,10 +20,19 @@ router.get("/:id/collections/", (req, res, next) => {
     .catch(next);
 });
 
+// add a creator to collection list
+router.post("/:id/collections", (req, res, next) => {
+  const { id } = req.params;
+  const { creatorId } = req.body;
+  Collection.create({ businessId: id, creatorId })
+    .then(newCollection => res.status(201).send(newCollection))
+    .catch(next);
+});
+
 // delete a collection item
-router.delete('/:collectionId', (req, res, next) => {
+router.delete("/:collectionId", (req, res, next) => {
   const { collectionId } = req.params;
-  Collection.findByPK(collectionId)
+  Collection.findByPk(collectionId)
     .then(collectionItem => collectionItem.destroy())
     .then(() => res.sendStatus(204))
     .catch(next);

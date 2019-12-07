@@ -66,7 +66,8 @@ class Nav extends Component {
 }
 
 const mapStateToProps = ({ auth }) => ({
-  loggedIn: !!auth.token
+  loggedIn: !!auth.token,
+  type: auth.type
 });
 
 export default connect(mapStateToProps)(Nav);

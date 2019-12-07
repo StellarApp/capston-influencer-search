@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Creator, CreatorInsight } = require('../data').models;
-
-router.use(express.json());
+const { Creator, CreatorInsight, Interest, Link } = require('../data').models;
 
 router.get('/', (req, res, next) => {
   Creator.findAll({ include: [{ model: CreatorInsight }] })
@@ -12,12 +10,31 @@ router.get('/', (req, res, next) => {
     .catch(next);
 });
 
-// delete from business user's collection
-router.delete('/:id', (req, res, next) => {
-  const { id } = req.params;
-  Creator.findByPk(id)
-    .then(creator => creator.destroy())
-    .then(() => res.sendStatus(204))
+router.post('/:id/interests', (req, res, next) => {
+  const creatorId = req.params.id;
+  const { interests } = req.body;
+
+  Interest.bulkCreate(
+    interests.map(interest => ({
+      creatorId,
+      keywordId: interest
+    })),
+    { returning: true }
+  )
+    .then(interests => {
+      res.send(interests);
+    })
+    .catch(next);
+});
+
+router.post('/:id/links', (req, res, next) => {
+  const creatorId = req.params.id;
+  const { links } = req.body;
+
+  Link.create({ ...links, creatorId })
+    .then(creatorLinks => {
+      res.send(creatorLinks);
+    })
     .catch(next);
 });
 

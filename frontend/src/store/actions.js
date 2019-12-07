@@ -1,10 +1,15 @@
 import axios from "axios";
 import {
   SET_AUTH,
+  ADD_TO_AUTH,
   DELETE_AUTH,
   SET_CREATORS,
   SET_COLLECTIONS,
-  DELETE_COLLECTION
+  ADD_COLLECTION,
+  DELETE_COLLECTION,
+  SET_KEYWORDS,
+  SET_CONTACTS,
+  ADD_CONTACT
 } from "./constants";
 
 const attemptFBLogin = (auth, history) => async dispatch => {
@@ -59,10 +64,35 @@ const fetchCollections = businessId => async dispatch => {
   const collections = (
     await axios.get(`api/business/${businessId}/collections/`)
   ).data;
+
   dispatch({
     type: SET_COLLECTIONS,
     collections
   });
+};
+
+const fetchContacts = contacts => async dispatch => {
+  if (!contacts) {
+    return;
+  }
+  dispatch({
+    type: SET_CONTACTS,
+    contacts
+  });
+};
+
+const handleAddContact = contact => async dispatch => {
+  dispatch({
+    type: ADD_CONTACT,
+    contact
+  });
+};
+
+const handleAddCollection = (businessId, creatorId) => async dispatch => {
+  const newCollection = (
+    await axios.post(`api/business/${businessId}/collections`, { creatorId })
+  ).data;
+  dispatch({ type: ADD_COLLECTION, collection: newCollection });
 };
 
 const handleDeleteCollection = collectionId => async dispatch => {
@@ -73,6 +103,34 @@ const handleDeleteCollection = collectionId => async dispatch => {
   });
 };
 
+const fetchKeywords = () => async dispatch => {
+  const keywords = (await axios.get("/api/keywords")).data;
+  dispatch({
+    type: SET_KEYWORDS,
+    keywords
+  });
+};
+
+const saveCreatorInterests = (creatorId, interests) => async dispatch => {
+  const creatorInterests = (
+    await axios.post(`/api/creators/${creatorId}/interests`, { interests })
+  ).data;
+  dispatch({
+    type: ADD_TO_AUTH,
+    creatorInterests
+  });
+};
+
+const saveCreatorLinks = (creatorId, links) => async dispatch => {
+  const creatorLinks = (
+    await axios.post(`/api/creators/${creatorId}/links`, { links })
+  ).data;
+  dispatch({
+    type: ADD_TO_AUTH,
+    creatorLinks: [creatorLinks]
+  });
+};
+
 export {
   attemptFBLogin,
   getBusinessLogin,
@@ -80,5 +138,11 @@ export {
   fetchCreators,
   createCreatorInsight,
   fetchCollections,
-  handleDeleteCollection
+  handleDeleteCollection,
+  fetchKeywords,
+  saveCreatorInterests,
+  saveCreatorLinks,
+  handleAddCollection,
+  fetchContacts,
+  handleAddContact
 };

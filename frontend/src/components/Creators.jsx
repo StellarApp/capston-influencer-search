@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import { actions } from "../store";
 import CreatorSearchBar from "./CreatorSearchBar";
 import CreatorList from "./CreatorList"
+import authReducer from "../store/reducers/auth";
 
 class Creators extends Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class Creators extends Component {
   }
 }
 
-const mapStateToProps = ({ creators }) => {
+const mapStateToProps = ({ creators, auth }) => {
   const locations =
     creators &&
     creators.reduce((accum, ele) => {

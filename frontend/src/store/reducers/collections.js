@@ -11,7 +11,7 @@ const collectionReducer = (state = [], action) => {
     case ADD_COLLECTION:
       return [...state, action.collection];
     case DELETE_COLLECTION:
-      return state.fileter(
+      return state.filter(
         collection => collection.id !== action.collection.id
       );
     default:
