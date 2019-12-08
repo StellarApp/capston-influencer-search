@@ -74,8 +74,13 @@ const syncUserInsight = async (instagramId, creatorId, accessToken) => {
     insights
   } = (await axios.get(link)).data;
 
-  const audienceCity = insights.data[0].values[0].value;
-  const audienceGenderAge = insights.data[1].values[0].value;
+  let audienceCity;
+  let audienceGenderAge;
+
+  if (insights && insights.data && insights.data.length >= 2) {
+    audienceCity = insights.data[0].values[0].value;
+    audienceGenderAge = insights.data[1].values[0].value;
+  }
 
   const insight = {
     igName: username,
