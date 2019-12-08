@@ -8,11 +8,14 @@ const Links = ({ creatorId, saveCreatorLinks, history }) => {
   const onSubmit = async event => {
     event.preventDefault();
     const form = event.target;
+
+    const sanitizeValue = value => (value !== '' ? value : null);
     const links = {
-      youtube: form.youtube.value,
-      twitter: form.twitter.value,
-      website: form.website.value
+      youtube: sanitizeValue(form.youtube.value),
+      twitter: sanitizeValue(form.twitter.value),
+      website: sanitizeValue(form.website.value)
     };
+
     await saveCreatorLinks(creatorId, links);
     history.push("/account");
   };
