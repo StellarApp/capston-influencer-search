@@ -6,23 +6,23 @@ const { handleDeleteCollection, handleAddContact } = actions;
 class CollectionRow extends Component {
   render() {
     const {
-      creators,
-      collection,
-      handleDeleteCollection,
-      handleAddContact
+      creator,
+      selected,
+      handleDeleteCollection
+      // handleAddContact
     } = this.props;
 
-    const creator = creators.find(
-      creator => creator.id === collection.creatorId
-    );
-
+    console.log("selected", selected);
+    console.log("selected", selected.includes(creator.id));
     return (
       <tr>
         <td>
           <input
             type="checkbox"
             key={creator.id}
-            onChange={() => handleAddContact({name: creator.fullName, email:creator.email})}
+            checked={selected.includes(creator.id)}
+            onChange={() => {}}
+            // onChange={() => handleAddContact({name: creator.fullName, email:creator.email})}
           />
         </td>
         <td>{creator.fullName}</td>
@@ -38,11 +38,14 @@ class CollectionRow extends Component {
   }
 }
 
-const mapStateToProps = ({ creators }) => ({ creators });
+const mapStateToProps = ({ creators, selected }, { collection }) => ({
+  creator: creators.find(creator => creator.id === collection.creatorId),
+  selected
+});
 
 const mapDispatchToProps = {
-  handleDeleteCollection,
-  handleAddContact
+  handleDeleteCollection
+  // handleAddContact
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionRow);

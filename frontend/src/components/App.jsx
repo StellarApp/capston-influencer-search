@@ -9,7 +9,6 @@ import { actions } from "../store";
 const {
   fetchCreators,
   fetchCollections,
-  fetchContacts,
   getBusinessLogin,
   fetchKeywords
 } = actions;
@@ -38,7 +37,6 @@ class App extends Component {
 
     if (businessId) {
       this.props.fetchCollections(businessId);
-      this.props.fetchContacts();
       this.props.getBusinessLogin(businessId, token);
     }
   }
@@ -68,8 +66,7 @@ const mapDispatchToProps = {
   fetchCollections,
   fetchCreators,
   getBusinessLogin,
-  fetchKeywords,
-  fetchContacts
+  fetchKeywords
 };
 
 export default connect(null, mapDispatchToProps)(App);

@@ -8,8 +8,8 @@ import {
   ADD_COLLECTION,
   DELETE_COLLECTION,
   SET_KEYWORDS,
-  SET_CONTACTS,
-  ADD_CONTACT
+  ADD_CONTACT,
+  SET_SELECTED
 } from "./constants";
 
 const attemptFBLogin = (auth, history) => async dispatch => {
@@ -71,13 +71,10 @@ const fetchCollections = businessId => async dispatch => {
   });
 };
 
-const fetchContacts = contacts => async dispatch => {
-  if (!contacts) {
-    return;
-  }
+const fetchSelected = collections => async dispatch => {
   dispatch({
-    type: SET_CONTACTS,
-    contacts
+    type: SET_SELECTED,
+    selected: collections.map(collection => collection.creatorId)
   });
 };
 
@@ -152,6 +149,6 @@ export {
   saveCreatorInterests,
   saveCreatorLinks,
   handleAddCollection,
-  fetchContacts,
+  fetchSelected,
   handleAddContact
 };

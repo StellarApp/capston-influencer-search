@@ -1,9 +1,5 @@
-// Package imports
 import React, { Component } from "react";
-import { connect } from "react-redux";
 
-// Local imports
-import { actions } from "../store";
 import CollectionRow from "./CollectionRow";
 
 const CollectionTable = ({ collections }) => {
@@ -17,9 +13,7 @@ const CollectionTable = ({ collections }) => {
           <th>Location</th>
         </tr>
         {collections.map(collection => {
-          return (
-              <CollectionRow key={collection.id} collection={collection} />
-          );
+          return <CollectionRow key={collection.id} collection={collection} />;
         })}
       </tbody>
     </table>
