@@ -16,9 +16,13 @@ class ContactCreators extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
-  sendEmail() {
+  sendEmail(ev) {
+    ev.preventDefault();
+
     const inputList = { ...this.state };
     delete inputList.cc;
+    delete inputList.error;
+
     const keys = Object.keys(inputList);
     const error = keys.reduce((accum, ele) => {
       return inputList[ele].length > 0
@@ -31,9 +35,9 @@ class ContactCreators extends Component {
       return;
     }
 
+    alert("Your message has been sent.");
     const { history } = this.props;
     history.push("/collections");
-    alert("Your message has been sent.");
   }
 
   onChange(ev) {
@@ -48,7 +52,7 @@ class ContactCreators extends Component {
       <div>
         Send Email to Creators
         <div>{error && error.map((err, idx) => <p key={idx}>{err}</p>)}</div>
-        <form>
+        <form onSubmit={sendEmail}>
           <div>
             <label>Send From: </label>
             <input
@@ -86,32 +90,30 @@ class ContactCreators extends Component {
             <label>Email Body: </label>
             <input type="text" name="emailBody" onChange={onChange} required />
           </div>
-          <input
-            type="submit"
-            value="Send Email"
-            onClick={() => sendEmail()}
-          ></input>
+          <input type="submit" value="Send Email"></input>
         </form>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ contacts, auth }, { history }) => {
+const mapStateToProps = ({ creators, selected, auth }) => {
   const to =
-    contacts.length > 0
-      ? contacts
-          .reduce((accum, ele) => (accum += `; ${ele.name} <${ele.email}>`), "")
+    selected.length > 0
+      ? selected
+          .map(contact => creators.find(creator => creator.id === contact))
+          .reduce(
+            (accum, ele) => (accum += `; ${ele.fullName} <${ele.email}>`),
+            ""
+          )
           .slice(1)
-      : "test <s@gmail.com>; there <there@gmail.com>";
+      : "";
 
   const from = `${auth.fullName} <${auth.email}>`;
 
   return {
-    contacts,
     from,
-    to,
-    history
+    to
   };
 };
 

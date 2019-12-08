@@ -12,8 +12,6 @@ class CollectionRow extends Component {
       toggleSelected
     } = this.props;
 
-    console.log("selected", selected);
-    console.log("selected", selected.includes(creator.id));
     return (
       <tr>
         <td>

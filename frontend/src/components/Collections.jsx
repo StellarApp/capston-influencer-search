@@ -11,7 +11,7 @@ class Collections extends Component {
     this.state = {
       error: ""
     };
-    // this.handleSendEmail = this.handleSendEmail.bind(this);
+    this.handleSendEmail = this.handleSendEmail.bind(this);
   }
 
   componentDidMount() {
@@ -19,21 +19,21 @@ class Collections extends Component {
     fetchSelected(collections);
   }
 
-  // handleSendEmail() {
-  //   const { history, contacts } = this.props;
-  //   if (contacts.length === 0) {
-  //     this.setState({
-  //       error: "Please select at least one creator to contact."
-  //     });
-  //     return;
-  //   }
-  //   history.push("/contact-creators");
-  // }
+  handleSendEmail() {
+    const { history, selected } = this.props;
+    if (selected.length === 0) {
+      this.setState({
+        error: "Please select at least one creator to contact."
+      });
+      return;
+    }
+    history.push("/contact-creators");
+  }
 
   render() {
     const { collections, history } = this.props;
     const { error } = this.state;
-    // const { handleSendEmail } = this;
+    const { handleSendEmail } = this;
 
     if (collections.length === 0) {
       history.push("/creators");
@@ -47,7 +47,7 @@ class Collections extends Component {
           <input
             type="submit"
             value="Contact to creator(s)"
-            // onClick={() => handleSendEmail(contacts)}
+            onClick={() => handleSendEmail()}
           />
         </div>
       );
@@ -55,7 +55,7 @@ class Collections extends Component {
   }
 }
 
-const mapStateToProps = ({ collections, auth }) => {
+const mapStateToProps = ({ collections, auth, selected }) => {
   const businessId = auth.id;
   const filteredCollections = collections.filter(
     collection => collection.businessId === businessId
@@ -63,7 +63,7 @@ const mapStateToProps = ({ collections, auth }) => {
 
   return {
     collections: filteredCollections,
-    collections
+    selected
   };
 };
 
