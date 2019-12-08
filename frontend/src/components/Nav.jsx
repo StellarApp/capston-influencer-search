@@ -25,23 +25,7 @@ const Link = styled.p`
 
 class Nav extends Component {
   render() {
-    const { loggedIn } = this.props;
-    if (!loggedIn) {
-      return (
-        <NavBar>
-          <div>
-            <NavLink to="/" exact>
-              Connect Creator
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/login">
-              <Link>Login</Link>
-            </NavLink>
-          </div>
-        </NavBar>
-      );
-    }
+    const { loggedIn, type } = this.props;
     return (
       <NavBar>
         <div>
@@ -49,17 +33,33 @@ class Nav extends Component {
             Connect Creator
           </NavLink>
         </div>
-        <div>
+
+        {loggedIn && type === "business" ? (
           <NavLink to="/creators">
             <Link>Creators</Link>
           </NavLink>
+        ) : (
+          ""
+        )}
+        {loggedIn && type === "business" ? (
           <NavLink to="/collections">
             <Link>Collections</Link>
           </NavLink>
+        ) : (
+          ""
+        )}
+
+        {!loggedIn ? (
+          <div>
+            <NavLink to="/login">
+              <Link>Login</Link>
+            </NavLink>
+          </div>
+        ) : (
           <NavLink to="/account">
             <Link>Account</Link>
           </NavLink>
-        </div>
+        )}
       </NavBar>
     );
   }
