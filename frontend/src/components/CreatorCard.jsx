@@ -3,80 +3,50 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import CircleImg from "./CircleImg";
+import defaultTheme from "./Theme";
+import ProfileStats from "./ProfileStats";
 
 // Local imports
-import { FollowerIcon, ImpressionIcon, LocationIcon } from "./Icons";
 import { actions } from "../store";
 const { handleAddCollection } = actions;
 
-const Image = styled.div`
-  border-radius: 50%;
-`;
-
 const Container = styled.div`
-  position: absolute;
-  background: #ffffff;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: ${defaultTheme.shadows.default};
   border-radius: 16px;
   padding: 10px;
-  margin: auto;
-  width: 500px;
+  width: 100%;
   heigh: 400px;
   &:hover {
     cursor: pointer;
+    box-shadow: ${defaultTheme.shadows.hover};
   }
 `;
 
-const EngagementList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Engagement = styled.div`
-  flex: 1 0 calc(33% - 10px);
-  margin: 5px;
-  justify-content: space-around;
-  align-items: flex-end;
-`;
-
-const TextBox = styled.p`
-  font-family: Work Sans;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-transform: capitalize;
-  color: #828282;
-`;
-
-const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
+const CreatorCard = ({ creator, handleAddCollection, businessId }) => {
+  const { creatorInsights, creatorLinks, creatorInterests } = creator;
+  const {
+    igName,
+    mediaCount,
+    followersCount,
+    followsCount,
+    profilePictureUrl,
+    biography,
+    totalComments,
+    totalLikes,
+    engagementRate
+  } = creatorInsights[0];
+  const { fullName } = creator;
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
-        <h4>{creator.fullName}</h4>
+        <h4>{fullName}</h4>
       </Link>
-      <Image
-        src={creator.creatorInsights[0].profilePictureUrl}
-        alt="profile photo"
-      />
-      <TextBox>{creator.creatorInsights[0].biography}</TextBox>
-      <EngagementList>
-        <Engagement id="followers">
-          <FollowerIcon />
-          {creator.creatorInsights[0].followersCount}
-        </Engagement>
-        <Engagement id="impressions">
-          <ImpressionIcon />
-          [ig impressions]
-        </Engagement>
-        <Engagement id="location">
-          <LocationIcon /> {creator.location}
-        </Engagement>
-      </EngagementList>
+      <CircleImg src={profilePictureUrl}></CircleImg>
+      <TextBox>{biography}</TextBox>
+
       <TextBox id="interests"> [interest list] </TextBox>
-      <button
-        onClick={() => handleAddCollection(businessId, creator.id)}
-      >
+      <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
       </button>
     </Container>

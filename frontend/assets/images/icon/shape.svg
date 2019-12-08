@@ -1,0 +1,14 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M200 200V0C89.5431 0 0 89.5431 0 200H200Z" fill="#1F2144"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M200 0V200C310.457 200 400 110.457 400 0H200Z" fill="#D1F4FF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M800 2.38498e-06L600 0C600 110.457 689.543 200 800 200L800 2.38498e-06Z" fill="#1F2144"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M800 400L600 400C600 510.457 689.543 600 800 600L800 400Z" fill="#FFF2D1"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M800 400V200C689.543 200 600 289.543 600 400H800Z" fill="#6CD4C4"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M600 200L400 200C400 310.457 489.543 400 600 400L600 200Z" fill="#D1F4FF"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M400 400V200C289.543 200 200 289.543 200 400H400Z" fill="#FF5C28"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M400 400L200 400C200 510.457 289.543 600 400 600L400 400Z" fill="#FF5C28"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M200 600V400C89.5431 400 0 489.543 0 600H200Z" fill="#FFD5CF"/>
+<circle cx="500" cy="100" r="100" fill="#FFF2D1"/>
+<circle cx="500" cy="500" r="100" fill="#1F2144"/>
+<circle cx="100" cy="300" r="100" fill="#FFF2D1"/>
+</svg>

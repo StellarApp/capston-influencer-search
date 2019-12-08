@@ -1,9 +1,60 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import FacebookLogin from 'react-facebook-login';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import FacebookLogin from "react-facebook-login";
+import styled from "styled-components";
+import { actions } from "../store";
+import defaultTheme from "./Theme";
+import { Link } from "react-router-dom";
 
-import { actions } from '../store';
+const Container = styled.div`
+  background-color: #ffe1d9;
+  display: grid;
+  padding: 4rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+`;
 
+const Header = styled.h1`
+  grid-area: 1/1/2/3;
+`;
+
+const CreatorLogin = styled.div`
+  grid-area: 3/1/4/2;
+  align-self: end;
+`;
+
+const BusinessLogin = styled.div`
+  grid-area: 3/2/4/3;
+  align-self: end;
+`;
+
+const Label = styled.h4`
+  margin: 1rem 0;
+  color: ${defaultTheme.textColor.primary};
+`;
+
+const LinkedinButton = styled(Link)`
+  justify-self: stretch;
+  display: block;
+  vertical-align: center;
+  padding: 22px;
+  background-color: #1f2144;
+  align-self: end;
+  font-family: TitlingGothicFB Normal;
+  font-weight: 400;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  color: #ffffff;
+  vertical-align: center;
+  overflow-hidden;
+`;
+
+const BgImg = styled.img`
+  heigth: 100%;
+  grid-area: 1/3/4/5;
+`;
 class Login extends Component {
   constructor() {
     super();
@@ -41,26 +92,32 @@ class Login extends Component {
     const { facebookLogin } = this;
 
     return (
-      <div>
-        <div id="businessLogin">
-          <h2>For Business:</h2>
-          <a href="/auth/linkedin">
-            <img src="./assets/images/linkedin-signin.png" />
-          </a>
-        </div>
-        <div id="creatorLogin">
-          <h2>For Creators:</h2>
+      <Container>
+        <Header>
+          A platform for creators & businesses start and stay connected.
+        </Header>
+        <CreatorLogin id="creatorLogin">
+          <Label>For Creators</Label>
           <FacebookLogin
             appId={process.env.FB_APP_ID}
             fields="first_name,last_name,email,picture,gender,location,link,accounts{instagram_business_account}"
             scope="public_profile,email,user_gender,user_location,user_link,instagram_basic,instagram_manage_insights,manage_pages"
             callback={facebookLogin}
-            icon="fa-facebook"
+            // icon="fa-facebook"
+            height={"4rem"}
             size="medium"
-            textButton="Sign In With Facebook"
+            cssClass="facebook-button"
+            textButton="Connect with Facebook"
           />
-        </div>
-      </div>
+        </CreatorLogin>
+        <BusinessLogin id="businessLogin">
+          <Label>For Business</Label>
+          <LinkedinButton to="/auth/linkedin">
+            Connect with Linkedin
+          </LinkedinButton>
+        </BusinessLogin>
+        <BgImg src={"../assets/images/shape.svg"} />
+      </Container>
     );
   }
 }

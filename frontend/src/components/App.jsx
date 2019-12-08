@@ -48,14 +48,13 @@ class App extends Component {
       <HashRouter>
         <Nav />
         <Switch>
-          <Route path="/" component={Home} exact />
+          <Route path="/" component={Login} exact />
           <Route path="/onboarding/keywords" component={Keywords} />
           <Route path="/onboarding/links" component={Links} />
           <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
           <Route path="/creators/:id" component={Creator} />
           <Route path="/creators" component={Creators} />
-          <Route path="/login" component={Login} />
           <Route path="/logout" component={Logout} />
           <Route path="/contact-creators" component={contactCreators}></Route>
         </Switch>
