@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 // Local imports
 import { actions } from "../store";
 import CreatorSearchBar from "./CreatorSearchBar";
-import CreatorList from "./CreatorList"
+import CreatorList from "./CreatorList";
 import authReducer from "../store/reducers/auth";
 
 class Creators extends Component {
@@ -14,7 +14,8 @@ class Creators extends Component {
     this.state = {
       searchText: "",
       searchLocation: "",
-      searchGender: ""
+      searchGender: "",
+      searchInterest: ""
     };
     this.handleFilterChange = this.handleFilterChange.bind(this);
   }
@@ -26,15 +27,23 @@ class Creators extends Component {
   }
 
   render() {
-    const { creators, locations } = this.props;
-    const { searchText, searchLocation, searchGender } = this.state;
+    const { creators, locations, keywords } = this.props;
+    const {
+      searchText,
+      searchLocation,
+      searchGender,
+      searchInterest
+    } = this.state;
     const { handleFilterChange } = this;
+
     return (
       <div>
         <CreatorSearchBar
           searchText={searchText}
           searchLocation={searchLocation}
           searchGender={searchGender}
+          searchInterest={searchInterest}
+          keywords={keywords}
           locations={locations}
           onFilterChange={handleFilterChange}
         />
@@ -43,6 +52,7 @@ class Creators extends Component {
           searchText={searchText}
           searchLocation={searchLocation}
           searchGender={searchGender}
+          searchInterest={searchInterest}
           locations={locations}
         />
       </div>
@@ -50,7 +60,7 @@ class Creators extends Component {
   }
 }
 
-const mapStateToProps = ({ creators, auth }) => {
+const mapStateToProps = ({ creators, auth, keywords }) => {
   const locations =
     creators &&
     creators.reduce((accum, ele) => {
@@ -62,7 +72,8 @@ const mapStateToProps = ({ creators, auth }) => {
 
   return {
     creators,
-    locations
+    locations,
+    keywords
   };
 };
 

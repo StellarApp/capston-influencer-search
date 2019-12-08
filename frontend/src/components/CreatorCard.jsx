@@ -14,7 +14,6 @@ const Image = styled.div`
 `;
 
 const Container = styled.div`
-  position: absolute;
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
