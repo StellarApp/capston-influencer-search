@@ -5,7 +5,7 @@ import CircleIcon from "./CircleIcon";
 import CircleImg from "./CircleImg";
 const Container = styled.div`
   background-color: ${defaultTheme.bg.primary};
-  height: 200px;
+  height: 160px;
   display: grid;
   padding: 1.5rem;
   border-radius: 0.5rem;

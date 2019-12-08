@@ -2,7 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import defaultTheme from "./Theme";
 import MediaStat from "./MediaStat";
-import { stat_post, stat_comment, stat_like } from "./Icon";
+import {
+  stat_post,
+  stat_comment,
+  stat_like,
+  stat_followers,
+  stat_engagement,
+  stat_following
+} from "./Icon";
 const Container = styled.div`
   background-color: ${defaultTheme.bg.secondary};
   padding: 2rem;
@@ -36,44 +43,44 @@ const MediaStats = ({
         <MediaStat
           name={"Media Posts"}
           value={mediaCount}
-          trend={`less post than usual`}
+          trend={`4% less post than usual`}
           bg={defaultTheme.accent.pink}
           svg={stat_post}
         />
         <MediaStat
           name={"Followers"}
           value={followersCount}
-          trend={`less follwers than usual`}
-          bg={defaultTheme.accent.pink}
-          svg={stat_post}
+          trend={`20% followers growth`}
+          bg={"#DAEDFE"}
+          svg={stat_followers}
         />
         <MediaStat
           name={"Followings"}
           value={followsCount}
-          trend={`less follwers than usual`}
-          bg={defaultTheme.accent.pink}
-          svg={stat_post}
+          trend={`11% following growth`}
+          bg={"#FEF5D7"}
+          svg={stat_following}
         />
         <MediaStat
           name={"Total likes"}
           value={totalLikes}
-          trend={`less post than usual`}
-          bg={defaultTheme.accent.pink}
-          svg={stat_post}
+          trend={`-8% less likes`}
+          bg={"#FDDFDF"}
+          svg={stat_like}
         />
         <MediaStat
           name={"Total comments"}
           value={totalComments}
-          trend={`less follwers than usual`}
-          bg={defaultTheme.accent.pink}
-          svg={stat_post}
+          trend={`5% more comments than usual`}
+          bg={"#FEF5D7"}
+          svg={stat_comment}
         />
         <MediaStat
           name={"Engagement rate"}
-          value={Math.round(Number(engagementRate) * 100) / 100}
-          trend={`less follwers than usual`}
-          bg={defaultTheme.accent.pink}
-          svg={stat_post}
+          value={Math.round(Number(engagementRate) * 100) / 100 + "%"}
+          trend={`0.5 increase`}
+          bg={"#EDEAFF"}
+          svg={stat_engagement}
         />
       </AllStats>
     </Container>

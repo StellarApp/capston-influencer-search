@@ -54,7 +54,9 @@ const Creator = ({ creators, keywords, match: { params } }) => {
     totalLikes,
     engagementRate
   } = creatorInsights[0];
-  const { twitter, youtube, website } = creatorLinks[0];
+  const { twitter, youtube, website } = creatorLinks.length
+    ? creatorLinks[0]
+    : {};
   const interests = creatorInterests.map(interest => interest.id);
   const tags = keywords.filter(keyword => interests.includes(keyword.id));
   return (
