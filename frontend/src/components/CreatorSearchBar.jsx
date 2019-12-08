@@ -38,6 +38,8 @@ class CreatorSearchBar extends Component {
             <option value="female">female</option>
             <option value="male">male</option>
           </select>
+          {/* // Add interest as drop-box */}
+          {/* // Add followers Range */}
         </form>
       );
     }

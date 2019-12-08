@@ -8,30 +8,38 @@ import CollectionsTable from "./CollectionsTable";
 class Collections extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      error: ""
+    };
     this.handleSendEmail = this.handleSendEmail.bind(this);
   }
 
   handleSendEmail() {
-    console.log("props", this.props.history);
-    const { history } = this.props;
+    const { history, contacts } = this.props;
+    if (contacts.length === 0) {
+      this.setState({
+        error: "Please select at least one creator to contact."
+      });
+      return;
+    }
     history.push("/contact-creators");
   }
 
   render() {
-    console.log("history--->", this.props.history);
-    const { collections, creators, contacts } = this.props;
+    const { collections, creators, contacts, history } = this.props;
+    const { error } = this.state;
     const { handleSendEmail } = this;
     if (collections.length === 0) {
+      history.push("/creators");
+      alert("Collection is empty. Please add a creator.");
       return null;
+
     } else {
       return (
         <div>
+          <div>{error && <p>{error}</p>}</div>
           <CollectionsTable collections={collections} />
-          <button onClick={() => handleSendEmail(contacts)}>
-            {" "}
-            Contact To Creators
-          </button>
+          <input type="submit" onClick={() => handleSendEmail(contacts)} />
         </div>
       );
     }
