@@ -12,7 +12,7 @@ const Container = styled.div`
   grid-template-rows: 3rem auto 3rem;
   justify-items: stretch;
   aligh-items: center;
-  transistion: ${defaultTheme.animations.hover};
+  transition: ${defaultTheme.animations.hover};
   &:hover {
     box-shadow: ${defaultTheme.shadows.hover};
   }

@@ -8,7 +8,7 @@ const Container = styled.div`
   border-radius: 0.5rem;
   justify-content: flex-start;
   overflow: hidden;
-  transistion: ${defaultTheme.animations.hover}
+  transition: ${defaultTheme.animations.hover};
   &:hover {
     cursor: pointer;
     box-shadow: ${defaultTheme.shadows.hover};
