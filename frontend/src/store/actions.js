@@ -8,8 +8,8 @@ import {
   ADD_COLLECTION,
   DELETE_COLLECTION,
   SET_KEYWORDS,
-  ADD_CONTACT,
-  SET_SELECTED
+  SET_SELECTED,
+  TOGGLE_SELECTED
 } from "./constants";
 
 const attemptFBLogin = (auth, history) => async dispatch => {
@@ -78,10 +78,10 @@ const fetchSelected = collections => async dispatch => {
   });
 };
 
-const handleAddContact = contact => async dispatch => {
+const toggleSelected = selected => async dispatch => {
   dispatch({
-    type: ADD_CONTACT,
-    contact
+    type: TOGGLE_SELECTED,
+    selected
   });
 };
 
@@ -150,5 +150,5 @@ export {
   saveCreatorLinks,
   handleAddCollection,
   fetchSelected,
-  handleAddContact
+  toggleSelected
 };
