@@ -122,6 +122,15 @@ const saveCreatorInterests = (creatorId, interests) => async dispatch => {
 };
 
 const saveCreatorLinks = (creatorId, links) => async dispatch => {
+  const { youtube, twitter, website } = links;
+  if (!youtube && !twitter && !website) {
+    dispatch({
+      type: ADD_TO_AUTH,
+      creatorLinks: []
+    });
+    return;
+  }
+
   const creatorLinks = (
     await axios.post(`/api/creators/${creatorId}/links`, { links })
   ).data;
