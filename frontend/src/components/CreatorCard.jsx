@@ -49,7 +49,21 @@ const TextBox = styled.p`
   color: #828282;
 `;
 
-const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
+const CreatorCard = ({
+  creator,
+  handleAddCollection,
+  businessId,
+  keywords
+}) => {
+  // const { creatorInterests } = creator;
+  // let interests = ''
+
+  // if(keywords.length>1){
+  //   interests = creatorInterests.map(interest =>
+  //   keywords.find(keyword => keyword.id === interest.keywordId).name
+  // );
+  // }
+
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
@@ -73,17 +87,26 @@ const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
           <LocationIcon /> {creator.location}
         </Engagement>
       </EngagementList>
-      <TextBox id="interests"> [interest list] </TextBox>
-      <button
-        onClick={() => handleAddCollection(businessId, creator.id)}
-      >
+      <TextBox id="interests"> {interests.lenght > 0 && interests.map(item => <div>itme</div>)} </TextBox>
+      <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
       </button>
     </Container>
   );
 };
 
-const mapStateToProps = ({ auth }) => ({ businessId: auth.id });
+const mapStateToProps = ({ auth, keywords, creators }) => {
+  const { creatorInterests } = creator;
+  let interests = ''
+
+  if(keywords.length>1){
+    interests = creatorInterests.map(interest =>
+    keywords.find(keyword => keyword.id === interest.keywordId).name
+  );
+  }
+
+  return { businessId: auth.id, keywords };
+};
 
 const mapDispatchToProps = {
   handleAddCollection

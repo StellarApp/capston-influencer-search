@@ -29,7 +29,7 @@ class CreatorList extends Component {
         return;
       }
 
-      filteredCreators.push(<CreatorCard key={creator.id} creator={creator}/>);
+      filteredCreators.push(<CreatorCard key={creator.id} creator={creator} />);
     });
 
     return <div>{filteredCreators}</div>;
