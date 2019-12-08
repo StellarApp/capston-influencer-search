@@ -29,17 +29,17 @@ class Collections extends Component {
     const { collections, creators, contacts, history } = this.props;
     const { error } = this.state;
     const { handleSendEmail } = this;
+
     if (collections.length === 0) {
       history.push("/creators");
       alert("Collection is empty. Please add a creator.");
       return null;
-
     } else {
       return (
         <div>
           <div>{error && <p>{error}</p>}</div>
           <CollectionsTable collections={collections} />
-          <input type="submit" onClick={() => handleSendEmail(contacts)} />
+          <input type="submit" value="Contact to creator(s)" onClick={() => handleSendEmail(contacts)} />
         </div>
       );
     }

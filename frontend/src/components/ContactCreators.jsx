@@ -5,53 +5,73 @@ class ContactCreators extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sendFrom: "",
-      sendTo: "",
+      from: this.props.from,
+      to: this.props.to,
+      cc: "",
       emailSubject: "",
       emailBody: "",
-      error: ""
+      error: []
     };
-    this.onSubmit = this.onSubmit.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
-  onSubmit() {
+  sendEmail() {
+    const inputList = { ...this.state };
+    delete inputList.cc;
+    const keys = Object.keys(inputList);
+    const error = keys.reduce((accum, ele) => {
+      return inputList[ele].length > 0
+        ? accum
+        : (accum += `${ele} field is required.`);
+    }, []);
+
+    if (error.length > 0) {
+      this.setState({ error });
+      return;
+    }
+
+    const { history } = this.props;
+    history.push("/collections");
     alert("Your message has been sent.");
-    this.props.history.push("/collections");
   }
 
   onChange(ev) {
-    console.log("target--->", ev.target);
     const { name, value } = ev.target;
     this.setState({ [name]: value });
   }
 
   render() {
-    const { sendFrom, sendTo } = this.props;
-    const { onChange } = this;
+    const { from, to, error } = this.props;
+    const { onChange, sendEmail } = this;
     return (
       <div>
         Send Email to Creators
+        <div>{error && error.map((err, idx) => <p key={idx}>{err}</p>)}</div>
         <form>
           <div>
             <label>Send From: </label>
             <input
               type="text"
-              name="sendFrom"
-              value={sendFrom}
+              name="from"
+              value={from}
               onChange={onChange}
               required
-            ></input>
+            />
           </div>
           <div>
             <label>Send To: </label>
             <input
               type="text"
-              name="sendTo"
-              value={sendTo}
+              name="to"
+              value={to}
               onChange={onChange}
               required
-            ></input>
+            />
+          </div>
+          <div>
+            <label>CC: </label>
+            <input type="text" name="cc" onChange={onChange} />
           </div>
           <div>
             <label>Subject: </label>
@@ -60,18 +80,17 @@ class ContactCreators extends Component {
               name="emailSubject"
               onChange={onChange}
               required
-            ></input>
+            />
           </div>
           <div>
             <label>Email Body: </label>
-            <input
-              type="text"
-              name="emailBody"
-              onChange={onChange}
-              required
-            ></input>
+            <input type="text" name="emailBody" onChange={onChange} required />
           </div>
-          <button onSubmit={() => onSubmit()}></button>
+          <input
+            type="submit"
+            value="Send Email"
+            onClick={() => sendEmail()}
+          ></input>
         </form>
       </div>
     );
@@ -79,16 +98,19 @@ class ContactCreators extends Component {
 }
 
 const mapStateToProps = ({ contacts, auth }, { history }) => {
-  const sendTo = contacts.reduce((accum, ele) =>
-    (accum.push(`${ele.name} <${ele.email}>`), []).join("; ")
-  );
+  const to =
+    contacts.length > 0
+      ? contacts
+          .reduce((accum, ele) => (accum += `; ${ele.name} <${ele.email}>`), "")
+          .slice(1)
+      : "test <s@gmail.com>; there <there@gmail.com>";
 
-  const sendFrom = `${auth.fullName} <${auth.email}>`;
+  const from = `${auth.fullName} <${auth.email}>`;
 
   return {
     contacts,
-    sendFrom,
-    sendTo,
+    from,
+    to,
     history
   };
 };
