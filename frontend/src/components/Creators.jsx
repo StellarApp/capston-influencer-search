@@ -28,7 +28,7 @@ class Creators extends Component {
   render() {
     const { creators, locations } = this.props;
     const { searchText, searchLocation, searchGender } = this.state;
-    const { handleFilterClear, handleFilterChange } = this;
+    const { handleFilterChange } = this;
     return (
       <div>
         <CreatorSearchBar
