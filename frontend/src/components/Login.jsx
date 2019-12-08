@@ -53,7 +53,7 @@ class Login extends Component {
           <FacebookLogin
             appId={process.env.FB_APP_ID}
             fields="first_name,last_name,email,picture,gender,location,link,accounts{instagram_business_account}"
-            scope="public_profile,email,user_gender,user_location,user_link,instagram_basic,instagram_manage_comments,manage_pages"
+            scope="public_profile,email,user_gender,user_location,user_link,instagram_basic,instagram_manage_insights,manage_pages"
             callback={facebookLogin}
             icon="fa-facebook"
             size="medium"
