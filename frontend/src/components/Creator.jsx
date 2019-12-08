@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CircleImg from "./CircleImg";
 import Tag from "./Tag";
 import Socials from "./Socials";
 import ProfileStats from "./ProfileStats";
 import MediaStats from "./MediaStats";
+import TopPosts from "./TopPosts";
 const Container = styled.div``;
 const Profile = styled.div`
   display: flex;
@@ -40,7 +40,6 @@ const Actions = styled.div`
 `;
 const Creator = ({ creators, keywords, match: { params } }) => {
   const creator = creators.find(_creator => _creator.id === params.id);
-  console.log("CREATOR DETAIL", creator);
   const { creatorInsights, creatorLinks, creatorInterests } = creator;
   const { fullName } = creator;
   const {
@@ -52,12 +51,15 @@ const Creator = ({ creators, keywords, match: { params } }) => {
     biography,
     totalComments,
     totalLikes,
-    engagementRate
+    engagementRate,
+    mostCommentedPost,
+    mostEngagedPost,
+    mostLikedPost
   } = creatorInsights[0];
   const { twitter, youtube, website } = creatorLinks.length
     ? creatorLinks[0]
     : {};
-  const interests = creatorInterests.map(interest => interest.id);
+  const interests = creatorInterests.map(interest => interest.keywordId);
   const tags = keywords.filter(keyword => interests.includes(keyword.id));
   return (
     <Container>
@@ -99,6 +101,11 @@ const Creator = ({ creators, keywords, match: { params } }) => {
         totalComments={totalComments}
         totalLikes={totalLikes}
         engagementRate={engagementRate}
+      />
+      <TopPosts
+        mostLiked={mostLikedPost}
+        mostCommented={mostCommentedPost}
+        mostEngaged={mostEngagedPost}
       />
     </Container>
   );

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import defaultTheme from "./Theme";
 import CircleIcon from "./CircleIcon";
-import CircleImg from "./CircleImg";
 const Container = styled.div`
   background-color: ${defaultTheme.bg.primary};
   height: 160px;
@@ -13,6 +12,10 @@ const Container = styled.div`
   grid-template-rows: 3rem auto 3rem;
   justify-items: stretch;
   aligh-items: center;
+  transition: ${defaultTheme.animations.hover};
+  &:hover {
+    box-shadow: ${defaultTheme.shadows.hover};
+  }
 `;
 
 const IconContainer = styled.div`

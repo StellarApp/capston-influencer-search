@@ -33,7 +33,6 @@ const MediaStats = ({
   totalLikes,
   engagementRate
 }) => {
-  console.log("MEDIA STATS", mediaCount, followersCount, followsCount);
   return (
     <Container>
       <Title>
