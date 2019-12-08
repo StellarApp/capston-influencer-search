@@ -10,7 +10,9 @@ class CreatorList extends Component {
       creators,
       businessId
     } = this.props;
+
     const filteredCreators = [];
+    
     creators.forEach(creator => {
       const keys = ["firstName", "lastName", "description"]; //add interest
       const searchTarget = keys

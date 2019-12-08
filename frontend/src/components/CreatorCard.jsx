@@ -39,7 +39,7 @@ const Engagement = styled.div`
   align-items: flex-end;
 `;
 
-const TextBox = styled.p`
+const TextBox = styled.div`
   font-family: Work Sans;
   font-style: normal;
   font-weight: 500;
@@ -55,14 +55,15 @@ const CreatorCard = ({
   businessId,
   keywords
 }) => {
-  // const { creatorInterests } = creator;
-  // let interests = ''
+  const { creatorInterests } = creator;
+  let interests = "";
 
-  // if(keywords.length>1){
-  //   interests = creatorInterests.map(interest =>
-  //   keywords.find(keyword => keyword.id === interest.keywordId).name
-  // );
-  // }
+  if (keywords.length > 1 && creatorInterests.length > 0) {
+    interests = creatorInterests.map(
+      interest =>
+        keywords.find(keyword => keyword.id === interest.keywordId).name
+    );
+  }
 
   return (
     <Container>
@@ -87,7 +88,10 @@ const CreatorCard = ({
           <LocationIcon /> {creator.location}
         </Engagement>
       </EngagementList>
-      <TextBox id="interests"> {interests.lenght > 0 && interests.map(item => <div>itme</div>)} </TextBox>
+      <TextBox id="interests">
+        {" "}
+        {interests.length > 0 && interests.map((item,idx) => <div key={idx}>{item}</div>)}{" "}
+      </TextBox>
       <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
       </button>
@@ -95,16 +99,7 @@ const CreatorCard = ({
   );
 };
 
-const mapStateToProps = ({ auth, keywords, creators }) => {
-  const { creatorInterests } = creator;
-  let interests = ''
-
-  if(keywords.length>1){
-    interests = creatorInterests.map(interest =>
-    keywords.find(keyword => keyword.id === interest.keywordId).name
-  );
-  }
-
+const mapStateToProps = ({ auth, keywords }) => {
   return { businessId: auth.id, keywords };
 };
 
