@@ -9,22 +9,12 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.color};
+  background-color: ${props => props.bg};
   &:hover {
     cursor: pointer;
     filter: brightness(85%);
   }
 `;
 
-const Icon = styled.img`
-  width: 1rem;
-  height: 1rem;
-  fill: #eee;
-`;
-
-const CircleIcon = ({ src, color }) => (
-  <Container color={color}>
-    <Icon src={src} />
-  </Container>
-);
+const CircleIcon = ({ bg, svg }) => <Container bg={bg}>{svg}</Container>;
 export default CircleIcon;

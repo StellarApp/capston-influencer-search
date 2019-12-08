@@ -6,9 +6,8 @@ import CircleImg from "./CircleImg";
 import Tag from "./Tag";
 import Socials from "./Socials";
 import ProfileStats from "./ProfileStats";
-const Container = styled.div`
-  padding: 1.5rem;
-`;
+import MediaStats from "./MediaStats";
+const Container = styled.div``;
 const Profile = styled.div`
   display: flex;
   padding: 1rem;
@@ -36,23 +35,13 @@ const Tags = styled.div`
   display: flex;
 `;
 
-// const ProfileStats = styled.div`
-//   padding: 2rem 0 1rem 0;
-//   display: flex;
-//   justify-content: flex-start;
-// `;
-
-// const ProfileStat = styled.div`
-//   display: flex;
-// `;
-
 const Actions = styled.div`
   width: 3rem;
 `;
-const Creator = ({ creators, match: { params } }) => {
+const Creator = ({ creators, keywords, match: { params } }) => {
   const creator = creators.find(_creator => _creator.id === params.id);
-  const { creatorInsights } = creator;
-
+  console.log("CREATOR DETAIL", creator);
+  const { creatorInsights, creatorLinks, creatorInterests } = creator;
   const { fullName } = creator;
   const {
     igName,
@@ -60,8 +49,16 @@ const Creator = ({ creators, match: { params } }) => {
     followersCount,
     followsCount,
     profilePictureUrl,
-    biography
+    biography,
+    totalComments,
+    totalLikes,
+    engagementRate
   } = creatorInsights[0];
+  const { twitter, youtube, website } = creatorLinks.length
+    ? creatorLinks[0]
+    : {};
+  const interests = creatorInterests.map(interest => interest.id);
+  const tags = keywords.filter(keyword => interests.includes(keyword.id));
   return (
     <Container>
       <Profile>
@@ -75,8 +72,9 @@ const Creator = ({ creators, match: { params } }) => {
               <SubText>{fullName}</SubText>
             </div>
             <Tags>
-              <Tag text={"LifeStyle"} />
-              <Tag text={"Travel"} />
+              {tags.map(tag => (
+                <Tag text={tag.name} key={tag.id} />
+              ))}
             </Tags>
           </ProfileHeader>
           <ProfileStats
@@ -87,17 +85,28 @@ const Creator = ({ creators, match: { params } }) => {
           <SubText>{biography}</SubText>
           <Socials
             instagram={`https://www.instagram.com/${igName}/`}
-            website={"www.effyzhang.com"}
+            website={website}
+            twitter={twitter}
+            youtube={youtube}
           />
         </ProfileInfo>
         <Actions>Email</Actions>
       </Profile>
+      <MediaStats
+        mediaCount={mediaCount}
+        followersCount={followersCount}
+        followsCount={followsCount}
+        totalComments={totalComments}
+        totalLikes={totalLikes}
+        engagementRate={engagementRate}
+      />
     </Container>
   );
 };
 
-const mapStateToProps = ({ creators }) => ({
-  creators
+const mapStateToProps = ({ creators, keywords }) => ({
+  creators,
+  keywords
 });
 
 export default connect(mapStateToProps)(Creator);

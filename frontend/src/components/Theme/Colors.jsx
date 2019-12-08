@@ -2,7 +2,7 @@ export default {
   bg: {
     primary: "#fff",
     secondary: "#F4F7FC",
-    inset: "EEEEF0"
+    inset: "#EEEEF0"
   },
   textColor: {
     primary: "#282A43",

@@ -2,6 +2,12 @@ import styled from "styled-components";
 import React from "react";
 import { Link } from "react-router-dom";
 import CircleIcon from "./CircleIcon";
+import {
+  social_youtube,
+  social_twitter,
+  social_instagram,
+  social_web
+} from "./Icon";
 
 const Container = styled.div`
   width: 15rem;
@@ -13,42 +19,26 @@ const Container = styled.div`
 `;
 
 const Socials = ({ instagram, youtube, twitter, website }) => {
-  console.log("SOCIALS", instagram, website);
   return (
     <Container>
       {instagram && (
         <Link to={instagram}>
-          <CircleIcon
-            color="#FF316B"
-            src="./assets/images/icon/social_instagram.svg"
-          />
+          <CircleIcon bg="#FF316B" svg={social_instagram} />
         </Link>
       )}
-
       {youtube && (
         <Link to={youtube}>
-          <CircleIcon
-            color="#c4302b"
-            src="./assets/images/icon/social_youtube.svg"
-          />
+          <CircleIcon bg="#c4302b" svg={social_youtube} />
         </Link>
       )}
-
       {twitter && (
         <Link to={twitter}>
-          <CircleIcon
-            color="#00acee"
-            src="./assets/images/icon/social_twitter.svg"
-          />
+          <CircleIcon bg="#00acee" svg={social_twitter} />
         </Link>
       )}
-
       {website && (
         <Link to={website}>
-          <CircleIcon
-            color="#6CD4C4"
-            src="./assets/images/icon/social_web.svg"
-          />
+          <CircleIcon bg="#6CD4C4" svg={social_web} />
         </Link>
       )}
     </Container>
