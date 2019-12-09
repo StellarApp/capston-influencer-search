@@ -26,12 +26,11 @@ const defaultTheme = {
   fontWeight: {
     body: 400,
     subheading: 500,
-    link: 600,
     bold: 700,
     heading: 800
   },
   fonts: {
-    heading: "TitlingGothicFB Normal,'Work Sans', -apple-system, Helvetica",
+    heading: "titling-gothic-fb,'Work Sans', -apple-system, Helvetica",
     body: " 'Work Sans', Helvetica"
   },
   shadows: {

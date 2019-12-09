@@ -40,7 +40,7 @@ const LinkedinButton = styled.a`
   padding: 22px;
   background-color: #1f2144;
   align-self: end;
-  font-family: TitlingGothicFB Normal;
+  font-family: titling-gothic-fb, sans-serif;
   font-weight: 400;
   text-align: center;
   font-size: 16px;

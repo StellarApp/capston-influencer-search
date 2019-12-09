@@ -11,7 +11,7 @@ const Button = styled.button`
   vertical-align: center;
   background-color: ${defaultTheme.accent.orange};
   color: #ffffff;
-  font-family: TitlingGothicFB Normal;
+  font-family: ${defaultTheme.fonts.heading};
   font-weight: 400;
   text-align: center;
   font-size: 16px;
