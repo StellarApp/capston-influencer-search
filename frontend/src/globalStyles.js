@@ -12,6 +12,23 @@ export default createGlobalStyle`
     flex-direction: column;
   }
 
+  .facebook-button{
+    justify-self: stretch;
+    width: 100%;
+    background-color:#D1F4FF;
+    height: 4rem;
+    align-self: end;
+    font-family: TitlingGothicFB Normal;
+    font-weight: 400;
+    text-align: center;
+    font-size: 16px;
+    border: none;
+    color: #1F2144;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+
   body, div, nav, img, ul, li, h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
@@ -81,5 +98,4 @@ export default createGlobalStyle`
     font-weight:${defaultTheme.fontWeight.subheading};
     text-decoration: none;
   };
-
 `;

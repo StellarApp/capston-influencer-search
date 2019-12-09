@@ -3,26 +3,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import CircleImg from "./CircleImg";
+import defaultTheme from "./Theme";
+import ProfileStats from "./ProfileStats";
 
 // Local imports
-import { FollowerIcon, ImpressionIcon, LocationIcon } from "./Icons";
 import { actions } from "../store";
 const { handleAddCollection } = actions;
-
-const Image = styled.div`
-  border-radius: 50%;
-`;
 
 const Container = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   padding: 10px;
-  margin: auto;
-  width: 500px;
+  width: 100%;
   heigh: 400px;
   &:hover {
     cursor: pointer;
+    box-shadow: ${defaultTheme.shadows.hover};
   }
 `;
 
@@ -63,18 +61,18 @@ const CreatorCard = ({
         keywords.find(keyword => keyword.id === interest.keywordId).name
     );
   }
-
+  const { fullName } = creator;
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
-        <h4>{creator.fullName}</h4>
+        <h4>{fullName}</h4>
       </Link>
-      <Image
+      {/* <Image
         src={creator.creatorInsights[0].profilePictureUrl}
         alt="profile photo"
-      />
+      /> */}
       <TextBox>{creator.creatorInsights[0].biography}</TextBox>
-      <EngagementList>
+      {/* <EngagementList>
         <Engagement id="followers">
           <FollowerIcon />
           {creator.creatorInsights[0].followersCount}
@@ -86,7 +84,7 @@ const CreatorCard = ({
         <Engagement id="location">
           <LocationIcon /> {creator.location}
         </Engagement>
-      </EngagementList>
+      </EngagementList> */}
       <TextBox id="interests">
         {" "}
         {interests.length > 0 &&
