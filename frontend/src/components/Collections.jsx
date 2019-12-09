@@ -36,24 +36,23 @@ class Collections extends Component {
     const { error } = this.state;
     const { handleSendEmail } = this;
 
-    if (collections.length === 0) {
-      history.push("/creators");
-      alert("Collection is empty. Please add a creator.");
-      return null;
-    } else {
-      return (
-        <div>
-          <div>{error && <p>{error}</p>}</div>
-          <CollectionStats />
-          <CollectionsTable collections={collections} />
-          <input
-            type="submit"
-            value="Contact to creator(s)"
-            onClick={() => handleSendEmail()}
-          />
-        </div>
-      );
-    }
+    return (
+      <div>
+        <h2>
+          {collections.length > 0
+            ? ""
+            : "Collection is empty. Please add a creator."}
+        </h2>
+        <div>{error && <p>{error}</p>}</div>
+        <CollectionStats />
+        <CollectionsTable collections={collections} />
+        <input
+          type="submit"
+          value="Contact to creator(s)"
+          onClick={() => handleSendEmail()}
+        />
+      </div>
+    );
   }
 }
 
