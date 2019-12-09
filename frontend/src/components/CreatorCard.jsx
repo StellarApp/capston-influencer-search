@@ -79,9 +79,9 @@ const CreatorCard = ({
           <FollowerIcon />
           {creator.creatorInsights[0].followersCount}
         </Engagement>
-        <Engagement id="impressions">
+        <Engagement id="engagementRate">
           <ImpressionIcon />
-          [ig impressions]
+          {creator.creatorInsights[0].engagementRate} %
         </Engagement>
         <Engagement id="location">
           <LocationIcon /> {creator.location}
