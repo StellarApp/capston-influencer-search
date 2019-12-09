@@ -31,7 +31,7 @@ const defaultTheme = {
     heading: 800
   },
   fonts: {
-    heading: "TitlingGothicFB Normal, -apple-system, Helvetica",
+    heading: "TitlingGothicFB Normal,'Work Sans', -apple-system, Helvetica",
     body: " 'Work Sans', Helvetica"
   },
   shadows: {
