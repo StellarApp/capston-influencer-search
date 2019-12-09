@@ -51,7 +51,7 @@ const CreatorCard = ({
   handleAddCollection,
   businessId,
   keywords,
-  inCollection
+  inCollection,
 }) => {
   const { creatorInterests } = creator;
   let interests = "";
@@ -63,6 +63,7 @@ const CreatorCard = ({
     );
   }
   const { fullName } = creator;
+
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
@@ -87,9 +88,8 @@ const CreatorCard = ({
         </Engagement>
       </EngagementList> */}
       <TextBox id="interests">
-        {" "}
         {interests.length > 0 &&
-          interests.map((item, idx) => <div key={idx}>{item}</div>)}{" "}
+          interests.map((item, idx) => <div key={idx}>{item}</div>)}
       </TextBox>
       {inCollection ? (
         "Added to your collection"
