@@ -9,7 +9,8 @@ class CollectionRow extends Component {
       creator,
       selected,
       handleDeleteCollection,
-      toggleSelected
+      toggleSelected,
+      collection
     } = this.props;
 
     return (
