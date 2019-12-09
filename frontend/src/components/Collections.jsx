@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import CollectionStats from "./CollectionStats";
 import CollectionsTable from "./CollectionsTable";
 import { actions } from "../store";
 const { fetchSelected } = actions;
@@ -43,6 +44,7 @@ class Collections extends Component {
       return (
         <div>
           <div>{error && <p>{error}</p>}</div>
+          <CollectionStats />
           <CollectionsTable collections={collections} />
           <input
             type="submit"
