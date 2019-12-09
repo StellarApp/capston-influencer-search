@@ -2,7 +2,7 @@ import styled from "styled-components";
 import React from "react";
 import defaultTheme from "../Theme";
 
-const Container = styled.div`
+const Button = styled.button`
   margin: 2rem 1rem;
   border-radius: 2rem;
   padding: 1rem;
@@ -21,5 +21,4 @@ const Container = styled.div`
     transform: scale(1.02);
   }
 `;
-const Button = ({ text }) => <Container>{text}</Container>;
 export default Button;
