@@ -50,7 +50,8 @@ const CreatorCard = ({
   creator,
   handleAddCollection,
   businessId,
-  keywords
+  keywords,
+  inCollection
 }) => {
   const { creatorInterests } = creator;
   let interests = "";
@@ -90,15 +91,26 @@ const CreatorCard = ({
         {interests.length > 0 &&
           interests.map((item, idx) => <div key={idx}>{item}</div>)}{" "}
       </TextBox>
-      <button onClick={() => handleAddCollection(businessId, creator.id)}>
-        Add to Collection
-      </button>
+      {inCollection ? (
+        "Added to your collection"
+      ) : (
+        <button onClick={() => handleAddCollection(businessId, creator.id)}>
+          Add to Collection
+        </button>
+      )}
     </Container>
   );
 };
 
-const mapStateToProps = ({ auth, keywords }) => {
-  return { businessId: auth.id, keywords };
+const mapStateToProps = ({ auth, keywords, collections }, { creator }) => {
+  return {
+    businessId: auth.id,
+    keywords,
+    inCollection: !!(
+      collections &&
+      collections.find(collection => collection.creatorId === creator.id)
+    )
+  };
 };
 
 const mapDispatchToProps = {
