@@ -1,16 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import Tag from "../Tag";
-
+import Button from "./Button";
 import { actions } from "../../store";
 import defaultTheme from "../Theme";
 const { saveCreatorInterests } = actions;
+const purple = defaultTheme.accent.purple;
+const orange = defaultTheme.accent.orange;
+const mint = defaultTheme.accent.mint;
+const blue = defaultTheme.accent.blue;
+const colors = [purple, orange, mint, blue];
 const Containter = styled.div`
   padding: 2.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+`;
+
+const Header = styled.h3`
+  color: ${orange};
+  margin-bottom: 3rem;
 `;
 
 const KeywordContainer = styled.ul`
@@ -19,14 +29,8 @@ const KeywordContainer = styled.ul`
   flex-wrap: wrap;
   justify-content: center;
   max-width: 800px;
+  align-items: center;
 `;
-
-const purple = defaultTheme.accent.purple;
-const orange = defaultTheme.accent.orange;
-const mint = defaultTheme.accent.mint;
-const blue = defaultTheme.accent.blue;
-const colors = [purple, orange, mint, blue];
-const randomColor = colors[Math.random(0, 3)];
 
 const Keyword = styled.li`
   padding: 0.5rem 1.5rem;
@@ -35,10 +39,11 @@ const Keyword = styled.li`
   align-items: center;
   display: flex;
   justify-content: center;
-  background: ${props => (props.selected ? randomColor : "#fff")};
-  color: ${props => (props.selected ? "#fff" : randomColor)};
+  background: ${props => (props.selected ? colors[props.idx % 4] : "#fff")};
+  color: ${props => (props.selected ? "#fff" : colors[props.idx % 4])};
   font-weight: ${props => (props.selected ? "bold" : "normal")};
-  border: 1px solid ${randomColor};
+  border: 1px solid orange;
+  border-color: ${props => colors[props.idx % 4]};
   transition: ${defaultTheme.animations.hover};
   &:hover {
     cursor: pointer;
@@ -77,14 +82,14 @@ class Keywords extends Component {
   render() {
     const { interests } = this.state;
     const { keywords } = this.props;
-
     return (
       <Containter>
-        <h2>Select Interests</h2>
+        <Header>Select Interests</Header>
         <KeywordContainer>
           {keywords.map((keyword, idx) => (
             <Keyword
               key={keyword.id}
+              idx={idx}
               selected={interests.includes(keyword.id)}
               onClick={() => this.toggleInterests(keyword.id)}
             >
@@ -92,7 +97,10 @@ class Keywords extends Component {
             </Keyword>
           ))}
         </KeywordContainer>
-        <button onClick={() => this.saveSelectedInterests()}>Next</button>
+        <Button
+          onClick={() => this.saveSelectedInterests()}
+          text={"Continue"}
+        ></Button>
       </Containter>
     );
   }
