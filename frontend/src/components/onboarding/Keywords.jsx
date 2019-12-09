@@ -97,10 +97,7 @@ class Keywords extends Component {
             </Keyword>
           ))}
         </KeywordContainer>
-        <Button
-          onClick={() => this.saveSelectedInterests()}
-          text={"Continue"}
-        ></Button>
+        <Button onClick={() => this.saveSelectedInterests()}>Continue</Button>
       </Containter>
     );
   }
