@@ -13,9 +13,9 @@ class CreatorSearchBar extends Component {
     }
   
     render() {
-      const { searchText, locations, searchLocation, searchGender } = this.props;
+      const { searchText, locations, searchLocation, searchGender, searchInterest, keywords } = this.props;
       const { handleFilterChange } = this;
-  
+      
       return (
         <form>
           <input
@@ -38,8 +38,12 @@ class CreatorSearchBar extends Component {
             <option value="female">female</option>
             <option value="male">male</option>
           </select>
-          {/* // Add interest as drop-box */}
-          {/* // Add followers Range */}
+          <select name="searchInterest" onChange={handleFilterChange}>
+            <option value="">Select All</option>
+            {keywords.map((interest,idx) => (
+            <option key={idx} value={interest.id}>{interest.name}</option>
+            ))}
+          </select>
         </form>
       );
     }

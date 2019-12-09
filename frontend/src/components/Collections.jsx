@@ -1,9 +1,9 @@
-// Package imports
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-// Local imports
 import CollectionsTable from "./CollectionsTable";
+import { actions } from "../store";
+const { fetchSelected } = actions;
 
 class Collections extends Component {
   constructor(props) {
@@ -14,9 +14,14 @@ class Collections extends Component {
     this.handleSendEmail = this.handleSendEmail.bind(this);
   }
 
+  componentDidMount() {
+    const { collections, fetchSelected } = this.props;
+    fetchSelected(collections);
+  }
+
   handleSendEmail() {
-    const { history, contacts } = this.props;
-    if (contacts.length === 0) {
+    const { history, selected } = this.props;
+    if (selected.length === 0) {
       this.setState({
         error: "Please select at least one creator to contact."
       });
@@ -26,7 +31,7 @@ class Collections extends Component {
   }
 
   render() {
-    const { collections, creators, contacts, history } = this.props;
+    const { collections, history } = this.props;
     const { error } = this.state;
     const { handleSendEmail } = this;
 
@@ -39,17 +44,18 @@ class Collections extends Component {
         <div>
           <div>{error && <p>{error}</p>}</div>
           <CollectionsTable collections={collections} />
-          <input type="submit" value="Contact to creator(s)" onClick={() => handleSendEmail(contacts)} />
+          <input
+            type="submit"
+            value="Contact to creator(s)"
+            onClick={() => handleSendEmail()}
+          />
         </div>
       );
     }
   }
 }
 
-const mapStateToProps = (
-  { collections, creators, auth, contacts },
-  { history }
-) => {
+const mapStateToProps = ({ collections, auth, selected }) => {
   const businessId = auth.id;
   const filteredCollections = collections.filter(
     collection => collection.businessId === businessId
@@ -57,10 +63,12 @@ const mapStateToProps = (
 
   return {
     collections: filteredCollections,
-    creators,
-    contacts,
-    history
+    selected
   };
 };
 
-export default connect(mapStateToProps)(Collections);
+const mapDispatchToProps = {
+  fetchSelected
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Collections);

@@ -12,7 +12,8 @@ import { actions } from "../store";
 const { handleAddCollection } = actions;
 
 const Container = styled.div`
-  box-shadow: ${defaultTheme.shadows.default};
+  background: #ffffff;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
   padding: 10px;
   width: 100%;
@@ -23,29 +24,72 @@ const Container = styled.div`
   }
 `;
 
-const CreatorCard = ({ creator, handleAddCollection, businessId }) => {
-  const { creatorInsights, creatorLinks, creatorInterests } = creator;
-  const {
-    igName,
-    mediaCount,
-    followersCount,
-    followsCount,
-    profilePictureUrl,
-    biography,
-    totalComments,
-    totalLikes,
-    engagementRate
-  } = creatorInsights[0];
+const EngagementList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
+
+const Engagement = styled.div`
+  flex: 1 0 calc(33% - 10px);
+  margin: 5px;
+  justify-content: space-around;
+  align-items: flex-end;
+`;
+
+const TextBox = styled.div`
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-transform: capitalize;
+  color: #828282;
+`;
+
+const CreatorCard = ({
+  creator,
+  handleAddCollection,
+  businessId,
+  keywords
+}) => {
+  const { creatorInterests } = creator;
+  let interests = "";
+
+  if (keywords.length > 1 && creatorInterests.length > 0) {
+    interests = creatorInterests.map(
+      interest =>
+        keywords.find(keyword => keyword.id === interest.keywordId).name
+    );
+  }
   const { fullName } = creator;
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
         <h4>{fullName}</h4>
       </Link>
-      <CircleImg src={profilePictureUrl}></CircleImg>
-      <TextBox>{biography}</TextBox>
-
-      <TextBox id="interests"> [interest list] </TextBox>
+      {/* <Image
+        src={creator.creatorInsights[0].profilePictureUrl}
+        alt="profile photo"
+      /> */}
+      <TextBox>{creator.creatorInsights[0].biography}</TextBox>
+      {/* <EngagementList>
+        <Engagement id="followers">
+          <FollowerIcon />
+          {creator.creatorInsights[0].followersCount}
+        </Engagement>
+        <Engagement id="impressions">
+          <ImpressionIcon />
+          [ig impressions]
+        </Engagement>
+        <Engagement id="location">
+          <LocationIcon /> {creator.location}
+        </Engagement>
+      </EngagementList> */}
+      <TextBox id="interests">
+        {" "}
+        {interests.length > 0 &&
+          interests.map((item, idx) => <div key={idx}>{item}</div>)}{" "}
+      </TextBox>
       <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
       </button>
@@ -53,7 +97,9 @@ const CreatorCard = ({ creator, handleAddCollection, businessId }) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => ({ businessId: auth.id });
+const mapStateToProps = ({ auth, keywords }) => {
+  return { businessId: auth.id, keywords };
+};
 
 const mapDispatchToProps = {
   handleAddCollection
