@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { actions } from "../store";
-const { handleDeleteCollection, handleAddContact } = actions;
+const { handleDeleteCollection, toggleSelected } = actions;
 
 class CollectionRow extends Component {
   render() {
     const {
-      creators,
-      collection,
+      creator,
+      selected,
       handleDeleteCollection,
-      handleAddContact
+      toggleSelected,
+      collection
     } = this.props;
-
-    const creator = creators.find(
-      creator => creator.id === collection.creatorId
-    );
 
     return (
       <tr>
@@ -22,7 +19,8 @@ class CollectionRow extends Component {
           <input
             type="checkbox"
             key={creator.id}
-            onChange={() => handleAddContact({name: creator.fullName, email:creator.email})}
+            checked={selected.includes(creator.id)}
+            onChange={() => toggleSelected(creator.id)}
           />
         </td>
         <td>{creator.fullName}</td>
@@ -38,11 +36,14 @@ class CollectionRow extends Component {
   }
 }
 
-const mapStateToProps = ({ creators }) => ({ creators });
+const mapStateToProps = ({ creators, selected }, { collection }) => ({
+  creator: creators.find(creator => creator.id === collection.creatorId),
+  selected
+});
 
 const mapDispatchToProps = {
   handleDeleteCollection,
-  handleAddContact
+  toggleSelected
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CollectionRow);

@@ -89,7 +89,8 @@ const CreatorCard = ({
       </EngagementList>
       <TextBox id="interests">
         {" "}
-        {interests.length > 0 && interests.map((item,idx) => <div key={idx}>{item}</div>)}{" "}
+        {interests.length > 0 &&
+          interests.map((item, idx) => <div key={idx}>{item}</div>)}{" "}
       </TextBox>
       <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
