@@ -34,8 +34,7 @@ const Label = styled.h4`
   color: ${defaultTheme.textColor.primary};
 `;
 
-const LinkedinButton = styled(Link)`
-  justify-self: stretch;
+const LinkedinButton = styled.a`
   display: block;
   vertical-align: center;
   padding: 22px;
@@ -112,7 +111,7 @@ class Login extends Component {
         </CreatorLogin>
         <BusinessLogin id="businessLogin">
           <Label>For Business</Label>
-          <LinkedinButton to="/auth/linkedin">
+          <LinkedinButton href="/auth/linkedin">
             Connect with Linkedin
           </LinkedinButton>
         </BusinessLogin>
