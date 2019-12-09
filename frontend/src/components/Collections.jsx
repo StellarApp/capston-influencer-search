@@ -38,19 +38,19 @@ class Collections extends Component {
 
     return (
       <div>
-        <h2>
-          {collections.length > 0
-            ? ""
-            : "Collection is empty. Please add a creator."}
-        </h2>
-        <div>{error && <p>{error}</p>}</div>
-        <CollectionStats />
-        <CollectionsTable collections={collections} />
-        <input
-          type="submit"
-          value="Contact to creator(s)"
-          onClick={() => handleSendEmail()}
-        />
+        {collections.length > 0 ? (
+          <div>
+            <div>{error && <p>{error}</p>}</div>
+            <CollectionsTable collections={collections} />
+            <input
+              type="submit"
+              value="Contact to creator(s)"
+              onClick={() => handleSendEmail()}
+            />
+          </div>
+        ) : (
+          <h3>Collection is empty. Please add a creator.</h3>
+        )}
       </div>
     );
   }
