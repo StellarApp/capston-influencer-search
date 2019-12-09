@@ -2,11 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import defaultTheme from "./components/Theme";
 export default createGlobalStyle`
   body {
-    font-family: Work Sans;
+    font-family: 'Work Sans', sans-serif;
     color: ${defaultTheme.textColor.primary};
+    background-color:${defaultTheme.accent.lightPink};
   };
 
-  #root{
+  #root{ 
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -18,7 +19,7 @@ export default createGlobalStyle`
     background-color:#D1F4FF;
     height: 4rem;
     align-self: end;
-    font-family: TitlingGothicFB Normal;
+    font-family: titling-gothic-fb, sans-serif;
     font-weight: 400;
     text-align: center;
     font-size: 16px;
