@@ -8,14 +8,18 @@ class CreatorList extends Component {
       searchLocation,
       searchGender,
       creators,
-      businessId
+      searchInterest
     } = this.props;
+
     const filteredCreators = [];
+
     creators.forEach(creator => {
       const keys = ["firstName", "lastName", "description"]; //add interest
       const searchTarget = keys
         .reduce((accum, ele) => (accum += ` ${creator[ele]}`), "")
         .toLowerCase();
+
+      const interestList = creator.creatorInterests.map(interest => interest.keywordId);
 
       if (searchTarget.indexOf(searchText.toLowerCase()) === -1) {
         return;
@@ -29,7 +33,11 @@ class CreatorList extends Component {
         return;
       }
 
-      filteredCreators.push(<CreatorCard key={creator.id} creator={creator}/>);
+      if(interestList.indexOf(searchInterest*1) === -1 && searchInterest !== ""){
+        return;
+      }
+
+      filteredCreators.push(<CreatorCard key={creator.id} creator={creator} />);
     });
 
     return <div>{filteredCreators}</div>;

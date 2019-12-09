@@ -14,7 +14,6 @@ const Image = styled.div`
 `;
 
 const Container = styled.div`
-  position: absolute;
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
   border-radius: 16px;
@@ -39,7 +38,7 @@ const Engagement = styled.div`
   align-items: flex-end;
 `;
 
-const TextBox = styled.p`
+const TextBox = styled.div`
   font-family: Work Sans;
   font-style: normal;
   font-weight: 500;
@@ -49,7 +48,22 @@ const TextBox = styled.p`
   color: #828282;
 `;
 
-const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
+const CreatorCard = ({
+  creator,
+  handleAddCollection,
+  businessId,
+  keywords
+}) => {
+  const { creatorInterests } = creator;
+  let interests = "";
+
+  if (keywords.length > 1 && creatorInterests.length > 0) {
+    interests = creatorInterests.map(
+      interest =>
+        keywords.find(keyword => keyword.id === interest.keywordId).name
+    );
+  }
+
   return (
     <Container>
       <Link to={`/creators/${creator.id}`}>
@@ -73,17 +87,20 @@ const CreatorCard = ({ creator, handleAddCollection, businessId}) => {
           <LocationIcon /> {creator.location}
         </Engagement>
       </EngagementList>
-      <TextBox id="interests"> [interest list] </TextBox>
-      <button
-        onClick={() => handleAddCollection(businessId, creator.id)}
-      >
+      <TextBox id="interests">
+        {" "}
+        {interests.length > 0 && interests.map((item,idx) => <div key={idx}>{item}</div>)}{" "}
+      </TextBox>
+      <button onClick={() => handleAddCollection(businessId, creator.id)}>
         Add to Collection
       </button>
     </Container>
   );
 };
 
-const mapStateToProps = ({ auth }) => ({ businessId: auth.id });
+const mapStateToProps = ({ auth, keywords }) => {
+  return { businessId: auth.id, keywords };
+};
 
 const mapDispatchToProps = {
   handleAddCollection
