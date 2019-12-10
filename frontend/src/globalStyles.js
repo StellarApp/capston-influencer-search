@@ -98,5 +98,6 @@ export default createGlobalStyle`
   a{
     font-weight:${defaultTheme.fontWeight.subheading};
     text-decoration: none;
+    color: ${defaultTheme.accent.orange}
   };
 `;
