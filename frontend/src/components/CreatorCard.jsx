@@ -16,6 +16,7 @@ const Container = styled.div`
   display: grid;
   margin: 1rem;
   grid-template-columns: 3rem 1fr 1fr;
+  grid-template-rows: 2rem 6rem auto;
   grid-gap: 1rem;
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
@@ -31,6 +32,7 @@ const Container = styled.div`
 
 const ProfileHeader = styled.div`
   grid-area: 1/2/2/3;
+  height: 2rem;
 `;
 const SubText = styled.h6`
   margin-top: 2px;
@@ -42,9 +44,12 @@ const ProfileImg = styled(CircleImg)`
   height: 4rem;
   justify-self: end;
 `;
-
+const Description = styled.div`
+  grid-area: 2/2/3/4;
+  overflow: hidden;
+`;
 const Stats = styled.div`
-  grid-area: 2/1/3/4;
+  grid-area: 3/1/4/4;
   display: flex;
   justify-content: space-between;
 `;
@@ -57,14 +62,14 @@ const Actions = styled.div`
 `;
 
 const AddBtn = styled(SecondaryButton)`
-  width: 4rem;
+  width: 3rem;
   background-color: #ffe9e6;
 `;
 
 const EmailBtn = styled(SecondaryButton)`
-  width: 4rem;
-  margin-right: 1rem;
-  background-color: #e6deef;
+  width: 3rem;
+  margin-right: 0.75rem;
+  background-color: #daedfe;
 `;
 const CreatorCard = ({
   creator,
@@ -102,8 +107,10 @@ const CreatorCard = ({
           <Link to={`/creators/${creator.id}`}>{fullName}</Link>
         </h4>
         <SubText>{fullName}</SubText>
-        <p>{biography}</p>
       </ProfileHeader>
+      <Description>
+        <p>{biography}</p>
+      </Description>
       <ProfileImg src={profilePictureUrl} alt="profile photo" />
       <Stats>
         <ProfileStat name={"Likes"} value={totalLikes}></ProfileStat>
@@ -116,23 +123,23 @@ const CreatorCard = ({
       <Actions>
         <EmailBtn>
           <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
-              d="M5.33333 5.33334H26.6667C28.1333 5.33334 29.3333 6.53334 29.3333 8.00001V24C29.3333 25.4667 28.1333 26.6667 26.6667 26.6667H5.33333C3.86666 26.6667 2.66666 25.4667 2.66666 24V8.00001C2.66666 6.53334 3.86666 5.33334 5.33333 5.33334Z"
-              stroke="#62319E"
-              strokeWidth="2.66667"
+              d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+              stroke="#2F80ED"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
             <path
-              d="M29.3333 8L16 17.3333L2.66666 8"
-              stroke="#62319E"
-              strokeWidth="2.66667"
+              d="M22 6L12 13L2 6"
+              stroke="#2F80ED"
+              strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
@@ -143,30 +150,30 @@ const CreatorCard = ({
         ) : (
           <AddBtn onClick={() => handleAddCollection(businessId, creator.id)}>
             <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                d="M16 29.3333C23.3638 29.3333 29.3333 23.3638 29.3333 16C29.3333 8.63619 23.3638 2.66666 16 2.66666C8.6362 2.66666 2.66666 8.63619 2.66666 16C2.66666 23.3638 8.6362 29.3333 16 29.3333Z"
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
                 stroke="#FF5C28"
-                strokeWidth="2.66667"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M16 10.6667V21.3333"
+                d="M12 8V16"
                 stroke="#FF5C28"
-                strokeWidth="2.66667"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M10.6667 16H21.3333"
+                d="M8 12H16"
                 stroke="#FF5C28"
-                strokeWidth="2.66667"
+                strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />

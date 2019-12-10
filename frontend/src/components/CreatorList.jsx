@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import CreatorCard from "./CreatorCard";
 import styled from "styled-components";
 const Container = styled.div`
-  display: flex;
   padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
 `;
 class CreatorList extends Component {
   render() {

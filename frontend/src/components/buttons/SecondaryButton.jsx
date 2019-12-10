@@ -2,10 +2,10 @@ import styled from "styled-components";
 import defaultTheme from "../Theme";
 
 const SecondaryButton = styled.button`
-  padding: 1rem;
+  padding: 0.75rem;
   display: block;
-  border-radius: 2rem;
-  height: 4rem;
+  border-radius: 1.5rem;
+  height: 3rem;
   vertical-align: center;
   background-color: #fff;
   color: ${defaultTheme.accent.orange};
