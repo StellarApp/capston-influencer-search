@@ -1,5 +1,94 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import styled from "styled-components";
+import defaultTheme from "./Theme";
+
+const Container = styled.div`
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Header = styled.h3`
+  color: ${defaultTheme.accent.orange};
+  margin-bottom: 3rem;
+`;
+
+const Label = styled.label`
+  padding-left: 1rem;
+`;
+const Form = styled.form`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const StyledInput = styled.input`
+  grid-area: 1/1/2/3;
+  border-radius: 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  display: block;
+  min-width: 350px;
+  vertical-align: center;
+  background-color: #ffffff;
+  color: ${defaultTheme.textColor.primary};
+  border: 1px solid ${defaultTheme.accent.orange};
+  font-family: "work sans";
+  font-weight: 400;
+  font-size: 16px;
+  transition: ${defaultTheme.animations.hover};
+  &:focus {
+    background-color: ${defaultTheme.bg.secondary};
+  }
+`;
+
+const StyledInputBody = styled.textarea`
+  grid-area: 1/1/2/3;
+  border-radius: 2rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  display: block;
+  min-width: 350px;
+  vertical-align: center;
+  background-color: #ffffff;
+  color: ${defaultTheme.textColor.primary};
+  border: 1px solid ${defaultTheme.accent.orange};
+  font-family: "work sans";
+  font-weight: 400;
+  font-size: 16px;
+  transition: ${defaultTheme.animations.hover};
+  &:focus {
+    background-color: ${defaultTheme.bg.secondary};
+  }
+`;
+
+const Button = styled.button`
+  margin: 2rem 1rem;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: block;
+  min-width: 175px;
+  vertical-align: center;
+  background-color: ${defaultTheme.accent.orange};
+  color: #ffffff;
+  font-family: ${defaultTheme.fonts.heading};
+  font-weight: 400;
+  text-align: center;
+  font-size: 16px;
+  transition: ${defaultTheme.animations.hover};
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+`;
 
 class ContactCreators extends Component {
   constructor(props) {
@@ -39,8 +128,8 @@ class ContactCreators extends Component {
     const { error, sentStatus } = this.state;
     const { onChange, sendEmail } = this;
     return (
-      <div>
-        <h4>Send Email to Creators</h4>
+      <Container>
+        <Header>Send Email to Creators</Header>
         {sentStatus ? (
           <div>
             Email has sent. WEb page redirects to the collections after 3
@@ -49,10 +138,10 @@ class ContactCreators extends Component {
         ) : (
           ""
         )}
-        <form onSubmit={sendEmail}>
+        <Form onSubmit={sendEmail}>
           <div>
-            <label>Send From: </label>
-            <input
+            <Label>Send From: </Label>
+            <StyledInput
               type="text"
               name="from"
               value={from}
@@ -61,8 +150,8 @@ class ContactCreators extends Component {
             />
           </div>
           <div>
-            <label>Send To: </label>
-            <input
+            <Label>Send To: </Label>
+            <StyledInput
               type="text"
               name="to"
               value={to}
@@ -71,29 +160,49 @@ class ContactCreators extends Component {
             />
           </div>
           <div>
-            <label>CC: </label>
-            <input type="text" name="cc" onChange={onChange} />
+            <Label>CC:</Label>
+            <StyledInput
+              type="text"
+              name="cc"
+              onChange={onChange}
+              placeholder="Enter cc"
+            />
           </div>
           <div>
-            <label>Subject: </label>
-            <input type="text" name="subject" onChange={onChange} required />
+            <Label>Subject</Label>
+            <StyledInput
+              type="text"
+              name="subject"
+              onChange={onChange}
+              placeholder="Enter Email Subject"
+              required
+            />
           </div>
           <div>
-            <label>Email Body: </label>
-            <input type="text" name="body" onChange={onChange} required />
+            <Label>Body</Label>
+            <StyledInputBody
+              type="text"
+              name="body"
+              onChange={onChange}
+              placeholder="Enter Email Body"
+              rows="7"
+              required
+            />
           </div>
-          <button type="submit" value="Submit">
-            Send Email
-          </button>
-          <button
-            type="button"
-            value="Cancel"
-            onClick={() => history.push("/collections")}
-          >
-            Go Back
-          </button>
-        </form>
-      </div>
+          <ButtonContainer>
+            <Button type="submit" value="Submit">
+              Send Email
+            </Button>
+            <Button
+              type="button"
+              value="Cancel"
+              onClick={() => history.push("/collections")}
+            >
+              Go Back
+            </Button>
+          </ButtonContainer>
+        </Form>
+      </Container>
     );
   }
 }
