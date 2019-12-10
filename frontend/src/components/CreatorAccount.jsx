@@ -7,6 +7,9 @@ import Socials from "./Socials";
 import ProfileStats from "./ProfileStats";
 import MediaStats from "./MediaStats";
 import TopPosts from "./TopPosts";
+import EditLinkForm from "./EditLinkForm";
+import Button from "./buttons/PrimaryButton";
+
 const Container = styled.div``;
 const Profile = styled.div`
   display: flex;
@@ -38,8 +41,8 @@ const Tags = styled.div`
 const Actions = styled.div`
   width: 3rem;
 `;
-const CreatorAccount = ({ user, tags, match: { params } }) => {
-  const { creatorInsights, creatorLinks, creatorInterests, fullName } = user;
+const CreatorAccount = ({ user, tags, history }) => {
+  const { creatorInsights, creatorLinks, creatorInterests, fullName } = user? user : {};
   const {
     igName,
     mediaCount,
@@ -53,13 +56,11 @@ const CreatorAccount = ({ user, tags, match: { params } }) => {
     mostCommentedPost,
     mostEngagedPost,
     mostLikedPost
-  } = creatorInsights[0];
+  } =  creatorInsights? creatorInsights[0] :{};
 
-  // const { twitter, youtube, website } = creatorLinks.length
-  //   ? creatorLinks[0]
-  //   : {};
-
-  const links = creatorLinks.length > 1 ? creatorLinks[0] : {};
+  const { twitter, youtube, website } = creatorLinks
+    ? creatorLinks[0]
+    : {};
 
   return (
     <Container>
@@ -74,9 +75,9 @@ const CreatorAccount = ({ user, tags, match: { params } }) => {
               <SubText>{fullName}</SubText>
             </div>
             <Tags>
-              {tags.map(tag => (
-                <Tag text={tag.name} key={tag.id} />
-              ))}
+              {tags
+                ? tags.map(tag => <Tag text={tag.name} key={tag.id} />)
+                : ""}
             </Tags>
           </ProfileHeader>
           <ProfileStats
@@ -85,15 +86,14 @@ const CreatorAccount = ({ user, tags, match: { params } }) => {
             followsCount={followsCount}
           />
           <SubText>{biography}</SubText>
-          {/* <Socials
+          <Socials
             instagram={`https://www.instagram.com/${igName}/`}
             website={website}
             twitter={twitter}
             youtube={youtube}
-          /> */}
-          <EditLinkForm links={links}></EditLinkForm>
+          />
+          {/* <EditLinkForm links={links}></EditLinkForm> */}
         </ProfileInfo>
-        <Actions>Email</Actions>
       </Profile>
       <MediaStats
         mediaCount={mediaCount}
@@ -108,25 +108,30 @@ const CreatorAccount = ({ user, tags, match: { params } }) => {
         mostCommented={mostCommentedPost}
         mostEngaged={mostEngagedPost}
       />
+      <Button onClick={() => history.push("/logout")}>Logout</Button>
     </Container>
   );
 };
 
-const mapStateToProps = ({ auth, creators, keywords }) => {
+const mapStateToProps = ({ auth, creators, keywords }, { history }) => {
   const { facebookId } = auth;
-  let user;
+  let user = auth;
+  let tags = [];
 
   if (creators) {
     user = creators.find(creator => creator.facebookId === facebookId);
   }
 
-  const tags = user.creatorInterests.map(interest =>
-    keywords.find(keyword => keyword.id === interest.keywordId)
-  );
+  if (user) {
+    tags = user.creatorInterests.map(interest =>
+      keywords.find(keyword => keyword.id === interest.keywordId)
+    );
+  }
 
   return {
     user,
-    tags
+    tags,
+    history
   };
 };
 

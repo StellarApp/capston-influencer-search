@@ -9,6 +9,8 @@ const Container = styled.div`
   align-items: center;
 `;
 
+import Button from "./buttons/PrimaryButton";
+
 class EditLinkForm extends Component {
   constructor(props) {
     super(props);
@@ -39,40 +41,38 @@ class EditLinkForm extends Component {
     const { onChange, onSumit } = this;
     return (
       <Container>
-        <Form onSubmit={onSumit}>
+        <form onSubmit={onSumit}>
           <div>
-            <Label>Twitter: </Label>
-            <StyledInput
+            <label>Twitter: </label>
+            <input
               type="email"
               name="twitter"
               value={twitter}
               onChange={onChange}
-              required
             />
           </div>
           <div>
-            <Label>Website: </Label>
-            <StyledInput
+            <label>Website: </label>
+            <input
               type="text"
               name="website"
               value={website}
               onChange={onChange}
-              required
             />
           </div>
           <div>
-            <Label>Youtube:</Label>
-            <StyledInput
+            <label>Youtube:</label>
+            <input
               type="text"
               name="youtube"
               value={youtube}
               onChange={onChange}
             />
           </div>
-          <button type="submit" value="Submit">
+          <Button type="submit" value="Submit">
             Save
-          </button>
-        </Form>
+          </Button>
+        </form>
       </Container>
     );
   }
