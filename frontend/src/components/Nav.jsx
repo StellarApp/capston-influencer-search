@@ -18,6 +18,7 @@ const Link = styled.p`
   color: ${props => props.theme.textColor.primary};
   padding: 0 1rem;
   display: inline-block;
+  font-weight: inherit;
   &:hover {
     cursor: pointer;
   }
@@ -108,25 +109,21 @@ class Nav extends Component {
           </NavLink>
         </div>
 
-        {loggedIn && type === "business" ? (
-          <NavLink to="/creators">
-            <Link>Creators</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
-        {loggedIn && type === "business" ? (
-          <NavLink to="/collections">
-            <Link>Collections</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
-        {loggedIn && type === "business" && (
-          <NavLink to="/business-account">
-            <Link>Account</Link>
-          </NavLink>
-        )}
+        <div>
+          {loggedIn && type === "business" && (
+            <>
+              <NavLink to="/creators" activeStyle={{ fontWeight: "bold" }}>
+                <Link>Creators</Link>
+              </NavLink>
+              <NavLink to="/collections" activeStyle={{ fontWeight: "bold" }}>
+                <Link>Collections</Link>
+              </NavLink>
+              <NavLink to="/business-account">
+                <Link>Account</Link>
+              </NavLink>
+            </>
+          )}
+        </div>
       </NavBar>
     );
   }
