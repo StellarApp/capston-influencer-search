@@ -4,12 +4,11 @@ import defaultTheme from "./Theme";
 import CircleIcon from "./CircleIcon";
 const Container = styled.div`
   background-color: ${defaultTheme.bg.primary};
-  height: 160px;
   display: grid;
   padding: 1.5rem;
   border-radius: 0.5rem;
   grid-template-columns: auto 3rem;
-  grid-template-rows: 3rem auto 3rem;
+  grid-template-rows: 3rem auto auto;
   justify-items: stretch;
   aligh-items: center;
   transition: ${defaultTheme.animations.hover};
@@ -30,6 +29,7 @@ const Title = styled.p`
 const Num = styled.h1`
   grid-area: 2/1/3/3;
   place-self: center stretch;
+  padding: 1rem 0;
 `;
 const Trend = styled.p`
   grid-area: 3/1/4/3;
@@ -43,10 +43,9 @@ const MediaStat = ({ name, value, trend, bg, svg }) => {
       <IconContainer>
         <CircleIcon bg={bg} svg={svg}></CircleIcon>
       </IconContainer>
-
       <Title>{name}</Title>
       <Num>{value}</Num>
-      <Trend>{trend}</Trend>
+      {trend ? <Trend>{trend}</Trend> : ""}
     </Container>
   );
 };
