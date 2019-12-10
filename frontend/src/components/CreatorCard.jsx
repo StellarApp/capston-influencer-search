@@ -14,36 +14,34 @@ const { handleAddCollection } = actions;
 const Container = styled.div`
   background: #ffffff;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
-  border-radius: 16px;
-  padding: 10px;
-  width: 100%;
-  heigh: 400px;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 480px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 3rem auto;
   &:hover {
     cursor: pointer;
     box-shadow: ${defaultTheme.shadows.hover};
   }
 `;
 
-const EngagementList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+const ProfileHeader = styled.div`
+  grid-area: 1/1/2/3;
+`;
+const SubText = styled.h6`
+  margin-top: 2px;
+  color: ${props => props.theme.textColor.secondary};
+`;
+const ProfileImg = styled(CircleImg)`
+  grid-area: 1/3/2/4;
+  width: 4rem;
+  height: 4rem;
+  justify-self: end;
 `;
 
-const Engagement = styled.div`
-  flex: 1 0 calc(33% - 10px);
-  margin: 5px;
-  justify-content: space-around;
-  align-items: flex-end;
-`;
-
-const TextBox = styled.div`
-  font-family: Work Sans;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
-  text-transform: capitalize;
-  color: #828282;
+const Stats = styled(ProfileStats)`
+  grid-area: 2/1/3/4;
 `;
 
 const CreatorCard = ({
@@ -51,46 +49,45 @@ const CreatorCard = ({
   handleAddCollection,
   businessId,
   keywords,
-  inCollection,
+  inCollection
 }) => {
-  const { creatorInterests } = creator;
-  let interests = "";
+  const { fullName, creatorInterests, creatorInsights } = creator;
+  const {
+    igName,
+    mediaCount,
+    followersCount,
+    followsCount,
+    profilePictureUrl,
+    biography,
+    totalComments,
+    totalLikes,
+    engagementRate,
+    mostCommentedPost,
+    mostEngagedPost,
+    mostLikedPost
+  } = creatorInsights[0];
 
-  if (keywords.length > 1 && creatorInterests.length > 0) {
-    interests = creatorInterests.map(
-      interest =>
-        keywords.find(keyword => keyword.id === interest.keywordId).name
-    );
-  }
-  const { fullName } = creator;
-
+  // if (keywords.length > 1 && creatorInterests.length > 0) {
+  //   interests = creatorInterests.map(
+  //     interest =>
+  //       keywords.find(keyword => keyword.id === interest.keywordId).name
+  //   );
+  // }
   return (
     <Container>
-      <Link to={`/creators/${creator.id}`}>
-        <h4>{fullName}</h4>
-      </Link>
-      {/* <Image
-        src={creator.creatorInsights[0].profilePictureUrl}
-        alt="profile photo"
-      /> */}
-      <TextBox>{creator.creatorInsights[0].biography}</TextBox>
-      {/* <EngagementList>
-        <Engagement id="followers">
-          <FollowerIcon />
-          {creator.creatorInsights[0].followersCount}
-        </Engagement>
-        <Engagement id="engagementRate">
-          <ImpressionIcon />
-          {creator.creatorInsights[0].engagementRate} %
-        </Engagement>
-        <Engagement id="location">
-          <LocationIcon /> {creator.location}
-        </Engagement>
-      </EngagementList> */}
-      <TextBox id="interests">
-        {interests.length > 0 &&
-          interests.map((item, idx) => <div key={idx}>{item}</div>)}
-      </TextBox>
+      <ProfileHeader>
+        <h4>
+          <Link to={`/creators/${creator.id}`}>{fullName}</Link>
+        </h4>
+        <SubText>{fullName}</SubText>
+        <p>{biography}</p>
+      </ProfileHeader>
+      <ProfileImg src={profilePictureUrl} alt="profile photo" />
+      <Stats
+        mediaCount={mediaCount}
+        followersCount={followersCount}
+        followsCount={followsCount}
+      />
       {inCollection ? (
         "Added to your collection"
       ) : (
