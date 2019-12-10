@@ -41,6 +41,7 @@ class Collections extends Component {
         {collections.length > 0 ? (
           <div>
             <div>{error && <p>{error}</p>}</div>
+            <CollectionStats />
             <CollectionsTable collections={collections} />
             <input
               type="submit"
