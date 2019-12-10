@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { actions } from "../store";
 
-class Account extends Component {
+class BusinessAccount extends Component {
   render() {
     return (
       <div>
-        Account page
+        BusinessAccount page
         <NavLink to="/logout">Logout</NavLink>
       </div>
     );
@@ -16,4 +16,4 @@ class Account extends Component {
 
 const mapStateToProps = ({}) => ({});
 
-export default connect(mapStateToProps)(Account);
+export default connect(mapStateToProps)(BusinessAccount);

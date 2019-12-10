@@ -18,13 +18,14 @@ import Home from "./Home";
 import Nav from "./Nav";
 import Login from "./Login";
 import Logout from "./Logout";
-import Account from "./Account";
 import Collections from "./Collections";
 import Creators from "./Creators";
 import Creator from "./Creator";
 import Keywords from "./onboarding/Keywords";
 import Links from "./onboarding/Links";
 import contactCreators from "./ContactCreators";
+import CreatorAccount from "./CreatorAccount";
+import BusinessAccount from "./BusinessAccount";
 
 class App extends Component {
   componentDidMount() {
@@ -49,12 +50,13 @@ class App extends Component {
           <Route path="/" component={Login} exact />
           <Route path="/onboarding/keywords" component={Keywords} />
           <Route path="/onboarding/links" component={Links} />
-          <Route path="/account" component={Account} />
           <Route path="/collections" component={Collections} />
           <Route path="/creators/:id" component={Creator} />
           <Route path="/creators" component={Creators} />
           <Route path="/logout" component={Logout} />
           <Route path="/contact-creators" component={contactCreators}></Route>
+          <Route path="/account" component={CreatorAccount}></Route>
+          <Route path="/business-account" component={BusinessAccount}></Route>
         </Switch>
       </HashRouter>
     );
