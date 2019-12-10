@@ -117,12 +117,12 @@ const CreatorAccount = ({ user, tags, history }) => {
 
 const mapStateToProps = ({ auth, creators, keywords }, { history }) => {
   const { facebookId } = auth;
-  let user = auth;
   let tags = [];
 
-  if (creators) {
-    user = creators.find(creator => creator.facebookId === facebookId);
-  }
+  const existingCreator = creators.find(
+    creator => creator.facebookId === facebookId
+  );
+  const user = existingCreator ? existingCreator : auth;
 
   if (user) {
     tags = user.creatorInterests.map(interest =>
