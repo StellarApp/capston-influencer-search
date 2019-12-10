@@ -20,10 +20,13 @@ class ContactCreators extends Component {
     ev.preventDefault();
 
     const inputList = { ...this.state };
+    const { history } = this.props;
     delete inputList.cc;
     delete inputList.sentStatus;
 
     this.setState({ sentStatus: true, error: [] });
+
+    setTimeout(() => history.push("/collections"), 3000);
   }
 
   onChange(ev) {
@@ -37,7 +40,15 @@ class ContactCreators extends Component {
     const { onChange, sendEmail } = this;
     return (
       <div>
-        <h2>Send Email to Creators</h2>
+        <h4>Send Email to Creators</h4>
+        {sentStatus ? (
+          <div>
+            Email has sent. WEb page redirects to the collections after 3
+            seconds.
+          </div>
+        ) : (
+          ""
+        )}
         <form onSubmit={sendEmail}>
           <div>
             <label>Send From: </label>
@@ -82,7 +93,6 @@ class ContactCreators extends Component {
             Go Back
           </button>
         </form>
-        {sentStatus ? <div>Email has sent</div> : ""}
       </div>
     );
   }
