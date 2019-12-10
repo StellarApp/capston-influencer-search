@@ -40,7 +40,7 @@ const TopPosts = ({ mostLiked, mostCommented, mostEngaged }) => {
 
         <TopPost
           name={"Most engaged post"}
-          value={mostEngaged.like_count}
+          value={mostEngaged.like_count + mostEngaged.comments_count}
           url={mostEngaged.media_url}
           svg={stat_engagement}
         />
