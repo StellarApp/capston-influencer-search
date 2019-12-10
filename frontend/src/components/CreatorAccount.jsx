@@ -42,7 +42,7 @@ const Actions = styled.div`
   width: 3rem;
 `;
 const CreatorAccount = ({ user, tags, history }) => {
-  const { creatorInsights, creatorLinks, creatorInterests, fullName } = user? user : {};
+  const { creatorInsights, creatorLinks, creatorInterests, fullName } = user;
   const {
     igName,
     mediaCount,
@@ -56,11 +56,13 @@ const CreatorAccount = ({ user, tags, history }) => {
     mostCommentedPost,
     mostEngagedPost,
     mostLikedPost
-  } =  creatorInsights? creatorInsights[0] :{};
+  } = creatorInsights[0];
 
-  const { twitter, youtube, website } = creatorLinks
+  const { twitter, youtube, website } = creatorLinks.length
     ? creatorLinks[0]
     : {};
+
+  const links = creatorLinks.length > 1 ? creatorLinks[0] : {};
 
   return (
     <Container>
@@ -75,7 +77,7 @@ const CreatorAccount = ({ user, tags, history }) => {
               <SubText>{fullName}</SubText>
             </div>
             <Tags>
-              {tags
+              {tags.length > 0
                 ? tags.map(tag => <Tag text={tag.name} key={tag.id} />)
                 : ""}
             </Tags>
