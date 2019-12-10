@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import CreatorCard from "./CreatorCard";
-
+import styled from "styled-components";
+const Container = styled.div`
+  padding: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+`;
 class CreatorList extends Component {
   render() {
     const {
@@ -19,7 +24,9 @@ class CreatorList extends Component {
         .reduce((accum, ele) => (accum += ` ${creator[ele]}`), "")
         .toLowerCase();
 
-      const interestList = creator.creatorInterests.map(interest => interest.keywordId);
+      const interestList = creator.creatorInterests.map(
+        interest => interest.keywordId
+      );
 
       if (searchTarget.indexOf(searchText.toLowerCase()) === -1) {
         return;
@@ -33,14 +40,17 @@ class CreatorList extends Component {
         return;
       }
 
-      if(interestList.indexOf(searchInterest*1) === -1 && searchInterest !== ""){
+      if (
+        interestList.indexOf(searchInterest * 1) === -1 &&
+        searchInterest !== ""
+      ) {
         return;
       }
 
       filteredCreators.push(<CreatorCard key={creator.id} creator={creator} />);
     });
 
-    return <div>{filteredCreators}</div>;
+    return <Container>{filteredCreators}</Container>;
   }
 }
 

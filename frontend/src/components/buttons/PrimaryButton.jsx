@@ -7,7 +7,6 @@ const Button = styled.button`
   padding: 1rem;
   display: block;
   vertical-align: center;
-  background-color: ${defaultTheme.accent.orange};
   color: #ffffff;
   font-family: ${defaultTheme.fonts.heading};
   font-weight: 400;
