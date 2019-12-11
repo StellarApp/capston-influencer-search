@@ -19,10 +19,14 @@ class CreatorList extends Component {
     const filteredCreators = [];
 
     creators.forEach(creator => {
-      const keys = ["firstName", "lastName", "description"]; //add interest
-      const searchTarget = keys
+      const keys = ["firstName", "lastName"]; //add interest
+      let searchTarget = keys
         .reduce((accum, ele) => (accum += ` ${creator[ele]}`), "")
         .toLowerCase();
+
+      searchTarget = !creator.creatorInsights[0].biography
+        ? searchTarget
+        : searchTarget + ` ${creator.creatorInsights[0].biography.toLowerCase()}`;
 
       const interestList = creator.creatorInterests.map(
         interest => interest.keywordId
