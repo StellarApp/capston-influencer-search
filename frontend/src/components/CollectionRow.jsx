@@ -81,7 +81,11 @@ class CollectionRow extends Component {
         <Biography>{creator.creatorInsights[0].biography}</Biography>
         <Location>{creator.location}</Location>
         <Action>
-          <DeleteBtn onClick={() => handleDeleteCollection(collection.id)}>
+          <DeleteBtn
+            onClick={() =>
+              handleDeleteCollection(collection.id, creator.id, selected)
+            }
+          >
             <svg
               width="24"
               height="24"
