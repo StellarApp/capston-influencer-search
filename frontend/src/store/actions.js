@@ -92,13 +92,23 @@ const handleAddCollection = (businessId, creatorId) => async dispatch => {
   dispatch({ type: ADD_COLLECTION, collection: newCollection });
 };
 
-const handleDeleteCollection = collectionId => async dispatch => {
+const handleDeleteCollection = (
+  collectionId,
+  creatorId,
+  selected
+) => async dispatch => {
   await axios.delete(`api/business/${collectionId}`);
-  
+
   dispatch({
     type: DELETE_COLLECTION,
     collection: { id: collectionId }
   });
+  if (selected.includes(creatorId)) {
+    dispatch({
+      type: TOGGLE_SELECTED,
+      selected
+    });
+  }
 };
 
 const fetchKeywords = () => async dispatch => {

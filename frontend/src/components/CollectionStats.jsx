@@ -60,12 +60,9 @@ const mapStateToProps = ({ selected, creators }) => {
 
   selected.forEach(selectedCreator => {
     const creator = creators.find(creator => selectedCreator === creator.id);
-    const {
-      followersCount,
-      totalComments,
-      mediaCount,
-      totalLikes
-    } = creator.creatorInsights[0];
+    const { followersCount, totalComments, mediaCount, totalLikes } = creator
+      ? creator.creatorInsights[0]
+      : {};
     selectedMediaCount += mediaCount;
     selectedFollowersCount += followersCount;
     selectedTotalComments += totalComments;
