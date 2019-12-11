@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import defaultTheme from "./Theme";
-import Button from "./buttons/PrimaryButton";
 
 const Container = styled.div`
   padding: 2.5rem;
@@ -37,7 +36,7 @@ const StyledInput = styled.input`
   margin: 1rem 0;
   padding: 1rem;
   display: block;
-  min-width: 350px;
+  min-width: 370px;
   vertical-align: center;
   background-color: #ffffff;
   color: ${defaultTheme.textColor.primary};
@@ -57,7 +56,7 @@ const StyledInputBody = styled.textarea`
   margin: 1rem 0;
   padding: 1rem;
   display: block;
-  min-width: 350px;
+  min-width: 370px;
   vertical-align: center;
   background-color: #ffffff;
   color: ${defaultTheme.textColor.primary};
@@ -72,7 +71,32 @@ const StyledInputBody = styled.textarea`
 `;
 
 const ButtonContainer = styled.div`
+  grid-area: 1/1/2/3;
+  margin: 1rem 0;
+  display: block;
   display: flex;
+  justify-content: space-around;
+  min-width: 350px;
+`;
+
+const Button = styled.button`
+  border-radius: 2rem;
+  padding: 1rem;
+  display: block;
+  vertical-align: center;
+  width: 45%;
+  color: #ffffff;
+  font-family: ${defaultTheme.fonts.heading};
+  font-weight: 400;
+  text-align: center;
+  font-size: 16px;
+  background-color: ${defaultTheme.accent.orange};
+  transition: ${defaultTheme.animations.hover};
+  border: none;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
 `;
 
 class ContactCreators extends Component {
