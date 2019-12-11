@@ -47,9 +47,11 @@ const DeleteBtn = styled(SecondaryButton)`
 const Location = styled.p`
   flex-grow: 1fr;
 `;
+
 const SubText = styled.h6`
   color: ${props => props.theme.textColor.secondary};
 `;
+
 class CollectionRow extends Component {
   render() {
     const {

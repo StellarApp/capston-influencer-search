@@ -39,6 +39,11 @@ class Collections extends Component {
     fetchSelected(collections);
   }
 
+  componentDidUpdate(){
+    const { collections, fetchSelected } = this.props;
+    fetchSelected(collections);
+  }
+
   handleSendEmail() {
     const { history, selected } = this.props;
     if (selected.length === 0) {
