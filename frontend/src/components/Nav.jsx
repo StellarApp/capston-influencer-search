@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
+import defaultTheme from "./Theme";
 import CircleImg from "./CircleImg";
 
 const NavBar = styled.div`
@@ -15,13 +16,18 @@ const NavBar = styled.div`
 
 const LinkContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 
-const Link = styled.p`
-  color: ${props => props.theme.textColor.primary};
+const activeStyle = {
+  color: defaultTheme.accent.orange,
+  fontWeight: "bold"
+};
+
+const StyledNavLink = styled(NavLink)`
+  color: ${defaultTheme.textColor.primary};
   padding: 0 1rem;
   display: inline-block;
-  font-weight: inherit;
   &:hover {
     cursor: pointer;
   }
@@ -115,15 +121,15 @@ class Nav extends Component {
         <div>
           {loggedIn && type === "business" && (
             <LinkContainer>
-              <NavLink to="/creators" activeStyle={{ fontWeight: "bold" }}>
-                <Link>Creators</Link>
-              </NavLink>
-              <NavLink to="/collections" activeStyle={{ fontWeight: "bold" }}>
-                <Link>Collections</Link>
-              </NavLink>
-              <NavLink to="/business-account">
+              <StyledNavLink to="/creators" activeStyle={activeStyle}>
+                Creators
+              </StyledNavLink>
+              <StyledNavLink to="/collections" activeStyle={activeStyle}>
+                Collections
+              </StyledNavLink>
+              <StyledNavLink to="/business-account">
                 <CircleImg src={imageUrl} size="50px"></CircleImg>
-              </NavLink>
+              </StyledNavLink>
             </LinkContainer>
           )}
         </div>
