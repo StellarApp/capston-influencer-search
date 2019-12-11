@@ -41,6 +41,14 @@ const Tags = styled.div`
 const Actions = styled.div`
   width: 3rem;
 `;
+
+const ButtonContainer = styled.div`
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  min-width: 350px;
+`;
+
 const CreatorAccount = ({ user, tags, history }) => {
   const { creatorInsights, creatorLinks, creatorInterests, fullName } = user;
   const {
@@ -110,7 +118,9 @@ const CreatorAccount = ({ user, tags, history }) => {
         mostCommented={mostCommentedPost}
         mostEngaged={mostEngagedPost}
       />
-      <Button onClick={() => history.push("/logout")}>Logout</Button>
+      <ButtonContainer>
+        <Button onClick={() => history.push("/logout")}>Logout</Button>
+      </ButtonContainer>
     </Container>
   );
 };
