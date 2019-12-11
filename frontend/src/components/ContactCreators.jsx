@@ -17,6 +17,10 @@ const Header = styled.h3`
   margin-bottom: 3rem;
 `;
 
+const Response = styled.p`
+  font-weight: bold;
+`;
+
 const Label = styled.label`
   padding-left: 1rem;
 `;
@@ -112,10 +116,7 @@ class ContactCreators extends Component {
       <Container>
         <Header>Send Email to Creators</Header>
         {sentStatus ? (
-          <div>
-            Email has sent. WEb page redirects to the collections after 3
-            seconds.
-          </div>
+          <Response>Email has sent to the creator(s).</Response>
         ) : (
           ""
         )}
