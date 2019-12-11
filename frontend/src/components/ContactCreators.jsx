@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 import defaultTheme from "./Theme";
+import Button from "./buttons/PrimaryButton";
 
 const Container = styled.div`
   padding: 2.5rem;
@@ -63,26 +64,6 @@ const StyledInputBody = styled.textarea`
   transition: ${defaultTheme.animations.hover};
   &:focus {
     background-color: ${defaultTheme.bg.secondary};
-  }
-`;
-
-const Button = styled.button`
-  margin: 2rem 1rem;
-  border-radius: 2rem;
-  padding: 1rem;
-  display: block;
-  min-width: 175px;
-  vertical-align: center;
-  background-color: ${defaultTheme.accent.orange};
-  color: #ffffff;
-  font-family: ${defaultTheme.fonts.heading};
-  font-weight: 400;
-  text-align: center;
-  font-size: 16px;
-  transition: ${defaultTheme.animations.hover};
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.02);
   }
 `;
 

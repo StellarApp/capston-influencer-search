@@ -122,8 +122,14 @@ class Nav extends Component {
         ) : (
           ""
         )}
-
-        {loggedIn ? (
+        {loggedIn && type === "business" ? (
+          <NavLink to="/business-account">
+            <Link>Account</Link>
+          </NavLink>
+        ) : (
+          ""
+        )}
+        {loggedIn && type === "creator" ? (
           <NavLink to="/account">
             <Link>Account</Link>
           </NavLink>

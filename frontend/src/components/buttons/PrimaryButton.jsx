@@ -15,7 +15,6 @@ const Button = styled.button`
   background-color: ${defaultTheme.accent.orange};
   transition: ${defaultTheme.animations.hover};
   border: none;
-  transition: ${defaultTheme.animations.hover};
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
