@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-// Local imports
-import { actions } from "../store";
+import defaultTheme from "./Theme";
+import CircleImg from "./CircleImg";
 
 const NavBar = styled.div`
   display: flex;
@@ -14,8 +14,18 @@ const NavBar = styled.div`
   padding: 2rem;
 `;
 
-const Link = styled.p`
-  color: ${props => props.theme.textColor.primary};
+const LinkContainer = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const activeStyle = {
+  color: defaultTheme.accent.orange,
+  fontWeight: "bold"
+};
+
+const StyledNavLink = styled(NavLink)`
+  color: ${defaultTheme.textColor.primary};
   padding: 0 1rem;
   display: inline-block;
   &:hover {
@@ -25,7 +35,7 @@ const Link = styled.p`
 
 class Nav extends Component {
   render() {
-    const { loggedIn, type } = this.props;
+    const { loggedIn, type, imageUrl } = this.props;
     return (
       <NavBar>
         <div>
@@ -108,34 +118,21 @@ class Nav extends Component {
           </NavLink>
         </div>
 
-        {loggedIn && type === "business" ? (
-          <NavLink to="/creators">
-            <Link>Creators</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
-        {loggedIn && type === "business" ? (
-          <NavLink to="/collections">
-            <Link>Collections</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
-        {loggedIn && type === "business" ? (
-          <NavLink to="/business-account">
-            <Link>Account</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
-        {loggedIn && type === "creator" ? (
-          <NavLink to="/account">
-            <Link>Account</Link>
-          </NavLink>
-        ) : (
-          ""
-        )}
+        <div>
+          {loggedIn && type === "business" && (
+            <LinkContainer>
+              <StyledNavLink to="/creators" activeStyle={activeStyle}>
+                Creators
+              </StyledNavLink>
+              <StyledNavLink to="/collections" activeStyle={activeStyle}>
+                Collections
+              </StyledNavLink>
+              <StyledNavLink to="/business-account">
+                <CircleImg src={imageUrl} size="50px"></CircleImg>
+              </StyledNavLink>
+            </LinkContainer>
+          )}
+        </div>
       </NavBar>
     );
   }
@@ -143,7 +140,8 @@ class Nav extends Component {
 
 const mapStateToProps = ({ auth }) => ({
   loggedIn: !!auth.token,
-  type: auth.type
+  type: auth.type,
+  imageUrl: auth.imageUrl
 });
 
 export default connect(mapStateToProps)(Nav);
