@@ -1,10 +1,10 @@
 // Package imports
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
 import styled from "styled-components";
 import defaultTheme from "./Theme";
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,20 +32,12 @@ class CreatorSearchBar extends Component {
   }
 
   render() {
-    const {
-      searchText,
-      locations,
-      searchLocation,
-      searchGender,
-      searchInterest,
-      keywords
-    } = this.props;
+    const { searchText, locations, keywords } = this.props;
     const { handleFilterChange } = this;
 
     return (
       <Container>
         <TextField
-          id="outlined-basic"
           label="Search by Keywords"
           variant="outlined"
           type="search"
@@ -54,27 +46,36 @@ class CreatorSearchBar extends Component {
           value={searchText}
           onChange={handleFilterChange}
         />
-        <Select name="searchLocation" onChange={handleFilterChange}>
-          <option value="">Select All</option>
-          {locations.map((location, idx) => (
-            <option key={idx} value={location}>
-              {location}
-            </option>
-          ))}
-        </Select>
-        <Select name="searchGender" onChange={handleFilterChange}>
-          <option value="">Select All</option>
-          <option value="female">female</option>
-          <option value="male">male</option>
-        </Select>
-        <Select name="searchInterest" onChange={handleFilterChange}>
-          <option value="">Select All</option>
-          {keywords.map((interest, idx) => (
-            <option key={idx} value={interest.id}>
-              {interest.name}
-            </option>
-          ))}
-        </Select>
+        <FormControl>
+          <InputLabel>Location</InputLabel>
+          <Select name="searchLocation" onChange={handleFilterChange}>
+            <MenuItem value="">Select All</MenuItem>
+            {locations.map((location, idx) => (
+              <MenuItem key={idx} value={location}>
+                {location}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl>
+          <InputLabel>Gender</InputLabel>
+          <Select name="searchGender" onChange={handleFilterChange}>
+            <MenuItem value="">Select All</MenuItem>
+            <MenuItem value="female">female</MenuItem>
+            <MenuItem value="male">male</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl>
+          <InputLabel>Interest</InputLabel>
+          <Select name="searchInterest" onChange={handleFilterChange}>
+            <MenuItem value="">Select All</MenuItem>
+            {keywords.map((interest, idx) => (
+              <MenuItem key={idx} value={interest.id}>
+                {interest.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
       </Container>
     );
   }
