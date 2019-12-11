@@ -4,14 +4,17 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-// Local imports
-import { actions } from "../store";
+import CircleImg from "./CircleImg";
 
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+`;
+
+const LinkContainer = styled.div`
+  display: flex;
 `;
 
 const Link = styled.p`
@@ -26,7 +29,7 @@ const Link = styled.p`
 
 class Nav extends Component {
   render() {
-    const { loggedIn, type } = this.props;
+    const { loggedIn, type, imageUrl } = this.props;
     return (
       <NavBar>
         <div>
@@ -111,7 +114,7 @@ class Nav extends Component {
 
         <div>
           {loggedIn && type === "business" && (
-            <>
+            <LinkContainer>
               <NavLink to="/creators" activeStyle={{ fontWeight: "bold" }}>
                 <Link>Creators</Link>
               </NavLink>
@@ -119,9 +122,9 @@ class Nav extends Component {
                 <Link>Collections</Link>
               </NavLink>
               <NavLink to="/business-account">
-                <Link>Account</Link>
+                <CircleImg src={imageUrl} size="50px"></CircleImg>
               </NavLink>
-            </>
+            </LinkContainer>
           )}
         </div>
       </NavBar>
@@ -131,7 +134,8 @@ class Nav extends Component {
 
 const mapStateToProps = ({ auth }) => ({
   loggedIn: !!auth.token,
-  type: auth.type
+  type: auth.type,
+  imageUrl: auth.imageUrl
 });
 
 export default connect(mapStateToProps)(Nav);
