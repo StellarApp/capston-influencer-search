@@ -4,6 +4,25 @@ import { connect } from "react-redux";
 import CollectionStats from "./CollectionStats";
 import CollectionsTable from "./CollectionsTable";
 import { actions } from "../store";
+import styled from "styled-components";
+import Button from "./buttons/PrimaryButton";
+const Bar = styled.div`
+  display: flex;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #c4c4c4;
+  align-items: center;
+  justify-content: space-between;
+`;
+const Count = styled.h4`
+  margin: 2rem;
+`;
+const ContactBtn = styled(Button)`
+  margin: 2rem;
+`;
 const { fetchSelected } = actions;
 
 class Collections extends Component {
@@ -32,7 +51,7 @@ class Collections extends Component {
   }
 
   render() {
-    const { collections, history } = this.props;
+    const { collections, history, selected } = this.props;
     const { error } = this.state;
     const { handleSendEmail } = this;
 
@@ -43,11 +62,18 @@ class Collections extends Component {
             <div>{error && <p>{error}</p>}</div>
             <CollectionStats />
             <CollectionsTable collections={collections} />
-            <input
-              type="submit"
-              value="Contact to creator(s)"
-              onClick={() => handleSendEmail()}
-            />
+            <Bar>
+              <Count>
+                {selected.length ? `${selected.length} selected ` : ""}
+              </Count>
+              <ContactBtn
+                type="submit"
+                value="Contact to creator(s)"
+                onClick={() => handleSendEmail()}
+              >
+                Contact Creators
+              </ContactBtn>
+            </Bar>
           </div>
         ) : (
           <h3>Collection is empty. Please add a creator.</h3>
